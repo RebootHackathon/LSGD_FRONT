@@ -9,7 +9,6 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Switch>
-          
           <Route path="/mainpage" component={MainPage}/>
           <Route path="/" component={Login}/>
         </Switch>

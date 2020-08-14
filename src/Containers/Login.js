@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import axios from '../axios';
 import classes from './Login.css';
 import Logo from '../assets/keralalogo.png'
+import LoginIcon from '../assets/loginicon.png'
+import { Button, Alert } from 'react-bootstrap';
 
 function Login(props) {
   const username = useFormInput('');
@@ -41,13 +43,12 @@ function Login(props) {
       else{
         return null
       }
-  } 
+  }
   return (
     <div className={classes.Login}>
       <div className={classes.form}>
-        <br/><br/>
-      Login<br /><br />
-      <img src={Logo} style={{width: '30%'}}/>
+        <br/>
+      <img src={Logo} style={{width: '34%', marginTop: '10px',  marginBottom: '10px'}}/>
       <Error show={show}/>
           <br /><br />
       <div >
@@ -59,10 +60,11 @@ function Login(props) {
         <input type="password" {...password} autoComplete="new-password" />
       </div>
       {/* {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br /> */}
-      <input type="button" className={classes.button} value='Login' onClick={handleLogin} /><br />
-    
-      <br /><br /></div>
-
+          <Button style={{marginTop: '15%'}} variant="primary" size="lg" block onClick={handleLogin}>
+              Login
+          </Button>
+      {/*<input style={{marginTop: '8%', marginBottom: '10%'}} type="button" className={classes.button} value='Login' onClick={handleLogin} /><br />*/}
+      </div>
     </div>
   );
 }
