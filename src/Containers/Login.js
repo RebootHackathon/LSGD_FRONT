@@ -51,7 +51,7 @@ function Login(props) {
     <div style={{minHeight: '100vh', width: '100%'}}>
         <Container fluid>
             <Row>
-                <Col md={4} style={{padding: '0'}}>
+                <Col md={3} style={{padding: '0'}}>
                     <Card style={{ width: '100%', height: '100vh' }}>
                     <Card.Title>Login</Card.Title>
                     <Card.Img variant="top" src={Logo} style={{maxHeight: '50vh'}}/>
@@ -83,7 +83,7 @@ function Login(props) {
                     </Card.Body>
                 </Card>
                 </Col>
-                <Col md={8}>2 of 2</Col>
+                <Col md={9} style={{background: 'aqua'}}></Col>
             </Row>
         </Container>
     </div>
