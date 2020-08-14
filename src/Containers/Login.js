@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import axios from 'axios';
+import axios from '../axios';
 import classes from './Login.css';
 
 function Login(props) {
@@ -13,9 +13,9 @@ function Login(props) {
   const handleLogin = () => {
       console.log(username,password);
       const authData={ "username":username.value,"password":password.value}
-    
+    axios.defaults.withCredentials = true;
     // props.history.push('/dashboard');
-    axios.post("https://reboothack12345.herokuapp.com/auth/login",authData)
+    axios.post('/auth/login',authData)
       .then(response=>{
         console.log(authData);
         if(response.data.status===200){
