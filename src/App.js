@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Login from './Containers/Login';
 import MainPage from './Containers/MainPage';
+import ListGrant from './Containers/ListGrant';
 import {Route,Switch} from 'react-router-dom';
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
         <Switch>
           
           <Route path="/mainpage" component={MainPage}/>
+          <Route path="/listgrants" component={ListGrant}/>
           <Route path="/" component={Login}/>
         </Switch>
       </div>
