@@ -4,7 +4,7 @@ import SearchForm from '../Components/SearchForm/SearchForm';
 import axios from '../axios';
 import CardView from '../Components/CardView/CardView';
 import ExpandCard from '../Components/CardView/ExpandCard';
-import {Route} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 class ListGrant extends Component{
 
@@ -15,14 +15,20 @@ class ListGrant extends Component{
     };
     
     onCardClickHandler=(id)=>{
-        console.log("click route",id);
+        console.log(this.state.data);
         
-        return <Route path={"/login"} render={(props) => <ExpandCard expandData={this.state.data[id]}/>}/>
+        const expand_element=this.state.data.filter(ele=>(
+            ele._id===id
+        ))
+        console.log(expand_element);
+        this.props.history.push(  {pathname:'/'+id, state: { detail: expand_element }});
+        // return <Redirect to={"/login"} render={(props) => <ExpandCard expandData={this.state.data[id]}/>}/>
     }
     showListHandler=()=>{
         const data=this.state.data;   
         return  data.map((ele)=>(
-                    <CardView key={ele._id} id={ele._id} data={ele}  clicked={()=>this.onCardClickHandler(ele._id)}/>
+            // console.log(ele,"kaka")
+                    <CardView key={ele._id} id={ele._id} data={ele} clicked={()=>this.onCardClickHandler(ele._id)}/>
          ) );
         // console.log(this.state);
     }
