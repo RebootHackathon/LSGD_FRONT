@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 
 import axios from '../axios';
 import classes from './Login.css';
+import Logo from '../assets/keralalogo.png'
+import LoginIcon from '../assets/loginicon.png'
+import {Button, Card, FormControl, InputGroup} from 'react-bootstrap';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function Login(props) {
   const username = useFormInput('');
@@ -40,28 +46,68 @@ function Login(props) {
       else{
         return null
       }
-  } 
+  }
   return (
-    <div className={classes.Login}>
-      <div className={classes.form}>
-        <br/><br/>
-      Login<br /><br /><br /><br />
-   
-      <Error show={show}/>
-      <div >
-        Username<br />
-        <input className={classes.input} type="text" {...username} autoComplete="new-password" />
-      </div>
-      <div style={{ marginTop: 10 }}>
-        Password<br />
-        <input type="password" {...password} autoComplete="new-password" />
-      </div>
-      {/* {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br /> */}
-      <input type="button" className={classes.button} value='Login' onClick={handleLogin} /><br />
-    
-      <br /><br /></div>
-
+    <div style={{minHeight: '100vh', width: '100%'}}>
+        <Container fluid>
+            <Row>
+                <Col md={3} style={{padding: '0'}}>
+                    <Card style={{ width: '100%', height: '100vh' }}>
+                    <Card.Title>Login</Card.Title>
+                    <Card.Img variant="top" src={Logo} style={{maxHeight: '50vh'}}/>
+                    <Card.Body>
+                        <Error show={show}/>
+                        <InputGroup style={{marginTop: '40%'}} className="mb-3">
+                            <InputGroup.Prepend>
+                                <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <FormControl
+                                placeholder="Username"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                {...username}
+                            />
+                        </InputGroup>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Prepend>
+                                <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <FormControl
+                                placeholder="Password"
+                                aria-label="Password"
+                                aria-describedby="basic-addon1"
+                                {...password}
+                            />
+                        </InputGroup>
+                        <Button variant="primary" block onClick={handleLogin}>Login</Button>
+                    </Card.Body>
+                </Card>
+                </Col>
+                <Col md={9} style={{background: 'aqua'}}></Col>
+            </Row>
+        </Container>
     </div>
+    // <div className={classes.Login}>
+    //   <div className={classes.form}>
+    //     <br/>
+    //   <img src={Logo} style={{width: '34%', marginTop: '10px',  marginBottom: '10px'}}/>
+    //   <Error show={show}/>
+    //       <br /><br />
+    //   <div >
+    //     Username<br />
+    //     <input className={classes.input} type="text" {...username} autoComplete="new-password" />
+    //   </div>
+    //   <div style={{ marginTop: 10 }}>
+    //     Password<br />
+    //     <input type="password" {...password} autoComplete="new-password" />
+    //   </div>
+    //   {/* {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br /> */}
+    //       <Button style={{marginTop: '15%'}} variant="primary" size="lg" block onClick={handleLogin}>
+    //           Login
+    //       </Button>
+    //   {/*<input style={{marginTop: '8%', marginBottom: '10%'}} type="button" className={classes.button} value='Login' onClick={handleLogin} /><br />*/}
+    //   </div>
+    // </div>
   );
 }
 
