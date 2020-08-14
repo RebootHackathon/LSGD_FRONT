@@ -26,7 +26,7 @@ function Login(props) {
           console.log(authData);
           if(response.data.status===200){
             setShow(false);
-            props.history.push('/mainpage');
+            props.history.replace('/mainpage');
         
           }
           else{
