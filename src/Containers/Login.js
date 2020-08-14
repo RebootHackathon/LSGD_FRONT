@@ -6,33 +6,48 @@ import classes from './Login.css';
 function Login(props) {
   const username = useFormInput('');
   const password = useFormInput('');
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
+  // const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  const [show,setShow]=useState(false);
   // handle button click of login form
   const handleLogin = () => {
       console.log(username,password);
       const authData={ "username":username.value,"password":password.value}
-    axios.defaults.withCredentials = true;
-    // props.history.push('/dashboard');
-    axios.post('/auth/login',authData)
-      .then(response=>{
-        console.log(authData);
-        if(response.data.status===200){
-          props.history.push('/mainpage');
+      axios.defaults.withCredentials = true;
+      // props.history.push('/dashboard');
+      axios.post('/auth/login',authData)
+        .then(response=>{
+          console.log(authData);
+          if(response.data.status===200){
+            setShow(false);
+            props.history.push('/mainpage');
         
-        }
+          }
+          else{
+            setShow(true);
+         
+          }
         console.log(response);
       }).catch(err=>{
         console.log(err);
       })
   }
-
+  const Error=(props)=>{
+   
+      if(props.show){
+        return <p className={classes.autherror}>Incorrect username or password !</p>
+      }
+      else{
+        return null
+      }
+  } 
   return (
     <div className={classes.Login}>
       <div className={classes.form}>
         <br/><br/>
       Login<br /><br /><br /><br />
+   
+      <Error show={show}/>
       <div >
         Username<br />
         <input className={classes.input} type="text" {...username} autoComplete="new-password" />
@@ -42,7 +57,7 @@ function Login(props) {
         <input type="password" {...password} autoComplete="new-password" />
       </div>
       {/* {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br /> */}
-      <input type="button" className={classes.button} value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+      <input type="button" className={classes.button} value='Login' onClick={handleLogin} /><br />
     
       <br /><br /></div>
 
