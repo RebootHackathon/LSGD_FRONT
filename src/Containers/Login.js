@@ -53,7 +53,7 @@ function Login(props) {
             <Row>
                 <Col md={3} style={{padding: '0'}}>
                     <Card style={{ width: '100%', height: '100vh' }}>
-                    <Card.Img variant="top" src={Logo} style={{maxHeight: '50vh', padding: '10%'}}/>
+                    <Card.Img variant="top" src={Logo} style={{maxHeight: '50vh', padding: '7%'}}/>
                     <Card.Body>
                         <Error show={show}/>
                         <InputGroup style={{marginTop: '30%'}} className="mb-3">
