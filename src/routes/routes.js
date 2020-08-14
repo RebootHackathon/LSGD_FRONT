@@ -4,10 +4,10 @@ import Login from '../Containers/Login';
 import ExpandCard from '../Components/CardView/ExpandCard';
 
 var routes = [
-    { path: "/mainpage", name: "mainpage", component: MainPage },
-    { path: "/listgrants", name: "listgrants", component: ListGrant },
-    { path: "/:id", name: "listgrants", component: ExpandCard },
-    { path: "/", name: "login", component: Login },
+    { path: "/LSGD_FRONT/mainpage", name: "mainpage", component: MainPage },
+    { path: "/LSGD_FRONT/listgrants", name: "listgrants", component: ListGrant },
+    { path: "/LSGD_FRONT/:id", name: "listgrants", component: ExpandCard },
+    { path: "/LSGD_FRONT/", name: "login", component: Login },
   ];
 
 export default routes;
