@@ -7,7 +7,7 @@ import {Route,Switch} from 'react-router-dom';
 class App extends Component {
   render() {
     return (
-      <div className={classes.App}>
+      <div className={classes.App} style={{minHeight: '100vh'}}>
         <Switch>
           <Route path="/mainpage" component={MainPage}/>
           <Route path="/" component={Login}/>
