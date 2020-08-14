@@ -13,12 +13,14 @@ function Login(props) {
   const handleLogin = () => {
       console.log(username,password);
       const authData={ "username":username.value,"password":password.value}
+    
     // props.history.push('/dashboard');
     axios.post("https://reboothack12345.herokuapp.com/auth/login",authData)
       .then(response=>{
         console.log(authData);
         if(response.data.status===200){
-          console.log("hello");
+          props.history.push('/mainpage');
+        
         }
         console.log(response);
       }).catch(err=>{
@@ -28,8 +30,10 @@ function Login(props) {
 
   return (
     <div className={classes.Login}>
-      Login<br /><br />
-      <div>
+      <div className={classes.form}>
+        <br/><br/>
+      Login<br /><br /><br /><br />
+      <div >
         Username<br />
         <input className={classes.input} type="text" {...username} autoComplete="new-password" />
       </div>
@@ -39,6 +43,9 @@ function Login(props) {
       </div>
       {/* {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br /> */}
       <input type="button" className={classes.button} value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+    
+      <br /><br /></div>
+
     </div>
   );
 }
