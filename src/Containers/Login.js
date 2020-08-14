@@ -73,6 +73,7 @@ function Login(props) {
                                 <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl
+                                type="password"
                                 placeholder="Password"
                                 aria-label="Password"
                                 aria-describedby="basic-addon1"
