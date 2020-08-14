@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import axios from '../axios';
 import classes from './Login.css';
+import Logo from '../assets/keralalogo.png'
 
 function Login(props) {
   const username = useFormInput('');
@@ -45,9 +46,10 @@ function Login(props) {
     <div className={classes.Login}>
       <div className={classes.form}>
         <br/><br/>
-      Login<br /><br /><br /><br />
-   
+      Login<br /><br />
+      <img src={Logo} style={{width: '30%'}}/>
       <Error show={show}/>
+          <br /><br />
       <div >
         Username<br />
         <input className={classes.input} type="text" {...username} autoComplete="new-password" />
