@@ -53,11 +53,10 @@ function Login(props) {
             <Row>
                 <Col md={3} style={{padding: '0'}}>
                     <Card style={{ width: '100%', height: '100vh' }}>
-                    <Card.Title>Login</Card.Title>
-                    <Card.Img variant="top" src={Logo} style={{maxHeight: '50vh'}}/>
+                    <Card.Img variant="top" src={Logo} style={{maxHeight: '50vh', padding: '10%'}}/>
                     <Card.Body>
                         <Error show={show}/>
-                        <InputGroup style={{marginTop: '40%'}} className="mb-3">
+                        <InputGroup style={{marginTop: '30%'}} className="mb-3">
                             <InputGroup.Prepend>
                                 <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
                             </InputGroup.Prepend>
@@ -84,7 +83,7 @@ function Login(props) {
                     </Card.Body>
                 </Card>
                 </Col>
-                <Col md={9} style={{background: 'aqua'}}></Col>
+                <Col md={9} style={{background: '#e0ece4'}}></Col>
             </Row>
         </Container>
     </div>
