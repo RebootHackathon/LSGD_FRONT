@@ -12,6 +12,7 @@ var routes = [
     { path: "/LSGD_FRONT/home", name: "home", component: HomePageVM },
     { path: "/LSGD_FRONT/:id", name: "listgrants", component: ExpandCard },
     { path: "/LSGD_FRONT/", name: "login", component: Login },
+    { path: "/", name: "login", component: Login },
 
     
     

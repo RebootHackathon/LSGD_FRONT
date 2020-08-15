@@ -21,7 +21,7 @@ class ListGrant extends Component{
             ele._id===id
         ))
         console.log(expand_element);
-        this.props.history.push(  {pathname:'/'+id, state: { detail: expand_element }});
+        this.props.history.push(  {pathname:'/LSGD_FRONT/'+id, state: { detail: expand_element }});
         // return <Redirect to={"/login"} render={(props) => <ExpandCard expandData={this.state.data[id]}/>}/>
     }
     showListHandler=()=>{
