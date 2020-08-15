@@ -16,6 +16,7 @@ axios.defaults.baseURL = "https://reboothack12345.herokuapp.com";
 axios.defaults.withCredentials = true;
 
 ReactDOM.render(
+  <div style={{height: "100vh", display: "flex"}}>
     <ThemeProvider theme={theme}>
       <BrowserRouter history={history}>
         <Switch>
@@ -24,7 +25,8 @@ ReactDOM.render(
           })}
         </Switch>
       </BrowserRouter> 
-    </ThemeProvider>,
+    </ThemeProvider>
+  </div>,
   document.getElementById("root")
 );
 registerServiceWorker();

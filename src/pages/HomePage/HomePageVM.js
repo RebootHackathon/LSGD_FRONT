@@ -1,7 +1,11 @@
-import App from '../../App';
+import React from "react";
+import HomePage from "./HomePage";
 
-var indexRoutes = [
-    { path: "/app", name: "app", component: App },
-  ];
 
-export default indexRoutes;
+function HomePageVM(props) {
+  return (
+    <HomePage />
+  )
+}
+
+export default HomePageVM;
