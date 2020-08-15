@@ -3,7 +3,7 @@ import React,{Component} from 'react';
 class MainPage extends Component{
     onClickHandler=()=>{
         // console.log(this.props);
-        this.props.history.replace('/LSGD_FRONT/listgrants')
+        this.props.history.push('/LSGD_FRONT/listgrants')
     }
     render(){
         return(
