@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-
+import React, {useEffect, useState} from 'react';
+import lottie from 'lottie-web'
 import axios from '../axios';
 import classes from './Login.css';
 import Logo from '../assets/keralalogo.png'
+import Covid1 from '../assets/lottie/covid1.json'
 import LoginIcon from '../assets/loginicon.png'
 import {Button, Card, FormControl, InputGroup} from 'react-bootstrap';
 import Container from "react-bootstrap/Container";
@@ -47,6 +48,16 @@ function Login(props) {
         return null
       }
   }
+    useEffect(() => {
+        console.log('playing')
+        lottie.loadAnimation({
+            container: document.getElementById('loginanimation'), // the dom element that will contain the animation
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            animationData: Covid1
+        });
+    })
   return (
     <div style={{minHeight: '100vh', width: '100%'}}>
         <Container fluid>
@@ -83,31 +94,16 @@ function Login(props) {
                     </Card.Body>
                 </Card>
                 </Col>
-                <Col md={9} style={{background: '#e0ece4'}}></Col>
+                <Col md={9} style={{background: '#e0ece4'}}>
+                    <div style={{paddingLeft: '35%'}}>
+                        <div style={{marginLeft: '14%', marginTop: '8%', fontSize: '20px'}}>Welcome</div>
+                        <div id={"loginanimation"} style={{width: '40%', marginTop: '25%'}}>
+                        </div>
+                    </div>
+                </Col>
             </Row>
         </Container>
     </div>
-    // <div className={classes.Login}>
-    //   <div className={classes.form}>
-    //     <br/>
-    //   <img src={Logo} style={{width: '34%', marginTop: '10px',  marginBottom: '10px'}}/>
-    //   <Error show={show}/>
-    //       <br /><br />
-    //   <div >
-    //     Username<br />
-    //     <input className={classes.input} type="text" {...username} autoComplete="new-password" />
-    //   </div>
-    //   <div style={{ marginTop: 10 }}>
-    //     Password<br />
-    //     <input type="password" {...password} autoComplete="new-password" />
-    //   </div>
-    //   {/* {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br /> */}
-    //       <Button style={{marginTop: '15%'}} variant="primary" size="lg" block onClick={handleLogin}>
-    //           Login
-    //       </Button>
-    //   {/*<input style={{marginTop: '8%', marginBottom: '10%'}} type="button" className={classes.button} value='Login' onClick={handleLogin} /><br />*/}
-    //   </div>
-    // </div>
   );
 }
 
