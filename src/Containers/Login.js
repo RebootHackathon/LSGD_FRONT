@@ -17,6 +17,7 @@ function Login(props) {
   // const [error, setError] = useState(null);
   // const [loading, setLoading] = useState(false);
   const [show,setShow]=useState(false);
+  const [play,setPlay]=useState(false);
   // handle button click of login form
   const handleLogin = () => {
       console.log(username,password);
@@ -51,13 +52,17 @@ function Login(props) {
   }
     $(document).ready(function () {
         console.log('playing')
-        lottie.loadAnimation({
-            container: document.getElementById('loginanimation'), // the dom element that will contain the animation
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            animationData: Covid1
-        });
+        if(!play){
+          setPlay(true);
+          lottie.loadAnimation({
+              container: document.getElementById('loginanimation'), // the dom element that will contain the animation
+              renderer: 'svg',
+              loop: true,
+              autoplay: true,
+              animationData: Covid1
+          });
+
+      }
     });
   return (
     <div style={{minHeight: '100vh', width: '100%'}}>

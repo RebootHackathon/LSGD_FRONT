@@ -1,6 +1,14 @@
 import React,{Component} from 'react';
 
+
 class ExpandCard extends Component{
+    // componentDidMount(){
+    //     window.onpopstate=()=>{
+    //         console.log('[ds]',this.props);
+    //         this.goBack(this.props)
+
+    //     }
+    // }
     goBack(props){
         console.log(props,"lookit");
         this.props.history.replace(  {pathname:'/LSGD_FRONT/listgrants', state: { setstate:this.props.location.state.setstate}});
