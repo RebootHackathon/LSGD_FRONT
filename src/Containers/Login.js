@@ -9,6 +9,7 @@ import {Button, Card, FormControl, InputGroup} from 'react-bootstrap';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import $ from 'jquery';
 
 function Login(props) {
   const username = useFormInput('');
@@ -28,11 +29,11 @@ function Login(props) {
           if(response.data.status===200){
             setShow(false);
             props.history.push('LSGD_FRONT/mainpage');
-        
+
           }
           else{
             setShow(true);
-         
+
           }
         console.log(response);
       }).catch(err=>{
@@ -40,7 +41,7 @@ function Login(props) {
       })
   }
   const Error=(props)=>{
-   
+
       if(props.show){
         return <p className={classes.autherror}>Incorrect username or password !</p>
       }
@@ -48,7 +49,7 @@ function Login(props) {
         return null
       }
   }
-    useEffect(() => {
+    $(document).ready(function () {
         console.log('playing')
         lottie.loadAnimation({
             container: document.getElementById('loginanimation'), // the dom element that will contain the animation
@@ -57,7 +58,7 @@ function Login(props) {
             autoplay: true,
             animationData: Covid1
         });
-    })
+    });
   return (
     <div style={{minHeight: '100vh', width: '100%'}}>
         <Container fluid>
