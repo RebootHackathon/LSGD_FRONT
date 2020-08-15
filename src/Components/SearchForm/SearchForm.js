@@ -5,7 +5,7 @@ const SearchForm =(props)=>{
     return(
         <div className={classes.SearchForm}>
             <form>
-                    <input type="text" placeholder="Aadhar Number" onChange={props.onInputChange} />
+                    <input type="text" placeholder="Aadhar Number" value={props.value} onChange={props.onInputChange} />
 
                     <button type="submit" onClick={props.clicked}>Search</button>
                 </form>

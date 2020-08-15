@@ -26,7 +26,7 @@ function Login(props) {
           console.log(authData);
           if(response.data.status===200){
             setShow(false);
-            props.history.replace('LSGD_FRONT/mainpage');
+            props.history.push('LSGD_FRONT/mainpage');
         
           }
           else{

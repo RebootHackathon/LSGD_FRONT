@@ -11,17 +11,29 @@ class ListGrant extends Component{
     state={
         aadhar:null,
         length:0,
-        data:null
+        data:null,
+        kk:null
     };
-    
+    seTState(){
+        if(this.props.location.state){
+            this.setState({...this.props.location.state.setstate,kk:"dfdf"});
+           
+        }
+    }
+    componentWillMount(){
+        this.seTState();
+        console.log(this.state,"componet mount");
+    }
     onCardClickHandler=(id)=>{
-        console.log(this.state.data);
+        // console.log(this.state.data);
         
         const expand_element=this.state.data.filter(ele=>(
             ele._id===id
         ))
-        console.log(expand_element);
-        this.props.history.push(  {pathname:'/LSGD_FRONT/'+id, state: { detail: expand_element }});
+        // console.log(expand_element);
+        this.props.location.state=this.state;
+        console.log(this.props,"qwerty");
+        this.props.history.push(  {pathname:'/LSGD_FRONT/'+id, state: { detail: expand_element,setstate:this.state }});
         // return <Redirect to={"/login"} render={(props) => <ExpandCard expandData={this.state.data[id]}/>}/>
     }
     showListHandler=()=>{
@@ -37,13 +49,13 @@ class ListGrant extends Component{
     }
     onClickHandler=(event)=>{
         event.preventDefault();
-        console.log(this.state.aadhar);
+        // console.log(this.state.aadhar);
         const body={"citizenId":+this.state.aadhar}
         axios.post('/grants/getGrantsOfSpecificCitizen',body)
             .then(response=>{
                 console.log(response);
                 if(response.data.data.length>0){
-                    console.log(response.data.data.length);
+                    // console.log(response.data.data.length);
                     this.setState({data:response.data.data,length:response.data.data.length});
                      this.showListHandler(response.data.data);
                 }else{
@@ -51,7 +63,8 @@ class ListGrant extends Component{
                        
                         length:0,
                         data:null
-                    })
+                    }
+                )
                 }
             })
             .catch(err=>{
@@ -69,9 +82,9 @@ class ListGrant extends Component{
        
         return(
             <div>
-                <SearchForm onInputChange={this.onChangeHandler} clicked={this.onClickHandler}/>
+                <SearchForm onInputChange={this.onChangeHandler} value={this.state.aadhar} clicked={this.onClickHandler}/>
                 {view}
-                {console.log(view)}
+                {console.log(this.props,"sdsd")}
             </div>
         )
     }
