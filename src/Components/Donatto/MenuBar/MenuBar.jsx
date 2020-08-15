@@ -1,14 +1,14 @@
 import React from "react";
+import {Box} from '@material-ui/core';
 
+
+import useStyles from "./styles";
 
 const MenuBar = (props) => {
     const classes = useStyles();
   
     return (
-      <div className={classes.root}>
-          <AppBar />
-          <h1>Donatto</h1>
-      </div>
+        <Box bgcolor="pink" width={70}>a</Box>
     );
 }
 

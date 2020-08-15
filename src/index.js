@@ -16,7 +16,7 @@ axios.defaults.baseURL = "https://reboothack12345.herokuapp.com";
 axios.defaults.withCredentials = true;
 
 ReactDOM.render(
-  <div style={{height: "100vh", display: "flex"}}>
+  <div style={{height: "100vh"}}>
     <ThemeProvider theme={theme}>
       <BrowserRouter history={history}>
         <Switch>
