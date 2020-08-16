@@ -3,7 +3,6 @@ import React, {Component, useState} from 'react';
 import SearchForm from '../Components/SearchForm/SearchForm';
 import axios from '../axios';
 import CardView from '../Components/CardView/CardView';
-import ExpandCard from '../Components/CardView/ExpandCard';
 import {Redirect} from 'react-router-dom';
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";

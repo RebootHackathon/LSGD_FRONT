@@ -10,6 +10,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import $ from 'jquery';
+import { useHistory } from "react-router-dom";
+
 
 function Login(props) {
   const username = useFormInput('');
@@ -29,6 +31,7 @@ function Login(props) {
           console.log(authData);
           if(response.data.status===200){
             setShow(false);
+              // let history = useHistory();
             props.history.push('LSGD_FRONT/mainpage');
 
           }
