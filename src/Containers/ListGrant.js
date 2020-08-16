@@ -28,6 +28,7 @@ class ListGrant extends Component{
     //     console.log(this.props,"qwerty");
     //     this.props.history.push(  {pathname:'/LSGD_FRONT/'+id, state: { detail: expand_element,setstate:this.state }});
     // }
+   
     onChangeHandler=(event)=>{
         this.setState({aadhar:event.target.value})
     }
@@ -50,6 +51,19 @@ class ListGrant extends Component{
             .catch(err=>{
                 console.log(err);
             })
+            const body1={"aadhar":+this.state.aadhar}
+            axios.post('/users/getcitizeninfo',body1)
+                .then(response=>{
+                    console.log('[status]',response);
+                    if(response.data.status===200){
+                      
+                       console.log(response);  
+                       
+                    }
+                })
+                .catch(err=>{
+                    console.log(err);
+                })
     }
     onClickApplyHandler(props){
         props.history.push({pathname:'/LSGD_FRONT/applygrant', state: this.state})
