@@ -64,31 +64,45 @@ class ListGrant extends Component{
                         </Col>
                         <Col md={9}>
                             {this.state.length>0 && <div>
-                                <Row><Col style={{marginTop: '2%', marginBottom: '2%'}}>Result</Col></Row>
+                                <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>Result</Col></Row>
                                 <Row><Container fluid>{this.state.data.map((ele)=>{
                                     return (
-                                        <Card key={ele._id}>
-                                            <Card.Body>
-                                                <Card.Title>{ele.grantId}</Card.Title>
-                                                <Card.Subtitle>
-                                                    {new Date(ele.date).toDateString()}
-                                                </Card.Subtitle>
-                                                <Button variant="primary" onClick={() => {
-                                                    let newArr = [...this.state.expanded]
-                                                    let index = this.state.data.indexOf(ele)
-                                                    newArr[index] = !newArr[index]
-                                                    this.setState({expanded: newArr}, () => {
-                                                        console.log('s', index, this.state)
-                                                    })
-                                                }}>Expand</Button>
-                                                {(()=>{
-                                                    // console.log(this.state.expanded)
-                                                    return this.state.expanded[this.state.data.indexOf(ele)]
-                                                })() && <Card.Text>
-                                                    All the Details should be showed here
-                                                </Card.Text>}
-                                            </Card.Body>
-                                        </Card>
+                                        <Container>
+                                            <Row style={{marginBottom: '2%'}}>
+                                                <Col sm={11}>
+                                                    <Card key={ele._id}>
+                                                        <Card.Body>
+                                                            <Card.Title>{ele.grantId}</Card.Title>
+                                                            <Card.Subtitle>
+                                                                {new Date(ele.date).toDateString()}
+                                                            </Card.Subtitle>
+                                                            {/*<Button variant="primary">Expand</Button>*/}
+                                                            {(()=>{
+                                                                // console.log(this.state.expanded)
+                                                                return this.state.expanded[this.state.data.indexOf(ele)]
+                                                            })() && <Card.Text>
+                                                                All the Details should be showed here
+                                                            </Card.Text>}
+                                                        </Card.Body>
+                                                    </Card>
+                                                </Col>
+                                                <Col sm={1}>
+                                                    <svg onClick={() => {
+                                                        let newArr = [...this.state.expanded]
+                                                        let index = this.state.data.indexOf(ele)
+                                                        newArr[index] = !newArr[index]
+                                                        this.setState({expanded: newArr}, () => {
+                                                            console.log('s', index, this.state)
+                                                        })
+                                                    }} width="1em" height="1em" viewBox="0 0 16 16"
+                                                         className="bi bi-caret-down-fill" fill="currentColor"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                                    </svg>
+                                                </Col>
+                                            </Row>
+                                        </Container>
                                     )
                                 })}</Container></Row>
                             </div>}
