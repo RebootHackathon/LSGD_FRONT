@@ -51,6 +51,9 @@ class ListGrant extends Component{
                 console.log(err);
             })
     }
+    onClickApplyHandler(props){
+        props.history.push({pathname:'/LSGD_FRONT/applygrant', state: this.state})
+    }
     render(){
         return(
             <div style={{width: '100%'}}>
@@ -110,7 +113,21 @@ class ListGrant extends Component{
                                 (this.state.length===0) &&
                                 <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>No Result.....</Col></Row>
                             }
+
+                            {
+                                (this.state.length!=null) &&
+                                    <div style={{marginTop:'70px'}}>
+                                        <Row className="justify-content-md-center" >
+                                            <br/><br/>
+                                            <Col  md={6}>
+                                                <Button  variant="primary" block onClick={()=>this.onClickApplyHandler(this.props)}>Apply New Grant</Button>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                            }                       
                         </Col>
+                    
+                        
                     </Row>
                 </Container>
             </div>
