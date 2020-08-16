@@ -7,17 +7,18 @@ import AppBar from "../AppBar/AppBar";
 import MenuBar from "../MenuBar/MenuBar";
 
 
-const Scaffold = (Body) => {
+const Scaffold = (Body, activeTab) => {
   
     return (
-        function () {
+        function (props) {
+            console.log("*********", props);
             return (
-                <Box bgcolor="green" height="100vh" display="flex" flexDirection="column">
+                <Box height="100vh" display="flex" flexDirection="column">
                     <AppBar />
-                    <Box bgcolor="cyan" display="flex" flexGrow={1}>
-                        <MenuBar />
-                        <Box flexGrow={1} bgcolor="blue" display="flex">
-                            <Body />
+                    <Box display="flex" flexGrow={1}>
+                        <MenuBar activeTab={activeTab} />
+                        <Box flexGrow={1} display="flex" bgcolor="#f6f6f6">
+                            <Body {...props}/>
                         </Box>
                     </Box>
                 </Box>

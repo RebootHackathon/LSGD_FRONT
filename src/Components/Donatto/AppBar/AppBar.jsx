@@ -11,7 +11,7 @@ export default function ButtonAppBar() {
   const classes = useStyles();
 
   return (
-    <Box className={classes.root} height={60} bgcolor="gray">
+    <Box className={classes.root} height={40} bgcolor="gray">
     </Box>
   );
 }

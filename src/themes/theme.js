@@ -17,6 +17,15 @@ const theme = createMuiTheme({
           contrastText: '#000',
         },
       },
+      typography: {
+        // "lineHeight": 1.5,
+        // "letterSpacing": 0.32,
+        // useNextVariants: true,
+        // suppressDeprecationWarnings: true,
+        subtitle2: {
+          "lineHeight": 1.2
+        },
+      },
   });
 
 export default theme;
