@@ -4,7 +4,7 @@ import axios from '../axios';
 import classes from './Login.css';
 import Logo from '../assets/keralalogo.png'
 import Covid1 from '../assets/lottie/covid1.json'
-import LoginIcon from '../assets/loginicon.png'
+import LoginBg from '../assets/loginbg.jpg'
 import {Button, Card, FormControl, InputGroup} from 'react-bootstrap';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -100,9 +100,9 @@ function Login(props) {
                     </Card.Body>
                 </Card>
                 </Col>
-                <Col md={9} style={{background: '#e0ece4'}}>
+                <Col md={9} style={{ backgroundImage: `url(${LoginBg})`}}>
                     <div style={{paddingLeft: '35%'}}>
-                        <div style={{marginLeft: '14%', marginTop: '8%', fontSize: '20px'}}>Welcome</div>
+                        <div style={{marginLeft: '14%', marginTop: '8%', fontSize: '20px', color: 'white'}}>Welcome</div>
                         <div id={"loginanimation"} style={{width: '40%', marginTop: '25%'}}>
                         </div>
                     </div>
