@@ -1,5 +1,5 @@
 import React from "react";
-import {Box} from '@material-ui/core';
+import {Box, Typography} from '@material-ui/core';
 import {AcUnitTwoTone, PowerInput, PollSharp, CollectionsBookmark} from '@material-ui/icons';
 
 
@@ -9,8 +9,9 @@ const Menu = (props) => {
     const classes = useStyles(props);
     const {activeTab, Icon} = props;
     return (
-        <Box width="100%" padding={1} marginTop={1} className={classes.menu} display="flex" flexDirection="column" alignItems="center">
+        <Box width="100%" color="rgba(0,0,0,0.3)" padding={1} marginTop={1} className={classes.menu} display="flex" flexDirection="column" alignItems="center">
             <Icon className={classes.icon} />
+            <Typography variant="caption" color="inherit" className={classes.label}>Dashboard</Typography>
         </Box>
     )
 
