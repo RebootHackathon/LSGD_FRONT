@@ -15,7 +15,7 @@ import AppBar from "../Components/AppBar/AppBar";
 class ListGrant extends Component{
     state={
         aadhar:'',
-        length:0,
+        length:null,
         data:[],
         expanded: []
     };
@@ -107,8 +107,8 @@ class ListGrant extends Component{
                                 })}</Container></Row>
                             </div>}
                             {
-                                (this.state.length===0 && this.state.aadhar.length>=12) &&
-                                <Row><Col>No Result</Col></Row>
+                                (this.state.length===0) &&
+                                <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>No Result.....</Col></Row>
                             }
                         </Col>
                     </Row>
