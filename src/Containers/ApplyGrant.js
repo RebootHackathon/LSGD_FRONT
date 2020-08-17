@@ -38,12 +38,15 @@ class ApplyGrant extends Component{
     onClickHandler=(event)=>{
         event.preventDefault();
         console.log("hasidj");
-        const body={"aadhar":+this.state.aadhar,"name":this.state.name,"dob":this.state.dob,"address":this.state.address,"income":this.state.income,"cast":this.state.cast,"religion":this.state.religion,"job":this.state.job,"fathername":this.state.father_name,"mothername":this.state.mother_name}
-        axios.post('/users/newcitizen',body)
+        const body={"applicationId":Date.now(),"citizenId":+this.state.aadhar,"grantId":+this.state.grant,"amount":+this.state.amount,"status":"Pending","sanctionedById":+this.state.applied_by}
+        axios.post('/grants/sanction',body)
             .then(response=>{
                 console.log(response);
+                alert("Grant Applied Successfully")
+                this.props.history.goBack()
             })
             .catch(err=>{
+                alert("Error Occured!")
                 console.log(err);
             })
 
