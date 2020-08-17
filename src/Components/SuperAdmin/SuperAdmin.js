@@ -11,7 +11,7 @@ import Grants from "../Grants/Grants";
 
 class SuperAdmin extends React.Component {
     state = {
-        selected: 'grant'
+        selected: 'employee'
     }
 
     render() {

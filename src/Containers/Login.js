@@ -11,6 +11,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import $ from 'jquery';
 import Spinner from 'react-bootstrap/Spinner';
+import {Link} from 'react-router-dom'
 
 function Login(props) {
     const username = useFormInput('');
@@ -108,13 +109,18 @@ function Login(props) {
                                 </InputGroup>
 
                                 <Button variant="primary" block onClick={handleLogin}>{loginLabel}</Button>
+
+                                <div style={{marginTop: '20px', textAlign: 'right'}}>
+                                <Link to={'/adminlogin'}>Admin Login</Link>
+                                    </div>
+
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col md={9} style={{backgroundImage: `url(${LoginBg})`}}>
                         <div style={{paddingLeft: '35%'}}>
                             <div
-                                style={{marginLeft: '14%', marginTop: '8%', fontSize: '20px', color: 'white'}}>Welcome
+                                style={{marginLeft: '14%', marginTop: '8%', fontSize: '20px', color: 'white'}}>Employee Login
                             </div>
                             <div id={"loginanimation"} style={{width: '40%', marginTop: '25%'}}>
                             </div>
