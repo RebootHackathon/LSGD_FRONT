@@ -8,10 +8,11 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Office from "../Office/Office";
 import Posts from "../Posts/Posts";
 import Employee from "../Employee/Employee";
+import Grants from "../Grants/Grants";
 
 class SuperAdmin extends React.Component {
     state = {
-        selected : 'employee'
+        selected : 'grant'
     }
     render() {
         return (
@@ -61,7 +62,7 @@ class SuperAdmin extends React.Component {
                     </Row>
                     <Row style={{marginTop: '20px'}}>
                         {
-                            this.state.selected === 'grant' && <Employee></Employee>
+                            this.state.selected === 'grant' && <Grants></Grants>
                         }
                     </Row>
                 </Container>
