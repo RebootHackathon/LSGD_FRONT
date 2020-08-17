@@ -1,101 +1,102 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './Employee.module.css';
 import axios from "../../axios";
 import {Button, Card, Col, Container, Form, FormControl, InputGroup, Row} from "react-bootstrap";
 
-class Employee extends React.Component{
+class Employee extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            posts_list:[],
-            office_list:[],
-            employees_list : []
+            posts_list: [],
+            office_list: [],
+            employees_list: []
         }
         this.newemployeeData = {
             employee_name: null,
-            employee_aadhar : null,
-            employee_password : null,
+            employee_aadhar: null,
+            employee_password: null,
             employee_post: null,
             employee_office: null,
         }
 
         this.createemployee = this.createemployee.bind(this)
-        this.getemployee  = this.getemployee.bind(this)
-        this.getposts  = this.getposts.bind(this)
-        this.getoffices  = this.getoffices.bind(this)
+        this.getemployee = this.getemployee.bind(this)
+        this.getposts = this.getposts.bind(this)
+        this.getoffices = this.getoffices.bind(this)
         this.getemployee()
         this.getoffices();
         this.getposts();
     }
-    getposts(){
+
+    getposts() {
         axios.get('/designation/getposts')
-            .then(response=>{
+            .then(response => {
                 console.log('getpost', response);
-                if(response.data.status===200){
+                if (response.data.status === 200) {
                     this.setState({posts_list: response.data.data})
                     console.log(this.state.posts_list)
                     this.newemployeeData.employee_post = response.data.data[0]._id
-                }
-                else{
+                } else {
                     this.setState({posts_list: []})
                 }
-            }).catch(err=>{
+            }).catch(err => {
             console.log(err);
         })
     }
-    getoffices(){
+
+    getoffices() {
         axios.get('/designation/getoffices')
-            .then(response=>{
-                console.log('get office',response);
-                if(response.data.status===200){
+            .then(response => {
+                console.log('get office', response);
+                if (response.data.status === 200) {
                     this.setState({office_list: response.data.data})
                     this.newemployeeData.employee_office = response.data.data[0]._id
                     console.log(this.state.office_list)
-                }
-                else{
+                } else {
                     this.setState({office_list: []})
                 }
-            }).catch(err=>{
+            }).catch(err => {
             console.log(err);
         })
     }
-    getemployee(){
+
+    getemployee() {
         axios.get('/employees/getemployee')
-            .then(response=>{
+            .then(response => {
                 console.log('get emp', response);
-                if(response.data.status===200){
+                if (response.data.status === 200) {
                     this.setState({employees_list: response.data.data})
-                }
-                else{
+                } else {
                     this.setState({employees_list: []})
                 }
-            }).catch(err=>{
+            }).catch(err => {
             console.log(err);
         })
     }
-    createemployee(e){
+
+    createemployee(e) {
         console.log(this.newemployeeData)
         axios.post('/employees/createemployee', this.newemployeeData)
-            .then(response=>{
+            .then(response => {
                 console.log(response);
-                if(response.data.status===200){
+                if (response.data.status === 200) {
 
+                } else {
                 }
-                else{
-                }
-            }).catch(err=>{
+            }).catch(err => {
             console.log(err);
         })
     }
+
     render() {
         return (
             <div className={styles.Employee}>
                 <Container fluid>
                     <Row>
                         <Col md={3}>
-                            <Card style={{ width: '90%' }}>
-                                <Card.Img variant="top" src={require('../../assets/icons/office.png')} style={{padding: '5%', height: '20%', width: '30%'}} />
+                            <Card style={{width: '90%'}}>
+                                <Card.Img variant="top" src={require('../../assets/icons/office.png')}
+                                          style={{padding: '5%', height: '20%', width: '30%'}}/>
                                 <Card.Body>
                                     <Card.Title>Add New Employee</Card.Title>
                                     <InputGroup className="mb-3">
@@ -143,12 +144,13 @@ class Employee extends React.Component{
                                         <Row>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                                 <Form.Label>Select Office</Form.Label>
-                                                <Form.Control as="select" onChange={(e)=>{
+                                                <Form.Control as="select" onChange={(e) => {
                                                     this.newemployeeData.employee_office = e.target.value;
                                                 }}>
                                                     {this.state.office_list.map((office) => {
                                                         return (
-                                                            <option key={office._id} value={office._id}>{office.office_name}</option>
+                                                            <option key={office._id}
+                                                                    value={office._id}>{office.office_name}</option>
                                                         )
                                                     })}
                                                 </Form.Control>
@@ -157,12 +159,13 @@ class Employee extends React.Component{
                                         <Row>
                                             <Form.Group controlId="exampleForm.ControlSelect2">
                                                 <Form.Label>Select Post</Form.Label>
-                                                <Form.Control as="select" onChange={(e)=>{
+                                                <Form.Control as="select" onChange={(e) => {
                                                     this.newemployeeData.employee_post = e.target.value;
                                                 }}>
                                                     {this.state.posts_list.map((post) => {
                                                         return (
-                                                            <option key={post._id} value={post._id}>{post.post_name}</option>
+                                                            <option key={post._id}
+                                                                    value={post._id}>{post.post_name}</option>
                                                         )
                                                     })}
                                                 </Form.Control>
@@ -170,7 +173,7 @@ class Employee extends React.Component{
 
                                         </Row>
                                     </Container>
-                                    <Button variant="primary" onClick = {this.createemployee}>Create employee</Button>
+                                    <Button variant="primary" onClick={this.createemployee}>Create employee</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -179,7 +182,7 @@ class Employee extends React.Component{
                             {this.state.employees_list.map((ele) => {
 
                                 return (
-                                    <Card style={{ width: '90%' }} key={ele._id}>
+                                    <Card style={{width: '90%'}} key={ele._id}>
                                         {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
                                         <Card.Body>
                                             <Card.Title>
@@ -192,7 +195,13 @@ class Employee extends React.Component{
                                                 Created On {new Date(ele.created_at).toDateString()}
                                             </Card.Text>
                                             <Card.Text>
-                                                Status: {(()=>{if (!ele.isDelisted) {return 'Working'} else {return 'Not Working'}})()}
+                                                Status: {(() => {
+                                                if (!ele.isDelisted) {
+                                                    return 'Working'
+                                                } else {
+                                                    return 'Not Working'
+                                                }
+                                            })()}
                                             </Card.Text>
                                         </Card.Body>
                                     </Card>

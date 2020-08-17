@@ -1,64 +1,65 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './Grants.module.css';
 import axios from "../../axios";
 import {Button, Card, Col, Container, Form, FormControl, InputGroup, Row} from "react-bootstrap";
 
-class Grants extends React.Component{
+class Grants extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            grants_list : []
+            grants_list: []
         }
         this.newgrantData = {
             grant_name: null,
-            grant_amount : 0,
-            grant_description : null,
-            granting_body : null,
-            grant_religion : 'ALL',
-            grant_cast : 'ALL',
+            grant_amount: 0,
+            grant_description: null,
+            granting_body: null,
+            grant_religion: 'ALL',
+            grant_cast: 'ALL',
         }
 
         this.creategrant = this.creategrant.bind(this)
-        this.getgrant  = this.getgrant.bind(this)
+        this.getgrant = this.getgrant.bind(this)
         this.getgrant()
     }
-    getgrant(){
+
+    getgrant() {
         axios.get('/grants/getgrants')
-            .then(response=>{
+            .then(response => {
                 console.log(response);
-                if(response.data.status===200){
+                if (response.data.status === 200) {
                     this.setState({grants_list: response.data.data})
-                }
-                else{
+                } else {
                     this.setState({grants_list: []})
                 }
-            }).catch(err=>{
+            }).catch(err => {
             console.log(err);
         })
     }
-    creategrant(e){
+
+    creategrant(e) {
         console.log(this.newgrantData)
         axios.post('/grants/addgrant', this.newgrantData)
-            .then(response=>{
+            .then(response => {
                 console.log(response);
-                if(response.data.status===200){
+                if (response.data.status === 200) {
 
+                } else {
                 }
-                else{
-                }
-            }).catch(err=>{
+            }).catch(err => {
             console.log(err);
         })
     }
+
     render() {
         return (
             <div className={styles.Grants}>
                 <Container fluid>
                     <Row>
                         <Col md={3}>
-                            <Card style={{ width: '90%' }}>
-                                <Card.Img variant="top" src={require('../../assets/icons/office.png')} style={{padding: '5%', height: '20%', width: '30%'}} />
+                            <Card style={{width: '90%'}}>
+                                <Card.Img variant="top" src={require('../../assets/icons/office.png')}
+                                          style={{padding: '5%', height: '20%', width: '30%'}}/>
                                 <Card.Body>
                                     <Card.Title>Add New grant</Card.Title>
                                     <InputGroup className="mb-3">
@@ -117,7 +118,7 @@ class Grants extends React.Component{
                                         <Row>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                                 <Form.Label>Select Religion</Form.Label>
-                                                <Form.Control as="select" onChange={(e)=>{
+                                                <Form.Control as="select" onChange={(e) => {
                                                     this.newgrantData.grant_religion = e.target.value;
                                                 }}>
                                                     <option>ALL</option>
@@ -132,7 +133,7 @@ class Grants extends React.Component{
                                         <Row>
                                             <Form.Group controlId="exampleForm.ControlSelect2">
                                                 <Form.Label>Select Place</Form.Label>
-                                                <Form.Control as="select" onChange={(e)=>{
+                                                <Form.Control as="select" onChange={(e) => {
                                                     this.newgrantData.grant_cast = e.target.value;
                                                 }}>
                                                     <option>ALL</option>
@@ -146,7 +147,7 @@ class Grants extends React.Component{
 
                                         </Row>
                                     </Container>
-                                    <Button variant="primary" onClick = {this.creategrant}>Create grant</Button>
+                                    <Button variant="primary" onClick={this.creategrant}>Create grant</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -155,7 +156,7 @@ class Grants extends React.Component{
                             {this.state.grants_list.map((ele) => {
 
                                 return (
-                                    <Card style={{ width: '90%' }} key={ele._id}>
+                                    <Card style={{width: '90%'}} key={ele._id}>
                                         {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
                                         <Card.Body>
                                             <Card.Title>
@@ -171,13 +172,19 @@ class Grants extends React.Component{
                                                 Created On {new Date(ele.created_at).toDateString()}
                                             </Card.Text>
                                             <Card.Text>
-                                                {'Description: '+ele.grant_description}
+                                                {'Description: ' + ele.grant_description}
                                             </Card.Text>
                                             <Card.Text>
-                                                {'Sanctioned By: '+ ele.granting_body}
+                                                {'Sanctioned By: ' + ele.granting_body}
                                             </Card.Text>
                                             <Card.Text>
-                                                Status: {(()=>{if (!ele.isDelisted) {return 'Working'} else {return 'Not Working'}})()}
+                                                Status: {(() => {
+                                                if (!ele.isDelisted) {
+                                                    return 'Working'
+                                                } else {
+                                                    return 'Not Working'
+                                                }
+                                            })()}
                                             </Card.Text>
                                         </Card.Body>
                                     </Card>

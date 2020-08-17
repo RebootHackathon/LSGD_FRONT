@@ -12,15 +12,15 @@ import Col from "react-bootstrap/Col";
 import AppBar from "../Components/AppBar/AppBar";
 import Spinner from 'react-bootstrap/Spinner';
 
-class ListGrant extends Component{
-    state={
-        aadhar:'',
-        length:null,
-        data:[],
+class ListGrant extends Component {
+    state = {
+        aadhar: '',
+        length: null,
+        data: [],
         expanded: [],
-        userExist:true,
-        spinning:false,
-        grants:[]
+        userExist: true,
+        spinning: false,
+        grants: []
     };
 
     // onCardClickHandler=(id)=>{
@@ -31,82 +31,85 @@ class ListGrant extends Component{
     //     console.log(this.props,"qwerty");
     //     this.props.history.push(  {pathname:'/LSGD_FRONT/'+id, state: { detail: expand_element,setstate:this.state }});
     // }
-   
-    onChangeHandler=(event)=>{
-        this.setState({aadhar:event.target.value})
+
+    onChangeHandler = (event) => {
+        this.setState({aadhar: event.target.value})
     }
-    onClickHandler=(event)=>{
-        this.setState({spinning:true});
-        const body={"citizenId":+this.state.aadhar}
-        axios.post('/grants/getGrantsOfSpecificCitizen',body)
-            .then(response=>{
+    onClickHandler = (event) => {
+        this.setState({spinning: true});
+        const body = {"citizenId": +this.state.aadhar}
+        axios.post('/grants/getGrantsOfSpecificCitizen', body)
+            .then(response => {
                 console.log(response);
-                this.setState({spinning:false});
-                if(response.data.data.length>0){
+                this.setState({spinning: false});
+                if (response.data.data.length > 0) {
                     this.setState({expanded: new Array(response.data.data.length).fill(false)})
-                    this.setState({data:response.data.data, length:response.data.data.length});
-                }else{
+                    this.setState({data: response.data.data, length: response.data.data.length});
+                } else {
                     this.setState({
-                        length:0,
-                        data:[]
-                    }
-                )
+                            length: 0,
+                            data: []
+                        }
+                    )
                 }
             })
-            .catch(err=>{
-                this.setState({spinning:false});
+            .catch(err => {
+                this.setState({spinning: false});
                 console.log(err);
             })
-            const body1={"aadhar":+this.state.aadhar}
-            axios.post('/users/getcitizeninfo',body1)
-                .then(response=>{
-                    this.setState({spinning:false});
-                    console.log('[status]',response);
-                    if(response.data.status===200){
-                        this.setState({userExist:true})
-                       console.log(response);  
-                       
-                    }if(response.data.status===201){
-                        this.setState({userExist:false});
-                        console.log('[user check]',this.state.userExist);
-                    }
-                })
-                .catch(err=>{
-                    this.setState({spinning:false});
-                    console.log(err);
-                })
+        const body1 = {"aadhar": +this.state.aadhar}
+        axios.post('/users/getcitizeninfo', body1)
+            .then(response => {
+                this.setState({spinning: false});
+                console.log('[status]', response);
+                if (response.data.status === 200) {
+                    this.setState({userExist: true})
+                    console.log(response);
 
-            axios.get('/grants/getgrants')
-                .then(response=>{
-                    console.log('[GRANTS]',response);
-                    if(response.data.status===200){
-                        const len=response.data.data.length;
-                        const grantArray=[];
-                        for (let index = 0; index < len; index++) {
-                            const id = response.data.data[index]._id;
-                            const grantName=response.data.data[index].grant_name;
-                            grantArray.push({"id":id,"grantName":grantName});
-                            
-                            
-                        } 
-                        this.setState({grants:[...grantArray]})
-                        console.log(this.state);
+                }
+                if (response.data.status === 201) {
+                    this.setState({userExist: false});
+                    console.log('[user check]', this.state.userExist);
+                }
+            })
+            .catch(err => {
+                this.setState({spinning: false});
+                console.log(err);
+            })
+
+        axios.get('/grants/getgrants')
+            .then(response => {
+                console.log('[GRANTS]', response);
+                if (response.data.status === 200) {
+                    const len = response.data.data.length;
+                    const grantArray = [];
+                    for (let index = 0; index < len; index++) {
+                        const id = response.data.data[index]._id;
+                        const grantName = response.data.data[index].grant_name;
+                        grantArray.push({"id": id, "grantName": grantName});
+
+
                     }
-                })
-                .catch(err=>{
-                    console.log(err);
-                })
-    
+                    this.setState({grants: [...grantArray]})
+                    console.log(this.state);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
     }
-    onClickApplyHandler(props){
-        props.history.push({pathname:'/LSGD_FRONT/applygrant', state: this.state})
+
+    onClickApplyHandler(props) {
+        props.history.push({pathname: '/LSGD_FRONT/applygrant', state: this.state})
     }
-    render(){
-        let searchLabel="Search";
-        if(this.state.spinning){
-            searchLabel=<Spinner animation="border" />;
+
+    render() {
+        let searchLabel = "Search";
+        if (this.state.spinning) {
+            searchLabel = <Spinner animation="border"/>;
         }
-        return(
+        return (
             <div style={{width: '100%'}}>
                 <Container fluid>
                     <Row>
@@ -114,14 +117,17 @@ class ListGrant extends Component{
                     </Row>
                     <Row>
                         <Col md={3}>
-                            <SearchForm searchLabel={searchLabel} onInputChange={this.onChangeHandler} value={this.state.aadhar} clicked={this.onClickHandler}/>
+                            <SearchForm searchLabel={searchLabel} onInputChange={this.onChangeHandler}
+                                        value={this.state.aadhar} clicked={this.onClickHandler}/>
                         </Col>
                         <Col md={9}>
-                            {this.state.length>0 && <div>
+                            {this.state.length > 0 && <div>
                                 <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>Result</Col></Row>
-                                <Row><Container fluid>{this.state.data.map((ele)=>{
-                                    let grant_details=this.state.grants.filter(grant=>{return grant.id===ele.grantId});
-                                    console.log("[filter]",grant_details,this.state.grants,ele.grantId,ele.applicationId);
+                                <Row><Container fluid>{this.state.data.map((ele) => {
+                                    let grant_details = this.state.grants.filter(grant => {
+                                        return grant.id === ele.grantId
+                                    });
+                                    console.log("[filter]", grant_details, this.state.grants, ele.grantId, ele.applicationId);
                                     return (
                                         <Container key={ele._id}>
                                             <Row style={{marginBottom: '2%'}}>
@@ -130,32 +136,36 @@ class ListGrant extends Component{
                                                         <Card.Body>
                                                             <Card.Title>
                                                                 <Row>
-                                                                    <Col> <Card.Text>Grant Name: {grant_details[0].grantName} </Card.Text></Col>
-                                                                    <Col> <Card.Text> Amount:{ele.amount}</Card.Text></Col>
+                                                                    <Col> <Card.Text>Grant
+                                                                        Name: {grant_details[0].grantName} </Card.Text></Col>
+                                                                    <Col>
+                                                                        <Card.Text> Amount:{ele.amount}</Card.Text></Col>
                                                                 </Row>
                                                             </Card.Title>
                                                             <Card.Subtitle>
                                                                 <Row>
                                                                     <Col><Card.Text>Date: {new Date(ele.date).toDateString()} </Card.Text></Col>
-                                                                    <Col> <Card.Text> Status:{ele.status}</Card.Text></Col>
+                                                                    <Col>
+                                                                        <Card.Text> Status:{ele.status}</Card.Text></Col>
                                                                 </Row>
-                                                                
+
                                                             </Card.Subtitle>
                                                             {/*<Button variant="primary">Expand</Button>*/}
-                                                            {(()=>{
+                                                            {(() => {
                                                                 // console.log(this.state.expanded)
                                                                 return this.state.expanded[this.state.data.indexOf(ele)]
                                                             })() && <Card.Text>
-                                                              
-                                                                        <Row style={{marginTop:"10px"}}>
-                                                                            <Col><Card.Text> Application Id:{ele.applicationId}</Card.Text></Col>
-                                                                            <Col><Card.Text>SanctionBy:{ele.sanctionedById}</Card.Text></Col>
-                                                                        </Row>
-                                                                        <Row style={{marginTop:"10px"}}>
-                                                                            <Col><Card.Text> Amount:{ele.amount}</Card.Text></Col>
-                                                                            <Col><Card.Text>Date:{new Date(ele.date).toDateString()}</Card.Text></Col>
-                                                                        </Row>
-                                                                    </Card.Text>}
+
+                                                                <Row style={{marginTop: "10px"}}>
+                                                                    <Col><Card.Text> Application
+                                                                        Id:{ele.applicationId}</Card.Text></Col>
+                                                                    <Col><Card.Text>SanctionBy:{ele.sanctionedById}</Card.Text></Col>
+                                                                </Row>
+                                                                <Row style={{marginTop: "10px"}}>
+                                                                    <Col><Card.Text> Amount:{ele.amount}</Card.Text></Col>
+                                                                    <Col><Card.Text>Date:{new Date(ele.date).toDateString()}</Card.Text></Col>
+                                                                </Row>
+                                                            </Card.Text>}
                                                         </Card.Body>
                                                     </Card>
                                                 </Col>
@@ -180,7 +190,7 @@ class ListGrant extends Component{
                                 })}</Container></Row>
                             </div>}
                             {
-                                (this.state.length===0) && (this.state.userExist) &&
+                                (this.state.length === 0) && (this.state.userExist) &&
                                 <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>No Result.....</Col></Row>
                             }
 
@@ -189,33 +199,35 @@ class ListGrant extends Component{
                                 <div>
                                     <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>No User Exist</Col>
                                     </Row>
-                                   <div style={{marginTop:'70px'}}>
-                                        <Row className="justify-content-md-center" >
-                                                <br/><br/>
-                                                <Col  md={6}>
-                                                    <Link to="/LSGD_FRONT/registercitizen">
-                                                        <Button  variant="primary" block >Register Citizen</Button>
-                                                    </Link>
-                                                </Col>
+                                    <div style={{marginTop: '70px'}}>
+                                        <Row className="justify-content-md-center">
+                                            <br/><br/>
+                                            <Col md={6}>
+                                                <Link to="/LSGD_FRONT/registercitizen">
+                                                    <Button variant="primary" block>Register Citizen</Button>
+                                                </Link>
+                                            </Col>
                                         </Row>
                                     </div>
                                 </div>
                             }
 
                             {
-                                (this.state.length!=null) && (this.state.userExist) &&
-                                    <div style={{marginTop:'70px'}}>
-                                        <Row className="justify-content-md-center" >
-                                            <br/><br/>
-                                            <Col  md={6}>
-                                                <Button  variant="primary" block onClick={()=>this.onClickApplyHandler(this.props)}>Apply New Grant</Button>
-                                            </Col>
-                                        </Row>
-                                    </div>
-                            }                       
+                                (this.state.length != null) && (this.state.userExist) &&
+                                <div style={{marginTop: '70px'}}>
+                                    <Row className="justify-content-md-center">
+                                        <br/><br/>
+                                        <Col md={6}>
+                                            <Button variant="primary" block
+                                                    onClick={() => this.onClickApplyHandler(this.props)}>Apply New
+                                                Grant</Button>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            }
                         </Col>
-                    
-                        
+
+
                     </Row>
                 </Container>
             </div>

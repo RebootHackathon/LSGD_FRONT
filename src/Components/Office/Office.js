@@ -1,62 +1,63 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './Office.module.css';
-import {Button, Card, Col, Container, FormControl, InputGroup, Row, Form} from 'react-bootstrap'
+import {Button, Card, Col, Container, Form, FormControl, InputGroup, Row} from 'react-bootstrap'
 import axios from "../../axios";
 
-class Office extends React.Component{
+class Office extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            offices_list : []
+            offices_list: []
         }
         this.newOfficeData = {
             office_name: null,
-            office_district : 'Kannur',
-            office_place : 'Thalassery',
-            office_address : null,
+            office_district: 'Kannur',
+            office_place: 'Thalassery',
+            office_address: null,
         }
 
         this.createOffice = this.createOffice.bind(this)
-        this.getOffice  = this.getOffice.bind(this)
+        this.getOffice = this.getOffice.bind(this)
         this.getOffice()
     }
-    getOffice(){
+
+    getOffice() {
         axios.get('/designation/getoffices')
-            .then(response=>{
+            .then(response => {
                 console.log(response);
-                if(response.data.status===200){
+                if (response.data.status === 200) {
                     this.setState({offices_list: response.data.data})
-                }
-                else{
+                } else {
                     this.setState({offices_list: []})
                 }
-            }).catch(err=>{
+            }).catch(err => {
             console.log(err);
         })
     }
-    createOffice(e){
+
+    createOffice(e) {
         console.log(this.newOfficeData)
         axios.post('/designation/createoffice', this.newOfficeData)
-            .then(response=>{
+            .then(response => {
                 console.log(response);
-                if(response.data.status===200){
+                if (response.data.status === 200) {
 
+                } else {
                 }
-                else{
-                }
-            }).catch(err=>{
+            }).catch(err => {
             console.log(err);
         })
     }
+
     render() {
         return (
             <div className={styles.Office}>
                 <Container fluid>
                     <Row>
                         <Col md={3}>
-                            <Card style={{ width: '90%' }}>
-                                <Card.Img variant="top" src={require('../../assets/icons/office.png')} style={{padding: '5%', height: '20%', width: '30%'}} />
+                            <Card style={{width: '90%'}}>
+                                <Card.Img variant="top" src={require('../../assets/icons/office.png')}
+                                          style={{padding: '5%', height: '20%', width: '30%'}}/>
                                 <Card.Body>
                                     <Card.Title>Add New Office</Card.Title>
                                     <InputGroup className="mb-3">
@@ -89,7 +90,7 @@ class Office extends React.Component{
                                         <Col>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                                 <Form.Label>Select District</Form.Label>
-                                                <Form.Control as="select" onChange={(e)=>{
+                                                <Form.Control as="select" onChange={(e) => {
                                                     this.newOfficeData.office_district = e.target.value;
                                                 }}>
                                                     <option>Kannur</option>
@@ -104,7 +105,7 @@ class Office extends React.Component{
                                         <Col>
                                             <Form.Group controlId="exampleForm.ControlSelect2">
                                                 <Form.Label>Select Place</Form.Label>
-                                                <Form.Control as="select" onChange={(e)=>{
+                                                <Form.Control as="select" onChange={(e) => {
                                                     this.newOfficeData.office_place = e.target.value;
                                                 }}>
                                                     <option>Place1</option>
@@ -117,7 +118,7 @@ class Office extends React.Component{
 
                                         </Col>
                                     </Row>
-                                    <Button variant="primary" onClick = {this.createOffice}>Create Office</Button>
+                                    <Button variant="primary" onClick={this.createOffice}>Create Office</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -126,7 +127,7 @@ class Office extends React.Component{
                             {this.state.offices_list.map((ele) => {
 
                                 return (
-                                    <Card style={{ width: '90%' }} key={ele._id}>
+                                    <Card style={{width: '90%'}} key={ele._id}>
                                         {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
                                         <Card.Body>
                                             <Card.Title>
@@ -142,7 +143,13 @@ class Office extends React.Component{
                                                 Created On {new Date(ele.created_at).toDateString()}
                                             </Card.Text>
                                             <Card.Text>
-                                                Status: {(()=>{if (!ele.isDelisted) {return 'Working'} else {return 'Not Working'}})()}
+                                                Status: {(() => {
+                                                if (!ele.isDelisted) {
+                                                    return 'Working'
+                                                } else {
+                                                    return 'Not Working'
+                                                }
+                                            })()}
                                             </Card.Text>
                                         </Card.Body>
                                     </Card>

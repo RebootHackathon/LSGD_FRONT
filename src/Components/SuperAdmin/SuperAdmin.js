@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {Col, Container, Form, FormControl, InputGroup, Row} from 'react-bootstrap'
+import {Col, Container, Form, Row} from 'react-bootstrap'
 import styles from './SuperAdmin.module.css';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -12,8 +11,9 @@ import Grants from "../Grants/Grants";
 
 class SuperAdmin extends React.Component {
     state = {
-        selected : 'grant'
+        selected: 'grant'
     }
+
     render() {
         return (
             <div className={styles.SuperAdmin}>
@@ -22,19 +22,20 @@ class SuperAdmin extends React.Component {
                         <Col style={{padding: 0}}>
                             <Navbar bg="light" expand="lg">
                                 <Navbar.Brand href="#home">LSGD E-Governance</Navbar.Brand>
-                                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav className="mr-auto">
                                         <Nav.Link href={'/LSGD_FRONT/mainpage'}>Home</Nav.Link>
-                                        <Nav.Link onClick={()=>this.setState({selected: 'office'})} >Office</Nav.Link>
-                                        <Nav.Link onClick={()=>this.setState({selected: 'posts'})}>Post</Nav.Link>
-                                        <Nav.Link onClick={()=>this.setState({selected: 'employee'})}>Employee</Nav.Link>
-                                        <Nav.Link onClick={()=>this.setState({selected: 'grant'})}>Grant</Nav.Link>
+                                        <Nav.Link onClick={() => this.setState({selected: 'office'})}>Office</Nav.Link>
+                                        <Nav.Link onClick={() => this.setState({selected: 'posts'})}>Post</Nav.Link>
+                                        <Nav.Link
+                                            onClick={() => this.setState({selected: 'employee'})}>Employee</Nav.Link>
+                                        <Nav.Link onClick={() => this.setState({selected: 'grant'})}>Grant</Nav.Link>
                                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                            <NavDropdown.Divider />
+                                            <NavDropdown.Divider/>
                                             <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                                         </NavDropdown>
                                     </Nav>

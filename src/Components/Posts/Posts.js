@@ -1,60 +1,61 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './Posts.module.css';
-import {Button, Card, Col, Container, FormControl, InputGroup, Row, Form} from 'react-bootstrap'
+import {Button, Card, Col, Container, FormControl, InputGroup, Row} from 'react-bootstrap'
 import axios from "../../axios";
 
-class Posts extends React.Component{
+class Posts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            posts_list : []
+            posts_list: []
         }
         this.newPostsData = {
             post_name: null,
-            post_description : null,
+            post_description: null,
         }
 
         this.createPosts = this.createPosts.bind(this)
-        this.getPosts  = this.getPosts.bind(this)
+        this.getPosts = this.getPosts.bind(this)
         this.getPosts()
     }
-    getPosts(){
+
+    getPosts() {
         axios.get('/designation/getposts')
-            .then(response=>{
+            .then(response => {
                 console.log(response);
-                if(response.data.status===200){
+                if (response.data.status === 200) {
                     this.setState({posts_list: response.data.data})
-                }
-                else{
+                } else {
                     this.setState({posts_list: []})
                 }
-            }).catch(err=>{
+            }).catch(err => {
             console.log(err);
         })
     }
-    createPosts(e){
+
+    createPosts(e) {
         console.log(this.newPostsData)
         axios.post('/designation/createpost', this.newPostsData)
-            .then(response=>{
+            .then(response => {
                 console.log(response);
-                if(response.data.status===200){
+                if (response.data.status === 200) {
 
+                } else {
                 }
-                else{
-                }
-            }).catch(err=>{
+            }).catch(err => {
             console.log(err);
         })
     }
+
     render() {
         return (
             <div className={styles.Posts}>
                 <Container fluid>
                     <Row>
                         <Col md={3}>
-                            <Card style={{ width: '90%' }}>
-                                <Card.Img variant="top" src={require('../../assets/icons/posts.png')} style={{padding: '5%', height: '20%', width: '30%'}} />
+                            <Card style={{width: '90%'}}>
+                                <Card.Img variant="top" src={require('../../assets/icons/posts.png')}
+                                          style={{padding: '5%', height: '20%', width: '30%'}}/>
                                 <Card.Body>
                                     <Card.Title>Add New Post</Card.Title>
                                     <InputGroup className="mb-3">
@@ -83,7 +84,7 @@ class Posts extends React.Component{
                                             aria-describedby="basic-addon1"
                                         />
                                     </InputGroup>
-                                    <Button variant="primary" onClick = {this.createPosts}>Create post</Button>
+                                    <Button variant="primary" onClick={this.createPosts}>Create post</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -92,7 +93,7 @@ class Posts extends React.Component{
                             {this.state.posts_list.map((ele) => {
 
                                 return (
-                                    <Card style={{ width: '90%' }}  key={ele._id}>
+                                    <Card style={{width: '90%'}} key={ele._id}>
                                         {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
                                         <Card.Body>
                                             <Card.Title>

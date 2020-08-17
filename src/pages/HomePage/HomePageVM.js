@@ -3,9 +3,9 @@ import HomePage from "./HomePage";
 
 
 function HomePageVM(props) {
-  return (
-    <HomePage />
-  )
+    return (
+        <HomePage/>
+    )
 }
 
 export default HomePageVM;

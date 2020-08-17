@@ -1,76 +1,76 @@
 .Login {
     font-family: sans-serif;
     align-items: center;
-    
+
     margin: 90px 0;
-  }
-  
-  h1 {
+}
+
+h1 {
     text-align: center;
-  }
-  
-  .form {
+}
+
+.form {
     max-width: 500px;
     width: 100%;
     border: 1px solid #eee;
     box-shadow: 0 2px 3px #ccc;
-   margin: 10px auto;
-   box-sizing: border-box;
-   align-content: center;
-    
-  }
-  
-  label,
-  input {
+    margin: 10px auto;
+    box-sizing: border-box;
+    align-content: center;
+
+}
+
+label,
+input {
     display: block;
     max-width: 300px;
     width: 100%;
-  }
-  
-  label {
+}
+
+label {
     margin-bottom: 5px;
     height: 22px;
-  }
-  
-  input {
-    
+}
+
+input {
+
     padding: 10px;
     border-radius: 3px;
     margin: auto;
     margin-bottom: 20px;
     border: 1px solid #777;
-   
-  }
-  
-  input.error {
+
+}
+
+input.error {
     border-color: red;
-  }
-  
-  .input-feedback {
+}
+
+.input-feedback {
     color: rgb(235, 54, 54);
     margin-top: -15px;
     font-size: 14px;
     margin-bottom: 20px;
-  }
-  
-  .button {
+}
+
+.button {
     padding: 10px 15px;
     margin: auto;
-    width:200px;
+    width: 200px;
     background-color: rgb(70, 153, 179);
     color: white;
     align-items: center;
     border: 1px solid rgb(70, 153, 179);
     background-color: 250ms;
-  }
-  
-  .button:hover {
+}
+
+.button:hover {
     cursor: pointer;
     background-color: white;
     color: rgb(70, 153, 179);
-  }
-  .autherror{
+}
+
+.autherror {
     color: red;
-    
-  }
-  
+
+}
