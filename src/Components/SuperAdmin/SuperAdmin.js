@@ -7,10 +7,12 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Office from "../Office/Office";
 import Posts from "../Posts/Posts";
+import Employee from "../Employee/Employee";
+import Grants from "../Grants/Grants";
 
 class SuperAdmin extends React.Component {
     state = {
-        selected : 'office'
+        selected : 'grant'
     }
     render() {
         return (
@@ -26,8 +28,8 @@ class SuperAdmin extends React.Component {
                                         <Nav.Link href={'/LSGD_FRONT/mainpage'}>Home</Nav.Link>
                                         <Nav.Link onClick={()=>this.setState({selected: 'office'})} >Office</Nav.Link>
                                         <Nav.Link onClick={()=>this.setState({selected: 'posts'})}>Post</Nav.Link>
-                                        <Nav.Link href={'/'}>Employee</Nav.Link>
-                                        <Nav.Link href={'/'}>Grant</Nav.Link>
+                                        <Nav.Link onClick={()=>this.setState({selected: 'employee'})}>Employee</Nav.Link>
+                                        <Nav.Link onClick={()=>this.setState({selected: 'grant'})}>Grant</Nav.Link>
                                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -51,6 +53,16 @@ class SuperAdmin extends React.Component {
                     <Row style={{marginTop: '20px'}}>
                         {
                             this.state.selected === 'posts' && <Posts></Posts>
+                        }
+                    </Row>
+                    <Row style={{marginTop: '20px'}}>
+                        {
+                            this.state.selected === 'employee' && <Employee></Employee>
+                        }
+                    </Row>
+                    <Row style={{marginTop: '20px'}}>
+                        {
+                            this.state.selected === 'grant' && <Grants></Grants>
                         }
                     </Row>
                 </Container>
