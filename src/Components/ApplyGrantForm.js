@@ -11,6 +11,13 @@ import Card from 'react-bootstrap/Card';
 import FormElement from './FormElement';
 
 const ApplyGrantForm =(props)=>{
+    let grants=[];
+     grants=props.state.grants;
+     console.log("[grant apform]",grants);
+    let optionItems=grants.map(ele=>{
+        console.log("[from ele]",ele);
+                            return  ( <option key={ele.id} value={ele.id}>{ele.grantName}</option>)
+                        })
     return(
             <div style={{width: '100%'}} >  
                 <div style={{display:'flex',justifyContent:'center'}}>
@@ -29,11 +36,11 @@ const ApplyGrantForm =(props)=>{
                                         <InputGroup.Text id="basic-addon1">Grant Name</InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <FormControl as="select" id="grant" onChange={props.onInputChange}>
-                                        <option value="0">Choose</option>
-                                        <option value="1">Grant A</option>
-                                        <option value="2">Grant B</option>
-                                        <option value="3">Grant C</option>
-                                        <option value="4">Grant D</option>
+                                    {/* <option  value="ele.id">ele.grantName</option>
+                                    <option  value="ele.id3">ele.grantName3</option>
+                                    <option  value="ele.id2">ele.grantName2</option> */}
+                                        {optionItems}
+                                       
                                     </FormControl>   
                                 </InputGroup>
                                 
@@ -51,7 +58,7 @@ const ApplyGrantForm =(props)=>{
                                 <FormElement label='Applied By' id='applied_by' value={props.state.applied_by} onChange={props.onInputChange}/>
                              
                                 <Button variant="primary" block type="submit" onClick={props.onClickHandler}>
-                                    Apply
+                                    {props.applyLabel}
                                 </Button>
 
                             </Card.Body>

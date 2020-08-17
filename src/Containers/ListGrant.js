@@ -19,7 +19,8 @@ class ListGrant extends Component{
         data:[],
         expanded: [],
         userExist:true,
-        spinning:false
+        spinning:false,
+        grants:[]
     };
 
     // onCardClickHandler=(id)=>{
@@ -74,6 +75,28 @@ class ListGrant extends Component{
                     this.setState({spinning:false});
                     console.log(err);
                 })
+
+            axios.get('/grants/getgrants')
+                .then(response=>{
+                    console.log('[GRANTS]',response);
+                    if(response.data.status===200){
+                        const len=response.data.data.length;
+                        const grantArray=[];
+                        for (let index = 0; index < len; index++) {
+                            const id = response.data.data[index]._id;
+                            const grantName=response.data.data[index].grant_name;
+                            grantArray.push({"id":id,"grantName":grantName});
+                            
+                            
+                        } 
+                        this.setState({grants:[...grantArray]})
+                        console.log(this.state);
+                    }
+                })
+                .catch(err=>{
+                    console.log(err);
+                })
+    
     }
     onClickApplyHandler(props){
         props.history.push({pathname:'/LSGD_FRONT/applygrant', state: this.state})
@@ -97,28 +120,42 @@ class ListGrant extends Component{
                             {this.state.length>0 && <div>
                                 <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>Result</Col></Row>
                                 <Row><Container fluid>{this.state.data.map((ele)=>{
+                                    let grant_details=this.state.grants.filter(grant=>{return grant.id===ele.grantId});
+                                    console.log("[filter]",grant_details,this.state.grants,ele.grantId,ele.applicationId);
                                     return (
-                                        <Container>
+                                        <Container key={ele._id}>
                                             <Row style={{marginBottom: '2%'}}>
                                                 <Col sm={11}>
                                                     <Card key={ele._id}>
                                                         <Card.Body>
-                                                            <Card.Title>{ele.grantId}</Card.Title>
+                                                            <Card.Title>
+                                                                <Row>
+                                                                    <Col> <Card.Text>Grant Name: {grant_details[0].grantName} </Card.Text></Col>
+                                                                    <Col> <Card.Text> Amount:{ele.amount}</Card.Text></Col>
+                                                                </Row>
+                                                            </Card.Title>
                                                             <Card.Subtitle>
-                                                                {new Date(ele.date).toDateString()}
+                                                                <Row>
+                                                                    <Col><Card.Text>Date: {new Date(ele.date).toDateString()} </Card.Text></Col>
+                                                                    <Col> <Card.Text> Status:{ele.status}</Card.Text></Col>
+                                                                </Row>
+                                                                
                                                             </Card.Subtitle>
                                                             {/*<Button variant="primary">Expand</Button>*/}
                                                             {(()=>{
                                                                 // console.log(this.state.expanded)
                                                                 return this.state.expanded[this.state.data.indexOf(ele)]
                                                             })() && <Card.Text>
-                                                                All the Details should be showed here
-                                                                <Card.Text> Application Id:{ele.applicationId}</Card.Text>
-                                                                <Card.Text>Status:{ele.status}</Card.Text>
-                                                                <Card.Text>SanctionBy:{ele.sanctionedById}</Card.Text>
-                                                                <Card.Text> Amount:{ele.amount}</Card.Text>
-                                                                <Card.Text>Date:{new Date(ele.date).toDateString()}</Card.Text>
-                                                            </Card.Text>}
+                                                              
+                                                                        <Row style={{marginTop:"10px"}}>
+                                                                            <Col><Card.Text> Application Id:{ele.applicationId}</Card.Text></Col>
+                                                                            <Col><Card.Text>SanctionBy:{ele.sanctionedById}</Card.Text></Col>
+                                                                        </Row>
+                                                                        <Row style={{marginTop:"10px"}}>
+                                                                            <Col><Card.Text> Amount:{ele.amount}</Card.Text></Col>
+                                                                            <Col><Card.Text>Date:{new Date(ele.date).toDateString()}</Card.Text></Col>
+                                                                        </Row>
+                                                                    </Card.Text>}
                                                         </Card.Body>
                                                     </Card>
                                                 </Col>
