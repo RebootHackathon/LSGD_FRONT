@@ -33,7 +33,7 @@ const RegisterNewCitizenForm=(props)=>{
   
     <Form.Group as={Col} controlId="formGridAddress2">
       <Form.Label>Date of Birth</Form.Label>
-      <Form.Control placeholder="Dob" id="dob" onChange={props.onInputChange}/>
+      <Form.Control type="date" placeholder="Dob" id="dob" onChange={props.onInputChange}/>
     </Form.Group>
     </Form.Row>
     <Form.Row>

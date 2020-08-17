@@ -1,9 +1,9 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 
 import SearchForm from '../Components/SearchForm/SearchForm';
 import axios from '../axios';
-import CardView from '../Components/CardView/CardView';
-import {Redirect} from 'react-router-dom';
+
+import {Link} from 'react-router-dom';
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -16,7 +16,8 @@ class ListGrant extends Component{
         aadhar:'',
         length:null,
         data:[],
-        expanded: []
+        expanded: [],
+        userExist:true
     };
 
     // onCardClickHandler=(id)=>{
@@ -55,9 +56,12 @@ class ListGrant extends Component{
                 .then(response=>{
                     console.log('[status]',response);
                     if(response.data.status===200){
-                      
+                        this.setState({userExist:true})
                        console.log(response);  
                        
+                    }if(response.data.status===201){
+                        this.setState({userExist:false});
+                        console.log('[user check]',this.state.userExist);
                     }
                 })
                 .catch(err=>{
@@ -98,6 +102,11 @@ class ListGrant extends Component{
                                                                 return this.state.expanded[this.state.data.indexOf(ele)]
                                                             })() && <Card.Text>
                                                                 All the Details should be showed here
+                                                                <Card.Text> Application Id:{ele.applicationId}</Card.Text>
+                                                                <Card.Text>Status:{ele.status}</Card.Text>
+                                                                <Card.Text>SanctionBy:{ele.sanctionedById}</Card.Text>
+                                                                <Card.Text> Amount:{ele.amount}</Card.Text>
+                                                                <Card.Text>Date:{new Date(ele.date).toDateString()}</Card.Text>
                                                             </Card.Text>}
                                                         </Card.Body>
                                                     </Card>
@@ -123,12 +132,30 @@ class ListGrant extends Component{
                                 })}</Container></Row>
                             </div>}
                             {
-                                (this.state.length===0) &&
+                                (this.state.length===0) && (this.state.userExist) &&
                                 <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>No Result.....</Col></Row>
                             }
 
                             {
-                                (this.state.length!=null) &&
+                                (!this.state.userExist) &&
+                                <div>
+                                    <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>No User Exist</Col>
+                                    </Row>
+                                   <div style={{marginTop:'70px'}}>
+                                        <Row className="justify-content-md-center" >
+                                                <br/><br/>
+                                                <Col  md={6}>
+                                                    <Link to="/LSGD_FRONT/registercitizen">
+                                                        <Button  variant="primary" block >Register Citizen</Button>
+                                                    </Link>
+                                                </Col>
+                                        </Row>
+                                    </div>
+                                </div>
+                            }
+
+                            {
+                                (this.state.length!=null) && (this.state.userExist) &&
                                     <div style={{marginTop:'70px'}}>
                                         <Row className="justify-content-md-center" >
                                             <br/><br/>
