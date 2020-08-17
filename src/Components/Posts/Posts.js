@@ -92,7 +92,7 @@ class Posts extends React.Component{
                             {this.state.posts_list.map((ele) => {
 
                                 return (
-                                    <Card style={{ width: '90%' }}>
+                                    <Card style={{ width: '90%' }}  key={ele._id}>
                                         {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
                                         <Card.Body>
                                             <Card.Title>
