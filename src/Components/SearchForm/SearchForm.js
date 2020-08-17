@@ -1,11 +1,11 @@
 import React from 'react';
 
-import classes from './SearchForm.css';
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from "react-bootstrap/FormControl";
 import AppBar from "../AppBar/AppBar";
+
 const SearchForm =(props)=>{
     return(
             <div style={{width: '100%'}}>

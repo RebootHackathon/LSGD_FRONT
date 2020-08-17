@@ -1,6 +1,5 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import Card from 'react-bootstrap/Card';
@@ -10,9 +9,10 @@ const RegisterNewCitizenForm=(props)=>{
     return  <div style={{width: '100%'}} >  
       <div style={{display:'flex',justifyContent:'center'}}>
           <Card   style={{ width: '70%',alignItems:'center' ,marginTop: '4%'}} >
+              <Card.Img variant="top" src={require('../assets/register.png')} style={{paddingTop: '5%', height: '20%', width: '15%'}} />
               {/* <Card.Img variant="top" src={require('../assets/aadharlogo.png')} /> */}
               <Card.Body>
-                  <Card.Title style={{display:'flex',justifyContent:'center',padding:'20px'}}><strong>Enter Details</strong></Card.Title>
+                  <Card.Title style={{display:'flex',justifyContent:'center',paddingBottom:'20px'}}><strong>Enter Details</strong></Card.Title>
                   <Form>
                     <Form.Row>
                       <Form.Group as={Col} controlId="formGridEmail">

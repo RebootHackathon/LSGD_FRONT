@@ -15,9 +15,12 @@ const ApplyGrantForm =(props)=>{
             <div style={{width: '100%'}} >  
                 <div style={{display:'flex',justifyContent:'center'}}>
                     <Card   style={{ width: '70%',alignItems:'center', marginTop: '4%'}} >
+                            <Card.Img variant="top" src={require('../assets/tick.png')} style={{paddingTop: '5%', height: '25%', width: '15%'}} />
+            
                             {/* <Card.Img variant="top" src={require('../assets/aadharlogo.png')} /> */}
                             <Card.Body>
-                                <Card.Title>Enter Details</Card.Title>
+                                
+                                <Card.Title style={{display:'flex',justifyContent:'center',paddingBottom:'20px'}}><strong>Enter Details</strong></Card.Title>
                                 <FormElement label='Aadhar Number' id='aadhar' value={props.state.aadhar} onChange={props.onInputChange} disabled/>
                                 <FormElement label='Name' id='name' value={props.state.name} onChange={props.onInputChange} disabled/>
                                 
