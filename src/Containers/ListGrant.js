@@ -10,6 +10,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import AppBar from "../Components/AppBar/AppBar";
+import Spinner from 'react-bootstrap/Spinner';
 
 class ListGrant extends Component{
     state={
@@ -17,7 +18,8 @@ class ListGrant extends Component{
         length:null,
         data:[],
         expanded: [],
-        userExist:true
+        userExist:true,
+        spinning:false
     };
 
     // onCardClickHandler=(id)=>{
@@ -33,10 +35,12 @@ class ListGrant extends Component{
         this.setState({aadhar:event.target.value})
     }
     onClickHandler=(event)=>{
+        this.setState({spinning:true});
         const body={"citizenId":+this.state.aadhar}
         axios.post('/grants/getGrantsOfSpecificCitizen',body)
             .then(response=>{
                 console.log(response);
+                this.setState({spinning:false});
                 if(response.data.data.length>0){
                     this.setState({expanded: new Array(response.data.data.length).fill(false)})
                     this.setState({data:response.data.data, length:response.data.data.length});
@@ -49,11 +53,13 @@ class ListGrant extends Component{
                 }
             })
             .catch(err=>{
+                this.setState({spinning:false});
                 console.log(err);
             })
             const body1={"aadhar":+this.state.aadhar}
             axios.post('/users/getcitizeninfo',body1)
                 .then(response=>{
+                    this.setState({spinning:false});
                     console.log('[status]',response);
                     if(response.data.status===200){
                         this.setState({userExist:true})
@@ -65,6 +71,7 @@ class ListGrant extends Component{
                     }
                 })
                 .catch(err=>{
+                    this.setState({spinning:false});
                     console.log(err);
                 })
     }
@@ -72,6 +79,10 @@ class ListGrant extends Component{
         props.history.push({pathname:'/LSGD_FRONT/applygrant', state: this.state})
     }
     render(){
+        let searchLabel="Search";
+        if(this.state.spinning){
+            searchLabel=<Spinner animation="border" />;
+        }
         return(
             <div style={{width: '100%'}}>
                 <Container fluid>
@@ -80,7 +91,7 @@ class ListGrant extends Component{
                     </Row>
                     <Row>
                         <Col md={3}>
-                            <SearchForm onInputChange={this.onChangeHandler} value={this.state.aadhar} clicked={this.onClickHandler}/>
+                            <SearchForm searchLabel={searchLabel} onInputChange={this.onChangeHandler} value={this.state.aadhar} clicked={this.onClickHandler}/>
                         </Col>
                         <Col md={9}>
                             {this.state.length>0 && <div>

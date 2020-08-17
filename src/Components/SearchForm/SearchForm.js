@@ -28,7 +28,7 @@ const SearchForm =(props)=>{
                                 onChange={props.onInputChange}
                             />
                         </InputGroup>
-                        <Button variant="primary" block onClick={props.clicked}>Search</Button>
+                        <Button variant="primary" block onClick={props.clicked}>{props.searchLabel}</Button>
                     </Card.Body>
                 </Card>
             </div>

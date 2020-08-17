@@ -11,7 +11,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import $ from 'jquery';
 import { useHistory } from "react-router-dom";
-
+import Spinner from 'react-bootstrap/Spinner';
 
 function Login(props) {
   const username = useFormInput('');
@@ -20,8 +20,10 @@ function Login(props) {
   // const [loading, setLoading] = useState(false);
   const [show,setShow]=useState(false);
   const [play,setPlay]=useState(false);
+  const [spinning,setSpinning]=useState(false);
   // handle button click of login form
   const handleLogin = () => {
+      setSpinning(true);
       console.log(username,password);
       const authData={ "username":username.value,"password":password.value}
       axios.defaults.withCredentials = true;
@@ -31,16 +33,20 @@ function Login(props) {
           console.log(authData);
           if(response.data.status===200){
             setShow(false);
+            
               // let history = useHistory();
             props.history.push('LSGD_FRONT/mainpage');
 
           }
           else{
             setShow(true);
+            
 
           }
+          setSpinning(false);
         console.log(response);
       }).catch(err=>{
+        setSpinning(false);
         console.log(err);
       })
   }
@@ -67,6 +73,10 @@ function Login(props) {
 
       }
     });
+    let loginLabel="Login";
+    if(spinning){
+      loginLabel=<Spinner animation="border" />;
+    }
   return (
     <div style={{minHeight: '100vh', width: '100%'}}>
         <Container fluid>
@@ -99,7 +109,8 @@ function Login(props) {
                                 {...password}
                             />
                         </InputGroup>
-                        <Button variant="primary" block onClick={handleLogin}>Login</Button>
+                        
+                        <Button variant="primary" block onClick={handleLogin}>{loginLabel}</Button>
                     </Card.Body>
                 </Card>
                 </Col>
