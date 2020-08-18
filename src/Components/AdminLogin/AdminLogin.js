@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './AdminLogin.module.css';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,7 +6,7 @@ import {Alert, Button, Card, FormControl, InputGroup} from "react-bootstrap";
 import Logo from "../../assets/keralalogo.png";
 import LoginBg from "../../assets/loginbg.jpg";
 import axios from "../../axios";
-import {useHistory} from "react-router";
+import { connect } from 'react-redux';
 
 class AdminLogin extends React.Component{
     state = {
@@ -65,6 +63,16 @@ class AdminLogin extends React.Component{
                                                 if (response.data.status === 200) {
                                                     this.setState({passIncorrect: false})
                                                     // let history = useHistory();
+
+
+                                                    //if user name needed uncomment below and change code
+                                                    // this.props.onLoggedIn(response.data.profile.employee_name);
+                                                    // console.log("Already logged in");
+                                                    // // name=response.data.
+                                                    // setTimeout(() => {
+                                                    //     this.props.history.push('/admin');
+                                                    // }, 1200);
+
                                                     this.props.history.push('/admin');
 
                                                 } else {
@@ -105,4 +113,16 @@ AdminLogin.propTypes = {};
 
 AdminLogin.defaultProps = {};
 
-export default AdminLogin;
+
+
+//Redux
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onLoggedIn: (name) => dispatch({type: 'LOGIN',name:name})
+    };
+};
+
+
+export default connect(null, mapDispatchToProps)(AdminLogin);

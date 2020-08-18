@@ -8,16 +8,49 @@ import Office from "../Office/Office";
 import Posts from "../Posts/Posts";
 import Employee from "../Employee/Employee";
 import Grants from "../Grants/Grants";
+import axios from '../../axios';
+
+
+import { PowerSettingsNew } from "@material-ui/icons";
+import {Typography} from '@material-ui/core';
+import { connect } from 'react-redux';
+
+
+
+const logout=(history)=>{
+
+    axios.get('/auth/logout')
+                .then(response => {
+                    console.log(response);
+                    if (response.data.status === 200) {
+                        console.log("Logged out");
+                        // this.props.onLoggedOut();
+                       history.push('/adminlogin');
+                    } else {
+                        console.log("Logout failed");
+
+
+                    }
+                })
+                .catch(err=>{
+                    console.log(err);
+                });
+
+}
+
 
 class SuperAdmin extends React.Component {
     state = {
         selected: 'employee'
     }
-
+    
     render() {
+       
         return (
+            
             <div className={styles.SuperAdmin}>
                 <Container fluid style={{width: '100%'}}>
+                {console.log("[superadmin]",this.props)}
                     <Row>
                         <Col style={{padding: 0}}>
                             <Navbar bg="light" expand="lg">
@@ -38,7 +71,12 @@ class SuperAdmin extends React.Component {
                                             <NavDropdown.Divider/>
                                             <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                                         </NavDropdown>
-                                    </Nav>
+                                        </Nav>
+                                        <Nav.Link className="justify-content-end" onClick={()=>logout(this.props.history)}>
+                           <Typography variant="subtitle2" color="inherit"> {/*{this.props.name}*/}Logout <PowerSettingsNew color="inherit" /></Typography>
+                        </Nav.Link>
+
+                                   
                                     <Form inline>
 
                                     </Form>
@@ -76,4 +114,22 @@ SuperAdmin.propTypes = {};
 
 SuperAdmin.defaultProps = {};
 
-export default SuperAdmin;
+
+
+
+const mapStateToProps = state => {
+    return {
+        name: state.name,
+        isLoggedIn:state.isLoggedIn
+    };
+};
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onLoggedOut: () => dispatch({type: 'LOGOUT'})
+    };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SuperAdmin);
