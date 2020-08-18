@@ -113,6 +113,32 @@ function Login(props) {
                                 <div style={{marginTop: '20px', textAlign: 'right'}}>
                                 <Link to={'/adminlogin'}>Admin Login</Link>
                                     </div>
+                                <Button onClick = {() => {
+                                    // let url = 'http://localhost:8000/t'
+                                    let url = 'https://reboothack12345.herokuapp.com/t'
+                                    axios.get(url, {withCredentials: true})
+                                        .then(response => {
+                                            console.log('a', response.data);
+                                        }).catch(err => {
+                                        console.log(err);
+                                    })
+                                    // fetch(url, {
+                                    //     method: "GET",
+                                    //     headers: {
+                                    //         'Accept': 'application/json',
+                                    //         'Content-Type': 'application/json',
+                                    //         'Cache': 'no-cache'
+                                    //     },
+                                    //     credentials: 'include'
+                                    // })
+                                    //     .then((res) => res.json())
+                                    //     .then((json) => {
+                                    //         console.log(json);
+                                    //     })
+                                    //     .catch((err) => {
+                                    //         console.log(err);
+                                    //     });
+                                }}>Bs</Button>
 
                             </Card.Body>
                         </Card>
