@@ -43,8 +43,8 @@ class ApplyGrant extends Component {
                         const grantName = response.data.data[index].grant_name;
                         grantArray.push({"id": id, "grantName": grantName});
                     }
-                    this.state.grant = grantArray[0].id
-                    this.setState({grants: [...grantArray]})
+                    // this.state.grant = grantArray[0].id
+                    this.setState({grant:grantArray[0].id,grants: [...grantArray]})
                     console.log(this.state);
                 }
             })

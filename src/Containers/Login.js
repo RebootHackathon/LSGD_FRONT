@@ -12,6 +12,7 @@ import Col from "react-bootstrap/Col";
 import $ from 'jquery';
 import Spinner from 'react-bootstrap/Spinner';
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux';
 
 function Login(props) {
     const username = useFormInput('');
@@ -22,6 +23,7 @@ function Login(props) {
     const [play, setPlay] = useState(false);
     const [spinning, setSpinning] = useState(false);
     // handle button click of login form
+
     const handleLogin = () => {
         setSpinning(true);
         console.log(username, password);
@@ -33,9 +35,14 @@ function Login(props) {
                 console.log(authData);
                 if (response.data.status === 200) {
                     setShow(false);
-
+                    props.onLoggedIn(response.data.profile.employee_name);
+                    console.log("Already logged in");
+                    // name=response.data.
+                    setTimeout(() => {
+                        props.history.push('LSGD_FRONT/mainpage');
+                      }, 1200);
                     // let history = useHistory();
-                    props.history.push('LSGD_FRONT/mainpage');
+                    // props.history.push('LSGD_FRONT/mainpage');
 
                 } else {
                     setShow(true);
@@ -58,16 +65,40 @@ function Login(props) {
         }
     }
     $(document).ready(function () {
-        console.log('playing')
         if (!play) {
-            setPlay(true);
-            lottie.loadAnimation({
-                container: document.getElementById('loginanimation'), // the dom element that will contain the animation
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                animationData: Covid1
-            });
+            axios.get('/auth/isloggedin')
+                .then(response => {
+                    console.log(response);
+                    if (response.data.status === 200) {
+                        props.onLoggedIn(response.data.profile.employee_name);
+                        console.log("Already logged in");
+                        // name=response.data.
+                        setTimeout(() => {
+                            props.history.push('LSGD_FRONT/mainpage');
+                          }, 1200);
+                        // props.history.push('LSGD_FRONT/mainpage');
+                    } else {
+                        console.log("Not Logged in");
+
+
+                    }
+                })
+                .catch(err=>{
+                    console.log(err);
+                });
+
+
+
+            console.log('playing')
+        
+                setPlay(true);
+                lottie.loadAnimation({
+                    container: document.getElementById('loginanimation'), // the dom element that will contain the animation
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    animationData: Covid1
+                });
 
         }
     });
@@ -170,4 +201,14 @@ const useFormInput = initialValue => {
     }
 }
 
-export default Login;
+//Redux
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onLoggedIn: (name) => dispatch({type: 'LOGIN',name:name})
+    };
+};
+
+
+export default connect(null, mapDispatchToProps)(Login);

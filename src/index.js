@@ -10,21 +10,29 @@ import {history} from "./helpers/history";
 import theme from "./themes/theme";
 
 import axios from "./axios";
+import { Provider } from 'react-redux'
+import reducer from './reducer';
+import {createStore} from 'redux';
+
+
+const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 axios.defaults.baseURL = "https://reboothack12345.herokuapp.com";
 axios.defaults.withCredentials = true;
 
 ReactDOM.render(
     <div style={{height: "100vh", display: "flex"}}>
-        <ThemeProvider theme={theme}>
-            <BrowserRouter history={history}>
-                <Switch>
-                    {routes.map((prop, key) => {
-                        return <Route path={prop.path} key={key} component={prop.component}/>;
-                    })}
-                </Switch>
-            </BrowserRouter>
-        </ThemeProvider>
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
+                <BrowserRouter history={history}>
+                    <Switch>
+                        {routes.map((prop, key) => {
+                            return <Route path={prop.path} key={key} component={prop.component}/>;
+                        })}
+                    </Switch>
+                </BrowserRouter>
+            </ThemeProvider>
+        </Provider>
     </div>,
     document.getElementById("root")
 );
