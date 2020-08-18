@@ -2,13 +2,17 @@ import React from "react";
 
 import {Box, Container, Grid, Typography, Tabs, Tab, Paper, withStyles, Button, Divider} from '@material-ui/core';
 import { FiberManualRecord } from "@material-ui/icons";
+import {Chart, PieSeries, Legend} from '@devexpress/dx-react-chart-material-ui';
+import { Animation } from '@devexpress/dx-react-chart';
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 
 
 import theme from "../../themes/theme";
 import Scaffold from "../../Components/Donatto/Scaffold/Scaffold";
+import LineChart from "../../Components/Donatto/LineChart/LineChart";
 import lion from "../../assets/lion.png";
-import useStyles from "./styles";
+import useStyles, {chartRootStyles, legendStyles, legendLabelStyles, legendItemStyles} from "./styles";
 
 
 const Header = (props) => {
@@ -43,6 +47,7 @@ const Header = (props) => {
 
 const PanelBody = (props) => {
     const classes = useStyles(props);
+    const {piData, lineData} = props;
 
     const Tab1Body = (props) => {
         function MainContent(props) {
@@ -91,77 +96,82 @@ const PanelBody = (props) => {
             )
         }
         function Section1(props) {
-            function Information(props) {
-                function TableRow(props) {
-                    const {kkey, value} = props;
-
-                    return (
-                        <React.Fragment>
-                            <Grid item xs={6}><Typography variant="caption" color="textPrimary">{kkey}</Typography></Grid>
-                            <Grid item xs={6}><Typography variant="caption" color="textSecondary">{value}</Typography></Grid>
-                        </React.Fragment>
-                    )
-                }
-                return (
-                    <Box>
-                        <Grid container>
-                            <Grid item xs={4}>
-                                <Grid container>
-                                    <TableRow kkey="Ownership status" value="Owner" />
-                                    <TableRow kkey="plan" value="Permanent Account" />
-                                    <TableRow kkey="Open date" value="16-08-2020" />
-                                </Grid>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <Grid container>
-                                    <TableRow kkey="Ownership status" value="Owner" />
-                                    <TableRow kkey="plan" value="Permanent Account" />
-                                    <TableRow kkey="Open date" value="16-08-2020" />
-                                </Grid>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <Grid container>
-                                    <TableRow kkey="Ownership status" value="Owner" />
-                                    <TableRow kkey="plan" value="Permanent Account" />
-                                    <TableRow kkey="Open date" value="16-08-2020" />
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                )
-            }
 
             return (
                 <Paper elevation={3}>
                     <Box padding={2}>
                         <MainContent />
-                        <Box height={20} />
-                        <Divider />
-                        <Box height={10} />
-                        <Information />
                     </Box>
                 </Paper>
             )
         }
         function Section2(props) {
+            function LineChartComponent(props) {
+                return (
+                    <React.Fragment>
+
+                    </React.Fragment>
+                )
+            }
+            
+            function ChartComponent(props) {
+                const ChartRootBase = ({ classes, ...restProps }) => (
+                    <Chart.Root {...restProps} className={classes.chart} />
+                );
+                const LegendRootBase = ({ classes, ...restProps }) => (
+                    <Legend.Root {...restProps} className={classes.root} />
+                );
+                const LegendLabelBase = ({ classes, ...restProps }) => (
+                    <Legend.Label {...restProps} className={classes.label} />
+                );
+                const LegendItemBase = ({ classes, ...restProps }) => (
+                    <Legend.Item {...restProps} className={classes.item} />
+                );
+                const ChartRoot = withStyles(chartRootStyles, { name: 'ChartRoot' })(ChartRootBase);
+                const LegendRoot = withStyles(legendStyles, { name: 'LegendRoot' })(LegendRootBase);
+                const LegendLabel = withStyles(legendLabelStyles, { name: 'LegendLabel' })(LegendLabelBase);
+                const LegendItem = withStyles(legendItemStyles, { name: 'LegendItem' })(LegendItemBase);
+
+                return (
+                    <Chart data={piData} height={200} rootComponent={ChartRoot}>
+                        <PieSeries
+                            valueField="area"
+                            argumentField="name"
+                            innerRadius={0.6}
+                            
+                        />
+                        <Animation />
+                        <Legend
+                            position="right"
+                            rootComponent={LegendRoot}
+                            itemComponent={LegendItem}
+                            labelComponent={LegendLabel}
+                        />
+                    </Chart>
+                )
+            }
             return (
-                <Box marginTop={2}>
-                    <Paper elevation={3}>
-                        <Box padding={2}>
-                            <MainContent />
-                        </Box>
-                    </Paper>
-                </Box>
-            )
-        }
-        function Section3(props) {
-            return (
-                <Box marginTop={2}>
-                    <Paper elevation={3}>
-                        <Box padding={2}>
-                            <MainContent />
-                        </Box>
-                    </Paper>
+                <Box marginTop={3}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={4}>
+                            <Box>
+                                <Paper elevation={3}>
+                                    <Box width={400} paddingY={2}>
+                                        <ChartComponent data={piData} />
+                                    </Box>
+                                </Paper>
+                            </Box>
+                        </Grid>
+                        <Grid itme xs={8}>
+                            <Paper elevation={3}>
+                                <Box overflow="hidden">
+                                    <LineChart data={lineData}/>
+                                </Box>
+                            </Paper>
+
+                        </Grid>
+                    </Grid>
+
                 </Box>
             )
         }
@@ -170,7 +180,6 @@ const PanelBody = (props) => {
             <React.Fragment>
                 <Section1 />
                 <Section2 />
-                <Section3 />
             </React.Fragment>
         )
     }
@@ -238,7 +247,7 @@ const CardSection = (props) => {
 
 const HomePage = (props) => {
     const classes = useStyles(props);
-    const {tabValue, handleChangeTab, a11yProps} = props;
+    const {tabValue, handleChangeTab, a11yProps, piData, lineData} = props;
     console.log("-------------", props)
   
     return (
@@ -246,7 +255,8 @@ const HomePage = (props) => {
             <Container maxWidth="xl">
                 <Box height="100%" display="flex" flexDirection="column">
                     <Header tabValue={tabValue} handleChangeTab={handleChangeTab} />
-                    <PanelBody tabValue={tabValue} handleChangeTab={handleChangeTab} />
+                    <PanelBody tabValue={tabValue} handleChangeTab={handleChangeTab} piData={piData} 
+                                    lineData={lineData} />
                     <CardSection />
                 </Box>
             </Container>

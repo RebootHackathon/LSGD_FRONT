@@ -13,7 +13,7 @@ const Scaffold = (Body, activeTab) => {
         function (props) {
             console.log("*********", props);
             return (
-                <Box height="100vh" display="flex" flexDirection="column">
+                <Box height="100vh" width="100vw" display="flex" flexDirection="column">
                     <AppBar />
                     <Box display="flex" flexGrow={1}>
                         <MenuBar activeTab={activeTab} />

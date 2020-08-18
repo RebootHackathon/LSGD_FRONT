@@ -1,5 +1,36 @@
 import {makeStyles} from '@material-ui/core/styles';
 
+export const chartRootStyles = {
+  chart: {
+    // paddingRight: '20px',
+    padding: 0,
+    margin: 0,
+  },
+};
+
+export const legendStyles = {
+  root: {
+    display: 'flex',
+    margin: 'auto',
+    flexDirection: 'column',
+  },
+};
+
+export const legendLabelStyles = theme => ({
+  label: {
+    paddingTop: theme.spacing(1),
+  },
+});
+
+export const legendItemStyles = {
+  item: {
+    flexDirection: 'row',
+    padding: 0,
+    height: 20
+  },
+};
+
+
 const useStyles = makeStyles(theme => ({
   root: {
   },
@@ -48,6 +79,8 @@ const useStyles = makeStyles(theme => ({
     '&:focus': {
       outline: "none",
     }
+  },
+  scroll: {
   }
 }));
 
