@@ -1,40 +1,30 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import { makeStyles } from '@material-ui/core/styles';
+import {Box, Typography} from '@material-ui/core';
+import { PowerSettingsNew } from "@material-ui/icons";
+
+import theme from "../../../themes/theme";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
+  root: {
+  },
 }));
 
 export default function ButtonAppBar() {
     const classes = useStyles();
 
-    return (
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon/>
-                    </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                        News
-                    </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-        </div>
-    );
+  return (
+    <Box className={classes.root} height={50} bgcolor="white" borderBottom="1px solid #fafafa" display="flex"
+      justifyContent="space-between" alignItems="center">
+        <Box paddingLeft={1} color={theme.palette.primary.main}>
+          <Typography variant="h6" color="inherit">REIED</Typography>          
+        </Box>
+        <Box display="flex" color="gray" width={80} justifyContent="space-between" 
+            marginRight={1} alignItems="center">
+          <Typography variant="subtitle2" color="inherit">Logout</Typography>
+          <PowerSettingsNew color="inherit" />
+        </Box>
+
+    </Box>
+  );
 }
