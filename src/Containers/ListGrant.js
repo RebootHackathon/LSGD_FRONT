@@ -40,7 +40,7 @@ class ListGrant extends Component {
         const body = {"citizenId": +this.state.aadhar}
         axios.post('/grants/getGrantsOfSpecificCitizen', body)
             .then(response => {
-                console.log(response);
+                console.log('specific', response);
                 this.setState({spinning: false});
                 if (response.data.data.length > 0) {
                     this.setState({expanded: new Array(response.data.data.length).fill(false)})

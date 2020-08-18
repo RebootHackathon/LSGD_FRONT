@@ -11,6 +11,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import $ from 'jquery';
 import Spinner from 'react-bootstrap/Spinner';
+import {Link} from 'react-router-dom'
 
 function Login(props) {
     const username = useFormInput('');
@@ -108,13 +109,44 @@ function Login(props) {
                                 </InputGroup>
 
                                 <Button variant="primary" block onClick={handleLogin}>{loginLabel}</Button>
+
+                                <div style={{marginTop: '20px', textAlign: 'right'}}>
+                                <Link to={'/adminlogin'}>Admin Login</Link>
+                                    </div>
+                                <Button onClick = {() => {
+                                    // let url = 'http://localhost:8000/t'
+                                    let url = 'https://reboothack12345.herokuapp.com/t'
+                                    axios.get(url, {withCredentials: true})
+                                        .then(response => {
+                                            console.log('a', response.data);
+                                        }).catch(err => {
+                                        console.log(err);
+                                    })
+                                    // fetch(url, {
+                                    //     method: "GET",
+                                    //     headers: {
+                                    //         'Accept': 'application/json',
+                                    //         'Content-Type': 'application/json',
+                                    //         'Cache': 'no-cache'
+                                    //     },
+                                    //     credentials: 'include'
+                                    // })
+                                    //     .then((res) => res.json())
+                                    //     .then((json) => {
+                                    //         console.log(json);
+                                    //     })
+                                    //     .catch((err) => {
+                                    //         console.log(err);
+                                    //     });
+                                }}>Bs</Button>
+
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col md={9} style={{backgroundImage: `url(${LoginBg})`}}>
                         <div style={{paddingLeft: '35%'}}>
                             <div
-                                style={{marginLeft: '14%', marginTop: '8%', fontSize: '20px', color: 'white'}}>Welcome
+                                style={{marginLeft: '14%', marginTop: '8%', fontSize: '20px', color: 'white'}}>Employee Login
                             </div>
                             <div id={"loginanimation"} style={{width: '40%', marginTop: '25%'}}>
                             </div>

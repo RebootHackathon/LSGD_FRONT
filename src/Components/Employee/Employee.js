@@ -118,7 +118,7 @@ class Employee extends React.Component {
                                         </InputGroup.Prepend>
                                         <FormControl
                                             onChange={(e) => {
-                                                this.newemployeeData.employee_aadhar = e.target.value;
+                                                this.newemployeeData.employee_aadhar = parseInt(e.target.value);
                                             }}
                                             placeholder="employee Aadhar"
                                             aria-label="name"
@@ -180,7 +180,6 @@ class Employee extends React.Component {
                         <Col md={9}>
                             <Row style={{marginBottom: '10px'}}>All employees...</Row>
                             {this.state.employees_list.map((ele) => {
-
                                 return (
                                     <Card style={{width: '90%'}} key={ele._id}>
                                         {/*<Card.Img variant="top" src="holder.js/100px180" />*/}

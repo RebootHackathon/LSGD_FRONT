@@ -70,7 +70,7 @@ class ApplyGrant extends Component {
             "grantId": this.state.grant,
             "amount": +this.state.amount,
             "status": "Pending",
-            "sanctionedById": +this.state.applied_by
+            // "sanctionedById": +this.state.applied_by
         }
         axios.post('/grants/sanction', body)
             .then(response => {
