@@ -60,8 +60,8 @@ const ApplyGrantForm = (props) => {
 
                         />
 
-                        <FormElement label='Applied By' id='applied_by' value={props.state.applied_by}
-                                     onChange={props.onInputChange}/>
+                        {/*<FormElement label='Applied By' id='applied_by' value={props.state.applied_by}*/}
+                        {/*             onChange={props.onInputChange}/>*/}
 
                         <Button variant="primary" block type="submit" onClick={props.onClickHandler}>
                             {props.applyLabel}
