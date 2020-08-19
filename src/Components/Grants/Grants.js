@@ -115,8 +115,8 @@ class Grants extends React.Component {
                                             aria-describedby="basic-addon1"
                                         />
                                     </InputGroup>
-                                    <Container>
-                                        <Row>
+                                    <Row>
+                                        <Container>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                                 <Form.Label>Select Religion</Form.Label>
                                                 <Form.Control as="select" onChange={(e) => {
@@ -130,8 +130,8 @@ class Grants extends React.Component {
                                                     <option>5</option>
                                                 </Form.Control>
                                             </Form.Group>
-                                        </Row>
-                                        <Row>
+                                        </Container>
+                                        <Container>
                                             <Form.Group controlId="exampleForm.ControlSelect2">
                                                 <Form.Label>Select Place</Form.Label>
                                                 <Form.Control as="select" onChange={(e) => {
@@ -145,9 +145,8 @@ class Grants extends React.Component {
                                                     <option>5</option>
                                                 </Form.Control>
                                             </Form.Group>
-
-                                        </Row>
-                                    </Container>
+                                        </Container>
+                                    </Row>
                                     <Button variant="primary" onClick={this.creategrant}>Create grant</Button>
                                 </Card.Body>
                             </Card>
