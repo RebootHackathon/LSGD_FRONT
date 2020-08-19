@@ -91,10 +91,10 @@ class Employee extends React.Component {
     render() {
         return (
             <div className={styles.Employee}>
-                <Container fluid>
-                    <Row>
+                <Container fluid style={{height: '100%'}}>
+                    <Row style={{height: '100%'}}>
                         <Col md={3}>
-                            <Card style={{width: '90%'}}>
+                            <Card style={{width: '90%', marginTop: '5%'}}>
                                 <Card.Img variant="top" src={require('../../assets/icons/office.png')}
                                           style={{padding: '5%', height: '20%', width: '30%'}}/>
                                 <Card.Body>
