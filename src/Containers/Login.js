@@ -13,6 +13,7 @@ import $ from 'jquery';
 import Spinner from 'react-bootstrap/Spinner';
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
+import Modal from '../Components/Modal/Modal';
 
 function Login(props) {
     const username = useFormInput('');
@@ -22,6 +23,7 @@ function Login(props) {
     const [show, setShow] = useState(false);
     const [play, setPlay] = useState(false);
     const [spinning, setSpinning] = useState(false);
+    const [showSpinner,setShowSpinner]=useState(true);
     // handle button click of login form
 
     const handleLogin = () => {
@@ -34,11 +36,13 @@ function Login(props) {
             .then(response => {
                 console.log(authData);
                 if (response.data.status === 200) {
+                    setShowSpinner(true);
                     setShow(false);
                     props.onLoggedIn(response.data.profile.employee_name);
                     console.log("Already logged in");
                     // name=response.data.
                     setTimeout(() => {
+                        setShowSpinner(false);
                         props.history.push('LSGD_FRONT/mainpage');
                       }, 1200);
                     // let history = useHistory();
@@ -46,13 +50,16 @@ function Login(props) {
 
                 } else {
                     setShow(true);
+                    setShowSpinner(false);
 
 
                 }
                 setSpinning(false);
+                setShowSpinner(false);
                 console.log(response);
             }).catch(err => {
             setSpinning(false);
+            setShowSpinner(false);
             console.log(err);
         })
     }
@@ -74,10 +81,12 @@ function Login(props) {
                         console.log("Already logged in");
                         // name=response.data.
                         setTimeout(() => {
+                            setShowSpinner(false);
                             props.history.push('LSGD_FRONT/mainpage');
                           }, 1200);
                         // props.history.push('LSGD_FRONT/mainpage');
                     } else {
+                        setShowSpinner(false);
                         console.log("Not Logged in");
 
 
@@ -106,8 +115,11 @@ function Login(props) {
     if (spinning) {
         loginLabel = <Spinner animation="border"/>;
     }
+    
     return (
         <div style={{minHeight: '100vh', width: '100%'}}>
+            
+            <Modal show={showSpinner}/>
             <Container fluid>
                 <Row>
                     <Col md={3} style={{padding: '0'}}>
