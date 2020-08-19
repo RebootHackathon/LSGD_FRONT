@@ -53,9 +53,9 @@ class Posts extends React.Component {
                 <Container fluid>
                     <Row>
                         <Col md={3}>
-                            <Card style={{width: '90%'}}>
-                                <Card.Img variant="top" src={require('../../assets/icons/posts.png')}
-                                          style={{padding: '5%', height: '20%', width: '30%'}}/>
+                            <Card style={{width: '90%', marginTop: '5%'}}>
+                                <Card.Img variant="top" src={require('../../assets/cardbg1.png')}
+                                          style={{ height: '20%', width: '100%'}}/>
                                 <Card.Body>
                                     <Card.Title>Add New Post</Card.Title>
                                     <InputGroup className="mb-3">
@@ -89,26 +89,34 @@ class Posts extends React.Component {
                             </Card>
                         </Col>
                         <Col md={9}>
-                            <Row style={{marginBottom: '10px'}}>All posts...</Row>
-                            {this.state.posts_list.map((ele) => {
+                            <Row style={{marginBottom: '10px', marginTop: '20px'}}>
+                                <Container style={{fontSize: 'large'}}>ALL POSTS...</Container>
+                                <Container>Refresh</Container>
+                            </Row>
+                            <Row>
+                                <Container>
+                                    {this.state.posts_list.map((ele) => {
 
-                                return (
-                                    <Card style={{width: '90%'}} key={ele._id}>
-                                        {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
-                                        <Card.Body>
-                                            <Card.Title>
-                                                {ele.post_name}
-                                            </Card.Title>
-                                            <Card.Subtitle>
-                                                {ele.post_description}
-                                            </Card.Subtitle>
-                                            <Card.Text>
-                                                Created On {new Date(ele.created_at).toDateString()}
-                                            </Card.Text>
-                                        </Card.Body>
-                                    </Card>
-                                )
-                            })}
+                                        return (
+                                            <Card style={{width: '90%'}} key={ele._id}>
+                                                {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
+                                                <Card.Body>
+                                                    <Card.Title>
+                                                        {ele.post_name}
+                                                    </Card.Title>
+                                                    <Card.Subtitle>
+                                                        {ele.post_description}
+                                                    </Card.Subtitle>
+                                                    <Card.Text>
+                                                        Created On {new Date(ele.created_at).toDateString()}
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Card>
+                                        )
+                                    })}
+
+                                </Container>
+                            </Row>
                         </Col>
                     </Row>
                     <Row>

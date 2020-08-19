@@ -95,10 +95,10 @@ class Employee extends React.Component {
                     <Row style={{height: '100%'}}>
                         <Col md={3}>
                             <Card style={{width: '90%', marginTop: '5%'}}>
-                                <Card.Img variant="top" src={require('../../assets/icons/office.png')}
-                                          style={{padding: '5%', height: '20%', width: '30%'}}/>
+                                <Card.Img variant="top" src={require('../../assets/cardbg1.png')}
+                                          style={{ height: '20%', width: '100%'}}/>
                                 <Card.Body>
-                                    <Card.Title>Add New Employee</Card.Title>
+                                    <Card.Title style={{fontFamily: 'Mukta'}}>Add New Employee</Card.Title>
                                     <InputGroup className="mb-3">
                                         <InputGroup.Prepend>
                                             <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
@@ -139,9 +139,8 @@ class Employee extends React.Component {
                                             aria-describedby="basic-addon1"
                                         />
                                     </InputGroup>
-                                    <Container>
-
-                                        <Row>
+                                    <Row>
+                                        <Container >
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                                 <Form.Label>Select Office</Form.Label>
                                                 <Form.Control as="select" onChange={(e) => {
@@ -155,8 +154,8 @@ class Employee extends React.Component {
                                                     })}
                                                 </Form.Control>
                                             </Form.Group>
-                                        </Row>
-                                        <Row>
+                                        </Container>
+                                        <Container>
                                             <Form.Group controlId="exampleForm.ControlSelect2">
                                                 <Form.Label>Select Post</Form.Label>
                                                 <Form.Control as="select" onChange={(e) => {
@@ -171,41 +170,48 @@ class Employee extends React.Component {
                                                 </Form.Control>
                                             </Form.Group>
 
-                                        </Row>
-                                    </Container>
+                                        </Container>
+                                    </Row>
                                     <Button variant="primary" onClick={this.createemployee}>Create employee</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
                         <Col md={9}>
-                            <Row style={{marginBottom: '10px'}}>All employees...</Row>
-                            {this.state.employees_list.map((ele) => {
-                                return (
-                                    <Card style={{width: '90%'}} key={ele._id}>
-                                        {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
-                                        <Card.Body>
-                                            <Card.Title>
-                                                {ele.employee_name}
-                                            </Card.Title>
-                                            <Card.Subtitle>
-                                                {ele.employee_aadhar}
-                                            </Card.Subtitle>
-                                            <Card.Text>
-                                                Created On {new Date(ele.created_at).toDateString()}
-                                            </Card.Text>
-                                            <Card.Text>
-                                                Status: {(() => {
-                                                if (!ele.isDelisted) {
-                                                    return 'Working'
-                                                } else {
-                                                    return 'Not Working'
-                                                }
-                                            })()}
-                                            </Card.Text>
-                                        </Card.Body>
-                                    </Card>
-                                )
-                            })}
+                            <Row style={{marginBottom: '10px', marginTop: '20px'}}>
+                                <Container style={{fontSize: 'large'}}>ALL EMPLOYEES...</Container>
+                                <Container>Refresh</Container>
+                            </Row>
+                            <Row>
+                                <Container>
+                                    {this.state.employees_list.map((ele) => {
+                                        return (
+                                            <Card style={{width: '90%'}} key={ele._id}>
+                                                {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
+                                                <Card.Body>
+                                                    <Card.Title>
+                                                        {ele.employee_name}
+                                                    </Card.Title>
+                                                    <Card.Subtitle>
+                                                        {ele.employee_aadhar}
+                                                    </Card.Subtitle>
+                                                    <Card.Text>
+                                                        Created On {new Date(ele.created_at).toDateString()}
+                                                    </Card.Text>
+                                                    <Card.Text>
+                                                        Status: {(() => {
+                                                        if (!ele.isDelisted) {
+                                                            return 'Working'
+                                                        } else {
+                                                            return 'Not Working'
+                                                        }
+                                                    })()}
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Card>
+                                        )
+                                    })}
+                                </Container>
+                            </Row>
                         </Col>
                     </Row>
                     <Row>

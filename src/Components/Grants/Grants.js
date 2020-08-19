@@ -57,9 +57,10 @@ class Grants extends React.Component {
                 <Container fluid>
                     <Row>
                         <Col md={3}>
-                            <Card style={{width: '90%'}}>
-                                <Card.Img variant="top" src={require('../../assets/icons/office.png')}
-                                          style={{padding: '5%', height: '20%', width: '30%'}}/>
+                            <Card style={{width: '90%', marginTop: '5%'}}>
+
+                                <Card.Img variant="top" src={require('../../assets/cardbg1.png')}
+                                          style={{ height: '20%', width: '100%'}}/>
                                 <Card.Body>
                                     <Card.Title>Add New grant</Card.Title>
                                     <InputGroup className="mb-3">
@@ -152,44 +153,52 @@ class Grants extends React.Component {
                             </Card>
                         </Col>
                         <Col md={9}>
-                            <Row style={{marginBottom: '10px'}}>All grants...</Row>
-                            {this.state.grants_list.map((ele) => {
+                            <Row style={{marginBottom: '10px', marginTop: '20px'}}>
+                                <Container style={{fontSize: 'large'}}>ALL GRANTS...</Container>
+                                <Container>Refresh</Container>
+                            </Row>
+                            <Row>
+                                <Container>
+                                    {this.state.grants_list.map((ele) => {
 
-                                return (
-                                    <Card style={{width: '90%'}} key={ele._id}>
-                                        {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
-                                        <Card.Body>
-                                            <Card.Title>
-                                                {ele.grant_name}
-                                            </Card.Title>
-                                            <Card.Subtitle>
-                                                {ele.grant_amount}
-                                            </Card.Subtitle>
-                                            <Card.Text>
-                                                {'Religion: ' + ele.grant_religion + ', Cast: ' + ele.grant_cast}
-                                            </Card.Text>
-                                            <Card.Text>
-                                                Created On {new Date(ele.created_at).toDateString()}
-                                            </Card.Text>
-                                            <Card.Text>
-                                                {'Description: ' + ele.grant_description}
-                                            </Card.Text>
-                                            <Card.Text>
-                                                {'Sanctioned By: ' + ele.granting_body}
-                                            </Card.Text>
-                                            <Card.Text>
-                                                Status: {(() => {
-                                                if (!ele.isDelisted) {
-                                                    return 'Working'
-                                                } else {
-                                                    return 'Not Working'
-                                                }
-                                            })()}
-                                            </Card.Text>
-                                        </Card.Body>
-                                    </Card>
-                                )
-                            })}
+                                        return (
+                                            <Card style={{width: '90%'}} key={ele._id}>
+                                                {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
+                                                <Card.Body>
+                                                    <Card.Title>
+                                                        {ele.grant_name}
+                                                    </Card.Title>
+                                                    <Card.Subtitle>
+                                                        {ele.grant_amount}
+                                                    </Card.Subtitle>
+                                                    <Card.Text>
+                                                        {'Religion: ' + ele.grant_religion + ', Cast: ' + ele.grant_cast}
+                                                    </Card.Text>
+                                                    <Card.Text>
+                                                        Created On {new Date(ele.created_at).toDateString()}
+                                                    </Card.Text>
+                                                    <Card.Text>
+                                                        {'Description: ' + ele.grant_description}
+                                                    </Card.Text>
+                                                    <Card.Text>
+                                                        {'Sanctioned By: ' + ele.granting_body}
+                                                    </Card.Text>
+                                                    <Card.Text>
+                                                        Status: {(() => {
+                                                        if (!ele.isDelisted) {
+                                                            return 'Working'
+                                                        } else {
+                                                            return 'Not Working'
+                                                        }
+                                                    })()}
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Card>
+                                        )
+                                    })}
+
+                                </Container>
+                            </Row>
                         </Col>
                     </Row>
                     <Row>

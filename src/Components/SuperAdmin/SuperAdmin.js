@@ -52,16 +52,26 @@ class SuperAdmin extends React.Component {
             
             <div className={styles.SuperAdmin}>
                 <Container fluid style={{width: '100%', height: '100vh'}}>
-                    <Row>
-                        <Col sm={2} style={{padding: 0}}>
-                            <Navbar bg="dark" variant={'dark'} expand="lg">
-                                <Navbar.Brand href="#home">LSGD</Navbar.Brand>
+                    <Row style={{height: '100%'}}>
+                        <Col sm={2} style={{padding: 0, background: '#EEEEEE'}}>
+                            <Navbar bg="dark" variant="dark">
+                                <Navbar.Brand href="#home">
+                                    <img
+                                        alt=""
+                                        src={require('../../assets/icons/parliament.png')}
+                                        width="30"
+                                        height="30"
+                                        style={{marginRight: '8px'}}
+                                        className="d-inline-block align-top"
+                                    />{' '}
+                                    LSGD E-GOV
+                                </Navbar.Brand>
                             </Navbar>
                             <ListGroup style={{height: '100%'}}>
                                 <ListGroup.Item action  variant="light" onClick={() => this.setState({selected: 'office'})}>
                                     Office</ListGroup.Item>
                                 <ListGroup.Item action variant="light" onClick={() => this.setState({selected: 'posts'})}>
-                                    Posts</ListGroup.Item>
+                                    Designation</ListGroup.Item>
                                 <ListGroup.Item action variant="light" onClick={() => this.setState({selected: 'employee'})}>
                                     Employee</ListGroup.Item>
                                 <ListGroup.Item action variant="light"  onClick={() => this.setState({selected: 'grant'})}>
@@ -86,7 +96,7 @@ class SuperAdmin extends React.Component {
                         <Col>
                             <Row>
                                 <Col style={{padding: 0}}>
-                                    <Navbar bg="dark" variant={'dark'} expand="lg">
+                                    <Navbar bg="light" variant={'light'} expand="lg">
                                         <Navbar.Brand href="#home">{String(this.state.selected).toLocaleUpperCase()}</Navbar.Brand>
                                         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                                         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
@@ -110,7 +120,7 @@ class SuperAdmin extends React.Component {
                                     <Posts style={{paddingTop: '20px'}}/>
                                 }
                             </Row>}
-                            {this.state.selected === 'employee' && <Row style={{height: '100%'}}>
+                            {this.state.selected === 'employee' && <Row>
                                 {
                                     <Employee style={{paddingTop: '20px'}}/>
                                 }
