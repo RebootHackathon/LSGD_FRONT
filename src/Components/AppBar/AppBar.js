@@ -77,11 +77,11 @@ const AppBar = (props) => {
                         <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                     </NavDropdown>
                     </Nav>
-                   {/* <Navbar.Collapse > */}
+                   
                        <Nav.Link className="justify-content-end" onClick={()=>logout(history,props)}>
                            <Typography variant="subtitle2" color="inherit"> {props.name} <PowerSettingsNew color="inherit" /></Typography>
                         </Nav.Link>
-                    {/* </Navbar.Collapse> */}
+                  
                    
  
                
