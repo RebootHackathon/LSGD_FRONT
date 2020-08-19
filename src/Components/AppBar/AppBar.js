@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect}from 'react';
 import styles from './AppBar.module.css';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -35,6 +35,30 @@ const logout=(history,props)=>{
 
 const AppBar = (props) => {
     const history=useHistory()
+    useEffect(() => {
+        axios.get('/auth/isloggedin')
+                .then(response => {
+                    console.log(response);
+                    if (response.data.status === 200) {
+                        props.onLoggedIn(response.data.profile.employee_name);
+                        console.log("Already logged in");
+                        // name=response.data.
+                        
+                        // props.history.push('LSGD_FRONT/mainpage');
+                    } else {
+                        
+                        console.log("Not Logged in");
+
+
+                    }
+                })
+                .catch(err=>{
+                    console.log(err);
+                });
+
+
+        
+      });
     return(
         <div className={styles.AppBar}>
         <Navbar bg="light" expand="lg">
@@ -87,7 +111,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLoggedOut: () => dispatch({type: 'LOGOUT'})
+        onLoggedOut: () => dispatch({type: 'LOGOUT'}),
+        onLoggedIn: (name) => dispatch({type: 'LOGIN',name:name})
     };
 };
 
