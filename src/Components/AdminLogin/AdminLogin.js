@@ -4,9 +4,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {Alert, Button, Card, FormControl, InputGroup} from "react-bootstrap";
 import Logo from "../../assets/keralalogo.png";
-import LoginBg from "../../assets/loginbg.jpg";
+import LoginBg from "../../assets/loginbg.png";
 import axios from "../../axios";
 import { connect } from 'react-redux';
+import {Link} from "react-router-dom";
 
 class AdminLogin extends React.Component{
     state = {
@@ -84,6 +85,10 @@ class AdminLogin extends React.Component{
                                             console.log(err);
                                         })
                                     }}>{this.state.btnEnabled && 'Login'}{!this.state.btnEnabled && 'Please Wait...'}</Button>
+                                    <div style={{marginTop: '20px', textAlign: 'right'}}>
+                                        <Link to={'/'}>Employee Login</Link>
+                                    </div>
+
                                 </Card.Body>
                             </Card>
                         </Col>

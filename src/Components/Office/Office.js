@@ -55,9 +55,9 @@ class Office extends React.Component {
                 <Container fluid>
                     <Row>
                         <Col md={3}>
-                            <Card style={{width: '90%'}}>
-                                <Card.Img variant="top" src={require('../../assets/icons/office.png')}
-                                          style={{padding: '5%', height: '20%', width: '30%'}}/>
+                            <Card style={{width: '90%', marginTop: '5%'}}>
+                                <Card.Img variant="top" src={require('../../assets/cardbg1.png')}
+                                          style={{ height: '20%', width: '100%'}}/>
                                 <Card.Body>
                                     <Card.Title>Add New Office</Card.Title>
                                     <InputGroup className="mb-3">
@@ -87,7 +87,7 @@ class Office extends React.Component {
                                         />
                                     </InputGroup>
                                     <Row>
-                                        <Col>
+                                        <Container>
                                             <Form.Group controlId="exampleForm.ControlSelect1">
                                                 <Form.Label>Select District</Form.Label>
                                                 <Form.Control as="select" onChange={(e) => {
@@ -101,8 +101,8 @@ class Office extends React.Component {
                                                 </Form.Control>
                                             </Form.Group>
 
-                                        </Col>
-                                        <Col>
+                                        </Container>
+                                        <Container>
                                             <Form.Group controlId="exampleForm.ControlSelect2">
                                                 <Form.Label>Select Place</Form.Label>
                                                 <Form.Control as="select" onChange={(e) => {
@@ -116,45 +116,52 @@ class Office extends React.Component {
                                                 </Form.Control>
                                             </Form.Group>
 
-                                        </Col>
+                                        </Container>
                                     </Row>
                                     <Button variant="primary" onClick={this.createOffice}>Create Office</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
                         <Col md={9}>
-                            <Row style={{marginBottom: '10px'}}>All Offices...</Row>
-                            {this.state.offices_list.map((ele) => {
+                            <Row style={{marginBottom: '10px', marginTop: '20px'}}>
+                                <Container style={{fontSize: 'large'}}>ALL OFFICES...</Container>
+                                <Container>Refresh</Container>
+                            </Row>
+                            <Row>
+                                <Container>
+                                    {this.state.offices_list.map((ele) => {
 
-                                return (
-                                    <Card style={{width: '90%'}} key={ele._id}>
-                                        {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
-                                        <Card.Body>
-                                            <Card.Title>
-                                                {ele.office_name}
-                                            </Card.Title>
-                                            <Card.Subtitle>
-                                                {ele.office_address}
-                                            </Card.Subtitle>
-                                            <Card.Text>
-                                                {ele.office_place + ', ' + ele.office_district}
-                                            </Card.Text>
-                                            <Card.Text>
-                                                Created On {new Date(ele.created_at).toDateString()}
-                                            </Card.Text>
-                                            <Card.Text>
-                                                Status: {(() => {
-                                                if (!ele.isDelisted) {
-                                                    return 'Working'
-                                                } else {
-                                                    return 'Not Working'
-                                                }
-                                            })()}
-                                            </Card.Text>
-                                        </Card.Body>
-                                    </Card>
-                                )
-                            })}
+                                        return (
+                                            <Card style={{width: '90%'}} key={ele._id}>
+                                                {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
+                                                <Card.Body>
+                                                    <Card.Title>
+                                                        {ele.office_name}
+                                                    </Card.Title>
+                                                    <Card.Subtitle>
+                                                        {ele.office_address}
+                                                    </Card.Subtitle>
+                                                    <Card.Text>
+                                                        {ele.office_place + ', ' + ele.office_district}
+                                                    </Card.Text>
+                                                    <Card.Text>
+                                                        Created On {new Date(ele.created_at).toDateString()}
+                                                    </Card.Text>
+                                                    <Card.Text>
+                                                        Status: {(() => {
+                                                        if (!ele.isDelisted) {
+                                                            return 'Working'
+                                                        } else {
+                                                            return 'Not Working'
+                                                        }
+                                                    })()}
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Card>
+                                        )
+                                    })}
+                                </Container>
+                            </Row>
                         </Col>
                     </Row>
                     <Row>
