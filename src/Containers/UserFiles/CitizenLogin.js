@@ -7,7 +7,7 @@ import Covid1 from '../../assets/lottie/covid1.json'
 import LoginAnim from '../../assets/lottie/loginanimation.json'
 import Ele from '../../assets/lottie/aana.json'
 import LoginBg from '../../assets/loginbg.png'
-import {Button, Card, FormControl, InputGroup} from 'react-bootstrap';
+import {Button, Card, Form, FormControl, InputGroup} from 'react-bootstrap';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -252,9 +252,12 @@ function Login(props) {
                                  
 
                                 </Navbar.Brand>
-                                <div style={{marginLeft:"60%", textAlign: 'left',cursor:"pointer"}} onClick={changeEnglishHandler}>
-                                {englishLabel}</div>
-                                   <div style={{marginLeft:"15px", textAlign: 'left',cursor:"pointer"}} onClick={changeMalayalamHandler}> {malayalamLabel}</div>
+                                <Navbar.Collapse className="justify-content-end">
+                                    <div style={{marginLeft:"60%", textAlign: 'left',cursor:"pointer"}} onClick={changeEnglishHandler}>
+                                        {englishLabel}</div>
+                                    <div style={{marginLeft:"15px", textAlign: 'left',cursor:"pointer"}} onClick={changeMalayalamHandler}>
+                                        {malayalamLabel}</div>
+                                </Navbar.Collapse>
                             </Navbar>
                             <div id={"loginanimation"} style={{ height: '100%', widht: '100%', overflow: 'hidden'}}>
                             </div>

@@ -81,8 +81,6 @@ const AppBar = (props) => {
                        <Nav.Link className="justify-content-end" onClick={()=>logout(history,props)}>
                            <Typography variant="subtitle2" color="inherit"> {props.name} <PowerSettingsNew color="inherit" /></Typography>
                         </Nav.Link>
-                  
-                   
  
                
                 <Form inline>
