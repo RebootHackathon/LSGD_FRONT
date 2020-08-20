@@ -121,8 +121,21 @@ class ListGrant extends Component {
                                         value={this.state.aadhar} clicked={this.onClickHandler}/>
                         </Col>
                         <Col md={9}>
+                            {
+                                (this.state.length != null) && (this.state.userExist) &&
+                                <div style={{marginTop: '70px'}}>
+                                    <Row className="justify-content-md-center">
+                                        <br/><br/>
+                                        <Col md={6}>
+                                            <Button variant="primary" block
+                                                    onClick={() => this.onClickApplyHandler(this.props)}>Apply New
+                                                Grant</Button>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            }
                             {this.state.length > 0 && <div>
-                                <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>Result</Col></Row>
+                                {/*<Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>Result</Col></Row>*/}
                                 <Row>
                                     <Container style={{color: 'orange'}}>Pending Grants</Container>
                                     <Container fluid>{this.state.data.map((ele) => {
@@ -214,7 +227,7 @@ class ListGrant extends Component {
                                             )
                                         }
                                     })}</Container>
-                                    <Container style={{color: 'green'}}>Received Grants</Container>
+                                    <Container style={{color: 'green', marginTop: '50px'}}>Received Grants</Container>
                                     <Container fluid>{this.state.data.map((ele) => {
                                         let grant_details = this.state.grants.filter(grant => {
                                             return grant.id === ele.grantId
@@ -328,19 +341,7 @@ class ListGrant extends Component {
                                 </div>
                             }
 
-                            {
-                                (this.state.length != null) && (this.state.userExist) &&
-                                <div style={{marginTop: '70px'}}>
-                                    <Row className="justify-content-md-center">
-                                        <br/><br/>
-                                        <Col md={6}>
-                                            <Button variant="primary" block
-                                                    onClick={() => this.onClickApplyHandler(this.props)}>Apply New
-                                                Grant</Button>
-                                        </Col>
-                                    </Row>
-                                </div>
-                            }
+
                         </Col>
 
 

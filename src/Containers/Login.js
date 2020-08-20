@@ -166,12 +166,20 @@ function Login(props) {
                                 </InputGroup>
 
                                 <Button variant="primary" block onClick={handleLogin}>{loginLabel}</Button>
-                              
-                                <div style={{marginTop: '20px',display:'flex',flexFlow:'row'}}>
-                                    <div style={{textAlign: 'left'}}>
-                                <Link to={'/employsignup'} >Signup</Link></div><div style={{marginLeft:'50%', textAlign: 'right'}}>
-                                <Link to={'/adminlogin'} style={{textAlign: 'right'}}>Admin Login</Link></div>
+                                <Container>
+                                    <div style={{marginLeft:'50%', textAlign: 'right'}}>
+                                        <Link to={'/employsignup'}>Employee Sign Up</Link>
                                     </div>
+                                </Container>
+                               <Container style={{marginTop: '60px'}}>
+                                   <div style={{textAlign: 'right'}}>
+                                       <Link to={'/citizenlogin'} style={{textAlign: 'right'}}>Citizen Login</Link>
+                                   </div>
+                                   <div style={{textAlign: 'right'}}>
+                                       <Link to={'/adminlogin'} style={{textAlign: 'right'}}>Admin Login</Link>
+
+                                   </div>
+                               </Container>
                                 {/*<Button onClick = {() => {*/}
                                 {/*    // let url = 'http://localhost:8000/t'*/}
                                 {/*    let url = 'https://reboothack12345.herokuapp.com/t'*/}
