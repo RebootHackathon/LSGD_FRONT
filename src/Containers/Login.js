@@ -108,13 +108,12 @@ function Login(props) {
                     renderer: 'svg',
                     loop: false,
                     autoplay: true,
-                    speed: 2,
                     animationData: LoginAnim,
                     rendererSettings: {
                         preserveAspectRatio: 'xMinYMin slice',
                         // Supports the same options as the svg element's preserveAspectRatio property
                     }
-                });
+                }).setSpeed(1.5);
 
         }
     });
