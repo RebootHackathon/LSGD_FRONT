@@ -80,7 +80,7 @@ class Employee extends React.Component {
             .then(response => {
                 console.log(response);
                 if (response.data.status === 200) {
-
+                    this.getemployee();
                 } else {
                 }
             }).catch(err => {
@@ -182,33 +182,104 @@ class Employee extends React.Component {
                                 <Container>Refresh</Container>
                             </Row>
                             <Row>
+                                <Container style={{marginTop: '10px', color: 'red'}}>
+                                    Unverified
+                                </Container>
                                 <Container>
                                     {this.state.employees_list.map((ele) => {
-                                        return (
-                                            <Card style={{width: '90%'}} key={ele._id}>
-                                                {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
-                                                <Card.Body>
-                                                    <Card.Title>
-                                                        {ele.employee_name}
-                                                    </Card.Title>
-                                                    <Card.Subtitle>
-                                                        {ele.employee_aadhar}
-                                                    </Card.Subtitle>
-                                                    <Card.Text>
-                                                        Created On {new Date(ele.created_at).toDateString()}
-                                                    </Card.Text>
-                                                    <Card.Text>
-                                                        Status: {(() => {
-                                                        if (!ele.isDelisted) {
-                                                            return 'Working'
-                                                        } else {
-                                                            return 'Not Working'
-                                                        }
-                                                    })()}
-                                                    </Card.Text>
-                                                </Card.Body>
-                                            </Card>
-                                        )
+                                        if (ele.verified !== true){
+                                            return (
+                                                <Card style={{width: '90%'}} key={ele._id}>
+                                                    {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
+                                                    <Card.Body>
+                                                        <Card.Title>
+                                                            {ele.employee_name}
+                                                        </Card.Title>
+                                                        <Card.Subtitle>
+                                                            {ele.employee_aadhar}
+                                                        </Card.Subtitle>
+                                                        <Card.Text>
+                                                            Created On {new Date(ele.created_at).toDateString()}
+                                                        </Card.Text>
+                                                        <Card.Text>
+                                                            Status: {(() => {
+                                                            if (!ele.isDelisted) {
+                                                                return 'Working'
+                                                            } else {
+                                                                return 'Not Working'
+                                                            }
+                                                        })()}
+
+                                                        </Card.Text>
+                                                        <Card.Text>
+                                                            Status: {(() => {
+                                                            if (!ele.verified) {
+                                                                return 'Verified Account'
+                                                            } else {
+                                                                return 'Not Verified'
+                                                            }
+                                                        })()}
+
+                                                        </Card.Text>
+                                                        <Button onClick={()=>{
+                                                            axios.post('/employees/verify',{id : ele._id}).then((res) => {
+                                                                if (res.data.status === 200){
+                                                                    console.log(res.data)
+                                                                    this.getemployee()
+                                                                }
+                                                            })
+                                                        }}>
+                                                            Verify
+                                                        </Button>
+                                                    </Card.Body>
+                                                </Card>
+                                            )
+                                        }
+                                    })}
+                                </Container>
+                                <Container style={{marginTop: '20px', color: 'green'}}>
+                                    Verified
+                                </Container>
+                                <Container>
+                                    {this.state.employees_list.map((ele) => {
+                                        if (ele.verified === true){
+                                            return (
+                                                <Card style={{width: '90%'}} key={ele._id}>
+                                                    {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
+                                                    <Card.Body>
+                                                        <Card.Title>
+                                                            {ele.employee_name}
+                                                        </Card.Title>
+                                                        <Card.Subtitle>
+                                                            {ele.employee_aadhar}
+                                                        </Card.Subtitle>
+                                                        <Card.Text>
+                                                            Created On {new Date(ele.created_at).toDateString()}
+                                                        </Card.Text>
+                                                        <Card.Text>
+                                                            Status: {(() => {
+                                                            if (!ele.isDelisted) {
+                                                                return 'Working'
+                                                            } else {
+                                                                return 'Not Working'
+                                                            }
+                                                        })()}
+
+                                                        </Card.Text>
+                                                        <Card.Text>
+                                                            Status: {(() => {
+                                                            if (!ele.verified) {
+                                                                return 'Verified Account'
+                                                            } else {
+                                                                return 'Not Verified'
+                                                            }
+                                                        })()}
+
+                                                        </Card.Text>
+                                                    </Card.Body>
+                                                </Card>
+                                            )
+                                        }
                                     })}
                                 </Container>
                             </Row>

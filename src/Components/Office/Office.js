@@ -41,7 +41,7 @@ class Office extends React.Component {
             .then(response => {
                 console.log(response);
                 if (response.data.status === 200) {
-
+                    this.getOffice();
                 } else {
                 }
             }).catch(err => {

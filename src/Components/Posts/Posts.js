@@ -39,7 +39,7 @@ class Posts extends React.Component {
             .then(response => {
                 console.log(response);
                 if (response.data.status === 200) {
-
+                    this.getPosts()
                 } else {
                 }
             }).catch(err => {
