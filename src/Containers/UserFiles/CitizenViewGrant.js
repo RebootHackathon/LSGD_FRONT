@@ -121,7 +121,7 @@ class Grants extends React.Component {
                         </Col>
                         <Col md={9}>
                             <Row style={{marginBottom: '10px', marginTop: '20px'}}>
-                                <Container style={{fontSize: 'large'}}>{this.state.allgrantsLabel}</Container>
+                                <Container style={{fontSize: 'large', color: 'green'}}>{this.state.allgrantsLabel}</Container>
                                 <Container>Refresh</Container>
                             </Row>
                             <Row>
