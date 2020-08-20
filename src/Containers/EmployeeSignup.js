@@ -82,97 +82,110 @@ class Employee extends React.Component {
         return (
             <div className={styles.Employee} >
                 <Container fluid style={{height: '100%'}}>
-                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <div>
                     <Row style={{height: '100%'}}>
-                        <Col md={9}>
-                            
-                            <Card style={{width: '90%', marginTop: '5%'}}>
-                                <Card.Img variant="top" src={require('../assets/cardbg1.png')}
-                                          style={{ height: '10%', width: '100%'}}/>
-                                <Card.Body>
-                                    <Card.Title style={{fontFamily: 'Mukta'}}>Register As Employee</Card.Title>
-                                    <InputGroup className="mb-3">
-                                        <InputGroup.Prepend>
-                                            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                                        </InputGroup.Prepend>
-                                        <FormControl
-                                            onChange={(e) => {
-                                                this.newemployeeData.employee_name = e.target.value;
-                                            }}
-                                            placeholder="employee Name"
-                                            aria-label="name"
-                                            aria-describedby="basic-addon1"
-                                        />
-                                    </InputGroup>
-                                    <InputGroup className="mb-3">
-                                        <InputGroup.Prepend>
-                                            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                                        </InputGroup.Prepend>
-                                        <FormControl
-                                            onChange={(e) => {
-                                                this.newemployeeData.employee_aadhar = parseInt(e.target.value);
-                                            }}
-                                            placeholder="employee Aadhar"
-                                            aria-label="name"
-                                            aria-describedby="basic-addon1"
-                                        />
-                                    </InputGroup>
+                        <Col>
+                            <div style={{textAlign: 'center', width: '100%', position: "relative"}}>
+                                <Card style={{width: '30%', left: '33%'}}>
+                                    <Card.Img variant="top" src={require('../assets/cardbg1.png')}
+                                              style={{ height: '10%', width: '100%'}}/>
+                                    <Card.Body>
+                                        <Card.Title style={{fontFamily: 'Mukta'}}>Register As Employee</Card.Title>
+                                        <InputGroup className="mb-3">
+                                            <InputGroup.Prepend>
+                                                <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                            <FormControl
+                                                onChange={(e) => {
+                                                    this.newemployeeData.employee_aadhar = parseInt(e.target.value);
+                                                }}
+                                                placeholder="employee Aadhar"
+                                                aria-label="name"
+                                                aria-describedby="basic-addon1"
+                                            />
+                                            <Button>OTP</Button>
+                                        </InputGroup>
+                                        <InputGroup className="mb-3">
+                                            <InputGroup.Prepend>
+                                                <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                            <FormControl
+                                                onChange={(e) => {
+                                                    this.newemployeeData.otp = parseInt(e.target.value);
+                                                }}
+                                                placeholder="Enter OTP"
+                                                aria-label="name"
+                                                aria-describedby="basic-addon1"
+                                            />
+                                            <Button>GO</Button>
+                                        </InputGroup>
+                                        <InputGroup className="mb-3">
+                                            <InputGroup.Prepend>
+                                                <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                            <FormControl
+                                                onChange={(e) => {
+                                                    this.newemployeeData.employee_name = e.target.value;
+                                                }}
+                                                placeholder="employee Name"
+                                                aria-label="name"
+                                                aria-describedby="basic-addon1"
+                                            />
+                                        </InputGroup>
 
-                                    <InputGroup className="mb-3">
-                                        <InputGroup.Prepend>
-                                            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                                        </InputGroup.Prepend>
-                                        <FormControl
-                                            onChange={(e) => {
-                                                this.newemployeeData.employee_password = e.target.value;
-                                            }}
-                                            placeholder="employee Password"
-                                            aria-label="name"
-                                            aria-describedby="basic-addon1"
-                                        />
-                                    </InputGroup>
-                                    <Row>
-                                        <Container >
-                                            <Form.Group controlId="exampleForm.ControlSelect1">
-                                                <Form.Label>Select Office</Form.Label>
-                                                <Form.Control as="select" onChange={(e) => {
-                                                    this.newemployeeData.employee_office = e.target.value;
-                                                }}>
-                                                    {this.state.office_list.map((office) => {
-                                                        return (
-                                                            <option key={office._id}
-                                                                    value={office._id}>{office.office_name}</option>
-                                                        )
-                                                    })}
-                                                </Form.Control>
-                                            </Form.Group>
-                                        </Container>
-                                        <Container>
-                                            <Form.Group controlId="exampleForm.ControlSelect2">
-                                                <Form.Label>Select Post</Form.Label>
-                                                <Form.Control as="select" onChange={(e) => {
-                                                    this.newemployeeData.employee_post = e.target.value;
-                                                }}>
-                                                    {this.state.posts_list.map((post) => {
-                                                        return (
-                                                            <option key={post._id}
-                                                                    value={post._id}>{post.post_name}</option>
-                                                        )
-                                                    })}
-                                                </Form.Control>
-                                            </Form.Group>
+                                        <InputGroup className="mb-3">
+                                            <InputGroup.Prepend>
+                                                <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                            <FormControl
+                                                onChange={(e) => {
+                                                    this.newemployeeData.employee_password = e.target.value;
+                                                }}
+                                                placeholder="employee Password"
+                                                aria-label="name"
+                                                aria-describedby="basic-addon1"
+                                            />
+                                        </InputGroup>
+                                        <Row>
+                                            <Container >
+                                                <Form.Group controlId="exampleForm.ControlSelect1">
+                                                    <Form.Label>Select Office</Form.Label>
+                                                    <Form.Control as="select" onChange={(e) => {
+                                                        this.newemployeeData.employee_office = e.target.value;
+                                                    }}>
+                                                        {this.state.office_list.map((office) => {
+                                                            return (
+                                                                <option key={office._id}
+                                                                        value={office._id}>{office.office_name}</option>
+                                                            )
+                                                        })}
+                                                    </Form.Control>
+                                                </Form.Group>
+                                            </Container>
+                                            <Container>
+                                                <Form.Group controlId="exampleForm.ControlSelect2">
+                                                    <Form.Label>Select Post</Form.Label>
+                                                    <Form.Control as="select" onChange={(e) => {
+                                                        this.newemployeeData.employee_post = e.target.value;
+                                                    }}>
+                                                        {this.state.posts_list.map((post) => {
+                                                            return (
+                                                                <option key={post._id}
+                                                                        value={post._id}>{post.post_name}</option>
+                                                            )
+                                                        })}
+                                                    </Form.Control>
+                                                </Form.Group>
 
-                                        </Container>
-                                    </Row>
-                                    <Button variant="primary" onClick={this.createemployee}>Register employee</Button>
-                                </Card.Body>
-                            </Card>
-                           
+                                            </Container>
+                                        </Row>
+                                        <Button block variant="primary" onClick={this.createemployee}>Register employee</Button>
+                                    </Card.Body>
+                                </Card>
+                            </div>
                         </Col>
-                       
                     </Row>
-                    <Row>
-                    </Row> </div>
+                    </div>
                 </Container>
             </div>
         )

@@ -42,7 +42,7 @@ const RegisterNewCitizenForm = (props) => {
                             <Form.Group as={Col} controlId="formGridEmail">
                                 <Form.Label>Aadhar Number</Form.Label>
                                 <Form.Control type="text" placeholder="Aadhar Number" id="aadhar"
-                                              onChange={props.onInputChange} value={props.state.aadhar}/>
+                                           r   onChange={props.onInputChange} value={props.state.aadhar}/>
 
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGridEmail">
