@@ -239,7 +239,7 @@ class ListGrant extends Component {
                             {this.state.length > 0 && <div>
                                 <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>{this.state.resultLabel}</Col></Row>
                                 <Row>
-                                    <Container style={{color: 'orange'}}>{this.state.pendinggrantLabel}</Container>
+                                    <Container style={{fontSize:'larger', color: 'orange'}}>{this.state.pendinggrantLabel}</Container>
                                     <Container fluid>{this.state.data.map((ele) => {
                                         let grant_details = this.state.grants.filter(grant => {
                                             return grant.id === ele.grantId
@@ -335,7 +335,7 @@ class ListGrant extends Component {
                                             )
                                         }
                                     })}</Container>
-                                    <Container style={{color: 'green'}}>{this.state.receivedgrantLAbel}</Container>
+                                    <Container style={{fontSize:'larger',color: 'green', marginTop: '40px'}}>{this.state.receivedgrantLAbel}</Container>
                                     <Container fluid>{this.state.data.map((ele) => {
                                         let grant_details = this.state.grants.filter(grant => {
                                             return grant.id === ele.grantId
@@ -423,7 +423,7 @@ class ListGrant extends Component {
                                             )
                                         }
                                     })}</Container>
-                                    <Container style={{color: 'red'}}>{this.state.deniedLabel}</Container>
+                                    <Container style={{fontSize:'larger',color: 'red', marginTop: '40px'}}>{this.state.deniedLabel}</Container>
                                     <Container fluid>{this.state.data.map((ele) => {
                                         let grant_details = this.state.grants.filter(grant => {
                                             return grant.id === ele.grantId
