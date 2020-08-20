@@ -93,6 +93,7 @@ class ApplyGrantForm extends React.Component{
                                               .then(res => { // then print response status
                                                   console.log(res);
                                                   this.setState({fileid: res.data.fileid})
+                                                  this.setState({filename: 'Uploading Completed'})
                                               })
                                       }}
                             />
