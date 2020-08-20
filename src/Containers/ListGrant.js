@@ -150,7 +150,8 @@ class ListGrant extends Component {
                                                                 </Row>
 
                                                             </Card.Subtitle>
-                                                            {/*<Button variant="primary">Expand</Button>*/}
+                                                            {ele.status === 'Pending' && <Button variant="primary">Commit Grant</Button>}
+                                                            {ele.status !== 'Pending' && <Button variant="primary">Granted</Button>}
                                                             {(() => {
                                                                 // console.log(this.state.expanded)
                                                                 return this.state.expanded[this.state.data.indexOf(ele)]
