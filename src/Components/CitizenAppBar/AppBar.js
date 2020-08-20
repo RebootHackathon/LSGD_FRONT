@@ -20,7 +20,7 @@ const logout=(history,props)=>{
                     if (response.data.status === 200) {
                         console.log("Logged out");
                         props.onLoggedOut();
-                        history.push('/');
+                        history.push('/citizenlogin');
                     } else {
                         console.log("Logout failed");
 
@@ -66,7 +66,9 @@ const AppBar = (props) => {
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href={'/citizenmainpage'}>Home</Nav.Link>
+                    <Nav.Link><span onClick={() => {
+                        history.push({pathname: '/citizenappliedgrants'})
+                    }}>Home/My Grants</span></Nav.Link>
                     <Nav.Link><span onClick={()=>{
                         console.log('app')
                         let state = {
@@ -79,7 +81,20 @@ const AppBar = (props) => {
                             grants: [],
                         };
                         history.push({pathname: '/LSGD_FRONT/applygrant', state})
-                    }}>Apply Grant</span></Nav.Link>
+                    }}>Apply New Grant</span></Nav.Link>
+                    <Nav.Link><span onClick={()=>{
+                        console.log('app')
+                        let state = {
+                            aadhar: '',
+                            length: null,
+                            data: [],
+                            expanded: [],
+                            userExist: true,
+                            spinning: false,
+                            grants: [],
+                        };
+                        history.push({pathname: '/citizenviewallgrants', state})
+                    }}>View All Grant</span></Nav.Link>
                     </Nav>
                    
                        <Nav.Link className="justify-content-end" onClick={()=>logout(history,props)}>

@@ -104,9 +104,9 @@ class ApplyGrant extends Component {
             <div style={{width: '100%'}}>
                 {console.log("[dfdf]", this.state)}
                 <Container fluid>
-                    <Row>
-                        <AppBar/>
-                    </Row>
+                    {/*<Row>*/}
+                    {/*    <AppBar/>*/}
+                    {/*</Row>*/}
                    {form}
                    
                 </Container>
