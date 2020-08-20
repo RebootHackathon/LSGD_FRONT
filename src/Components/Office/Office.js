@@ -125,7 +125,7 @@ class Office extends React.Component {
                         <Col md={9}>
                             <Row style={{marginBottom: '10px', marginTop: '20px'}}>
                                 <Container style={{fontSize: 'large'}}>ALL OFFICES...</Container>
-                                <Container>Refresh</Container>
+                                <Container onClick={this.getOffice}>Refresh</Container>
                             </Row>
                             <Row>
                                 <Container>

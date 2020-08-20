@@ -179,7 +179,7 @@ class Employee extends React.Component {
                         <Col md={9}>
                             <Row style={{marginBottom: '10px', marginTop: '20px'}}>
                                 <Container style={{fontSize: 'large'}}>ALL EMPLOYEES...</Container>
-                                <Container>Refresh</Container>
+                                <Container onClick={this.getemployee}>Refresh</Container>
                             </Row>
                             <Row>
                                 <Container style={{marginTop: '10px', color: 'red'}}>
