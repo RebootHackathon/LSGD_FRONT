@@ -149,7 +149,7 @@ class ListGrant extends Component {
                             {this.state.length > 0 && <div>
                                 {/*<Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>Result</Col></Row>*/}
                                 <Row>
-                                    <Container style={{color: 'orange'}}>Pending Grants</Container>
+                                    <Container style={{color: 'orange', fontSize: 'larger'}}>Pending Grants</Container>
                                     <Container fluid>{this.state.data.map((ele) => {
                                         let grant_details = this.state.grants.filter(grant => {
                                             return grant.id === ele.grantId
@@ -190,17 +190,37 @@ class ListGrant extends Component {
                                                                         </Row>
 
                                                                     </Card.Subtitle>
-                                                                    {ele.status === 'Pending' && <Button variant="primary"
-                                                                                                         onClick={() => {
-                                                                                                             axios.post('/grants/approvegrant',
-                                                                                                                 {applicationId: ele.applicationId}).then(res => {
-                                                                                                                 console.log('gg', res.data)
-                                                                                                                 if (res.data.status === 200){
-                                                                                                                     this.onClickHandler()
-                                                                                                                 }
-                                                                                                             })
-                                                                                                         }}>Approve Grant</Button>}
-                                                                    {ele.status !== 'Pending' && <Button variant="primary">Granted</Button>}
+                                                                    <Row>
+                                                                        <Col>
+                                                                            {ele.status === 'Pending' && <Button variant="primary"
+                                                                                                                 onClick={() => {
+                                                                                                                     axios.post('/grants/approvegrant',
+                                                                                                                         {applicationId: ele.applicationId}).then(res => {
+                                                                                                                         console.log('gg', res.data)
+                                                                                                                         if (res.data.status === 200){
+                                                                                                                             this.onClickHandler()
+                                                                                                                         }
+                                                                                                                     })
+                                                                                                                 }}>Approve Grant</Button>}
+                                                                        </Col>
+                                                                        <Col>
+
+                                                                            {ele.status === 'Pending' && <Button variant="primary"
+                                                                                                                 onClick={() => {
+                                                                                                                     axios.post('/grants/denygrant',
+                                                                                                                         {applicationId: ele.applicationId}).then(res => {
+                                                                                                                         console.log('gg', res.data)
+                                                                                                                         if (res.data.status === 200){
+                                                                                                                             this.onClickHandler()
+                                                                                                                         }
+                                                                                                                     })
+                                                                                                                 }}>Deny Grant</Button>}
+                                                                        </Col>
+                                                                        <Col>
+
+                                                                            {ele.status === 'Granted' && <Button variant="primary">Granted</Button>}
+                                                                        </Col>
+                                                                    </Row>
                                                                     {(() => {
                                                                         // console.log(this.state.expanded)
                                                                         return this.state.expanded[this.state.data.indexOf(ele)]
@@ -239,13 +259,13 @@ class ListGrant extends Component {
                                             )
                                         }
                                     })}</Container>
-                                    <Container style={{color: 'green', marginTop: '50px'}}>Received Grants</Container>
+                                    <Container style={{color: 'green', marginTop: '50px', fontSize: 'larger'}}>Received Grants</Container>
                                     <Container fluid>{this.state.data.map((ele) => {
                                         let grant_details = this.state.grants.filter(grant => {
                                             return grant.id === ele.grantId
                                         });
                                         console.log("[filter]", grant_details, this.state.grants, ele.grantId, ele.applicationId);
-                                        if (ele.status !== 'Pending'){
+                                        if (ele.status === 'Granted'){
                                             return (
                                                 <Container key={ele._id}>
                                                     <Row style={{marginBottom: '2%'}}>
@@ -279,17 +299,144 @@ class ListGrant extends Component {
                                                                         </Row>
 
                                                                     </Card.Subtitle>
-                                                                    {ele.status === 'Pending' && <Button variant="primary"
-                                                                                                         onClick={() => {
-                                                                                                             axios.post('/grants/approvegrant',
-                                                                                                                 {applicationId: ele.applicationId}).then(res => {
-                                                                                                                 console.log('gg', res.data)
-                                                                                                                 if (res.data.status === 200){
-                                                                                                                     this.onClickHandler()
-                                                                                                                 }
-                                                                                                             })
-                                                                                                         }}>Approve Grant</Button>}
-                                                                    {ele.status !== 'Pending' && <Button variant="primary">Granted</Button>}
+                                                                    {/*<Row><Col>*/}
+                                                                    {/*    {ele.status === 'Pending' && <Button variant="primary"*/}
+                                                                    {/*                                         onClick={() => {*/}
+                                                                    {/*                                             axios.post('/grants/approvegrant',*/}
+                                                                    {/*                                                 {applicationId: ele.applicationId}).then(res => {*/}
+                                                                    {/*                                                 console.log('gg', res.data)*/}
+                                                                    {/*                                                 if (res.data.status === 200){*/}
+                                                                    {/*                                                     this.onClickHandler()*/}
+                                                                    {/*                                                 }*/}
+                                                                    {/*                                             })*/}
+                                                                    {/*                                         }}>Approve Grant</Button>}*/}
+                                                                    {/*</Col>*/}
+                                                                    {/*    <Col>*/}
+
+                                                                    {/*        {ele.status === 'Pending' && <Button variant="primary"*/}
+                                                                    {/*                                             onClick={() => {*/}
+                                                                    {/*                                                 axios.post('/grants/denygrant',*/}
+                                                                    {/*                                                     {applicationId: ele.applicationId}).then(res => {*/}
+                                                                    {/*                                                     console.log('gg', res.data)*/}
+                                                                    {/*                                                     if (res.data.status === 200){*/}
+                                                                    {/*                                                         this.onClickHandler()*/}
+                                                                    {/*                                                     }*/}
+                                                                    {/*                                                 })*/}
+                                                                    {/*                                             }}>Deny Grant</Button>}*/}
+                                                                    {/*    </Col>*/}
+                                                                    {/*    <Col>*/}
+
+                                                                    {/*        {ele.status === 'Granted' && <Button variant="primary">Granted</Button>}*/}
+                                                                    {/*    </Col>*/}
+                                                                    {/*</Row>*/}
+                                                                    {(() => {
+                                                                        // console.log(this.state.expanded)
+                                                                        return this.state.expanded[this.state.data.indexOf(ele)]
+                                                                    })() && <Card.Text>
+
+                                                                        <Row style={{marginTop: "10px"}}>
+                                                                            <Col><Card.Text> Application
+                                                                                Id:{ele.applicationId}</Card.Text></Col>
+                                                                            <Col><Card.Text>SanctionBy:{ele.sanctionedById}</Card.Text></Col>
+                                                                        </Row>
+                                                                        <Row style={{marginTop: "10px"}}>
+                                                                            <Col><Card.Text> Amount:{ele.amount}</Card.Text></Col>
+                                                                            <Col><Card.Text>Date:{new Date(ele.date).toDateString()}</Card.Text></Col>
+                                                                        </Row>
+                                                                    </Card.Text>}
+                                                                </Card.Body>
+                                                            </Card>
+                                                        </Col>
+                                                        <Col sm={1}>
+                                                            <svg onClick={() => {
+                                                                let newArr = [...this.state.expanded]
+                                                                let index = this.state.data.indexOf(ele)
+                                                                newArr[index] = !newArr[index]
+                                                                this.setState({expanded: newArr}, () => {
+                                                                    console.log('s', index, this.state)
+                                                                })
+                                                            }} width="1em" height="1em" viewBox="0 0 16 16"
+                                                                 className="bi bi-caret-down-fill" fill="currentColor"
+                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                                            </svg>
+                                                        </Col>
+                                                    </Row>
+                                                </Container>
+                                            )
+                                        }
+                                    })}</Container>
+                                    <Container style={{color: 'red', marginTop: '50px', fontSize: 'larger'}}>Denied Grants</Container>
+                                    <Container fluid>{this.state.data.map((ele) => {
+                                        let grant_details = this.state.grants.filter(grant => {
+                                            return grant.id === ele.grantId
+                                        });
+                                        console.log("[filter]", grant_details, this.state.grants, ele.grantId, ele.applicationId);
+                                        if (ele.status === 'Denied'){
+                                            return (
+                                                <Container key={ele._id}>
+                                                    <Row style={{marginBottom: '2%'}}>
+                                                        <Col sm={11}>
+                                                            <Card key={ele._id}>
+                                                                <Card.Body>
+                                                                    <Card.Title>
+                                                                        <Row>
+
+                                                                            <Col> <Card.Text>Grant
+                                                                                Name: {grant_details[0].grantName} {(()=>{
+                                                                                    if (ele.intact){
+                                                                                        return <div style={{color: 'green'}}>
+                                                                                            Signature Verified
+                                                                                        </div>
+                                                                                    }else {
+                                                                                        return <div style={{color: 'red'}}>
+                                                                                            Signature Error
+                                                                                        </div>
+                                                                                    }
+                                                                                })()}</Card.Text></Col>
+                                                                            <Col>
+                                                                                <Card.Text> Amount:{ele.amount}</Card.Text></Col>
+                                                                        </Row>
+                                                                    </Card.Title>
+                                                                    <Card.Subtitle>
+                                                                        <Row>
+                                                                            <Col><Card.Text>Date: {new Date(ele.date).toDateString()} </Card.Text></Col>
+                                                                            <Col>
+                                                                                <Card.Text> Status:{ele.status}</Card.Text></Col>
+                                                                        </Row>
+
+                                                                    </Card.Subtitle>
+                                                                    <Row><Col>
+                                                                        {ele.status === 'Pending' && <Button variant="primary"
+                                                                                                             onClick={() => {
+                                                                                                                 axios.post('/grants/approvegrant',
+                                                                                                                     {applicationId: ele.applicationId}).then(res => {
+                                                                                                                     console.log('gg', res.data)
+                                                                                                                     if (res.data.status === 200){
+                                                                                                                         this.onClickHandler()
+                                                                                                                     }
+                                                                                                                 })
+                                                                                                             }}>Approve Grant</Button>}
+                                                                    </Col>
+                                                                        <Col>
+
+                                                                            {ele.status === 'Pending' && <Button variant="primary"
+                                                                                                                 onClick={() => {
+                                                                                                                     axios.post('/grants/denygrant',
+                                                                                                                         {applicationId: ele.applicationId}).then(res => {
+                                                                                                                         console.log('gg', res.data)
+                                                                                                                         if (res.data.status === 200){
+                                                                                                                             this.onClickHandler()
+                                                                                                                         }
+                                                                                                                     })
+                                                                                                                 }}>Deny Grant</Button>}
+                                                                        </Col>
+                                                                        <Col>
+
+                                                                            {ele.status === 'Granted' && <Button variant="primary">Granted</Button>}
+                                                                        </Col>
+                                                                    </Row>
                                                                     {(() => {
                                                                         // console.log(this.state.expanded)
                                                                         return this.state.expanded[this.state.data.indexOf(ele)]
