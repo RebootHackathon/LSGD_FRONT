@@ -166,9 +166,11 @@ function Login(props) {
                                 </InputGroup>
 
                                 <Button variant="primary" block onClick={handleLogin}>{loginLabel}</Button>
-
-                                <div style={{marginTop: '20px', textAlign: 'right'}}>
-                                <Link to={'/adminlogin'}>Admin Login</Link>
+                              
+                                <div style={{marginTop: '20px',display:'flex',flexFlow:'row'}}>
+                                    <div style={{textAlign: 'left'}}>
+                                <Link to={'/adminlogin'} >Signup</Link></div><div style={{marginLeft:'50%', textAlign: 'right'}}>
+                                <Link to={'/adminlogin'} style={{textAlign: 'right'}}>Admin Login</Link></div>
                                     </div>
                                 {/*<Button onClick = {() => {*/}
                                 {/*    // let url = 'http://localhost:8000/t'*/}
