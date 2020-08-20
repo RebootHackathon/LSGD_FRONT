@@ -36,14 +36,14 @@ function Login(props) {
     // handle button click of login form
 
     const handleLogin = () => {
-        setSpinning(true);
-        console.log(username, password);
-        const authData = {"username": username.value, "password": password.value}
-        axios.defaults.withCredentials = true;
-        // props.history.push('/dashboard');
-        axios.post('/auth/login', authData)
+        // setSpinning(true);
+        const authData = {username: username.value, password: password.value}
+        console.log(authData);
+        // axios.defaults.withCredentials = true;
+        // // props.history.push('/dashboard');
+        axios.post('/auth/citizenlogin', authData)
             .then(response => {
-                console.log(authData);
+                console.log(response);
                 if (response.data.status === 200) {
                     setShowSpinner(true);
                     setShow(false);
@@ -52,20 +52,20 @@ function Login(props) {
                     // name=response.data.
                     setTimeout(() => {
                         setShowSpinner(false);
-                        props.history.push('LSGD_FRONT/mainpage');
+                        props.history.push('/citizenmainpage');
                       }, 1200);
                     // let history = useHistory();
                     // props.history.push('LSGD_FRONT/mainpage');
 
-                } else {
+                }
+                else {
                     setShow(true);
                     setShowSpinner(false);
 
 
                 }
-                setSpinning(false);
-                setShowSpinner(false);
-                console.log(response);
+                // setSpinning(false);
+                // setShowSpinner(false);
             }).catch(err => {
             setSpinning(false);
             setShowSpinner(false);

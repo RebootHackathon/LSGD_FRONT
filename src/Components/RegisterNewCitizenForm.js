@@ -97,6 +97,14 @@ const RegisterNewCitizenForm = (props) => {
                             </Form.Group>
                         </Form.Row>
 
+                        <Form.Row>
+
+                            <Form.Group as={Col} controlId="formGridAddress2">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control placeholder="Password" id="password"
+                                              onChange={props.onInputChange}/>
+                            </Form.Group>
+                        </Form.Row>
 
                         <Button variant="primary" block type="submit" onClick={props.onClickHandler}>
                             {props.registerLabel}
