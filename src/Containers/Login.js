@@ -167,19 +167,18 @@ function Login(props) {
 
                                 <Button variant="primary" block onClick={handleLogin}>{loginLabel}</Button>
                                 <Container>
-                                    <div style={{marginLeft:'50%', textAlign: 'right'}}>
-                                        <Link to={'/employsignup'}>Employee Sign Up</Link>
-                                    </div>
                                 </Container>
-                               <Container style={{marginTop: '60px'}}>
-                                   <div style={{textAlign: 'right'}}>
-                                       <Link to={'/citizenlogin'} style={{textAlign: 'right'}}>Citizen Login</Link>
-                                   </div>
-                                   <div style={{textAlign: 'right'}}>
-                                       <Link to={'/adminlogin'} style={{textAlign: 'right'}}>Admin Login</Link>
-
-                                   </div>
-                               </Container>
+                               <Row style={{marginTop: '10px'}}>
+                                   <Col style={{textAlign: 'center'}}>
+                                       <Link to={'/employsignup'} style={{textAlign: 'center'}}>Sign Up</Link>
+                                   </Col>
+                                   <Col style={{textAlign: 'center'}}>
+                                       <Link to={'/citizenlogin'} style={{textAlign: 'center'}}>Citizen Login</Link>
+                                   </Col>
+                                   <Col style={{textAlign: 'center'}}>
+                                       <Link to={'/adminlogin'} style={{textAlign: 'center'}}>Admin Login</Link>
+                                   </Col>
+                               </Row>
                                 {/*<Button onClick = {() => {*/}
                                 {/*    // let url = 'http://localhost:8000/t'*/}
                                 {/*    let url = 'https://reboothack12345.herokuapp.com/t'*/}
