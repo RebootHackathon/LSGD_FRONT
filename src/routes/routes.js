@@ -7,6 +7,7 @@ import RegisterNewCitizen from '../Containers/RegisterNewCitizen';
 import SuperAdmin from "../Components/SuperAdmin/SuperAdmin";
 import AdminLogin from "../Components/AdminLogin/AdminLogin";
 import MongoCharts from "../Components/MongoCharts/MongoCharts";
+import ViewGrants from '../Components/ViewAllGrants/ViewGrants';
 
 var routes = [
     {path: "/LSGD_FRONT/mainpage", name: "mainpage", component: MainPage},
@@ -14,6 +15,7 @@ var routes = [
     {path: "/LSGD_FRONT/applygrant", name: "applygrant", component: ApplyGrant},
     {path: "/LSGD_FRONT/home", name: "home", component: HomePageVM},
     {path: "/LSGD_FRONT/registercitizen", name: "registercitizen", component: RegisterNewCitizen},
+    {path:"/LSGD_FRONT/viewallgrants",name:"viewallgrants", component:ViewGrants},
     {path: "/LSGD_FRONT/", name: "login", component: Login},
     {path: "/adminlogin", name: "adminlogin", component: AdminLogin},
     {path: "/admin", name: "admin", component: SuperAdmin},
