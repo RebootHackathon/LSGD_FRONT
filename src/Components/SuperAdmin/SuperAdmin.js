@@ -67,7 +67,7 @@ class SuperAdmin extends React.Component {
                                     LSGD E-GOV
                                 </Navbar.Brand>
                             </Navbar>
-                            <ListGroup style={{height: '100%'}}>
+                            <ListGroup style={{height: '90%'}}>
                                 <ListGroup.Item action  variant="light" onClick={() => this.setState({selected: 'office'})}>
                                     Office</ListGroup.Item>
                                 <ListGroup.Item action variant="light" onClick={() => this.setState({selected: 'posts'})}>
