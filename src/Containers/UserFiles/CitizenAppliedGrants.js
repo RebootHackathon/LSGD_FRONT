@@ -325,7 +325,7 @@ class ListGrant extends Component {
                                             return grant.id === ele.grantId
                                         });
                                         console.log("[filter]", grant_details, this.state.grants, ele.grantId, ele.applicationId);
-                                        if (ele.status !== 'Pending'){
+                                        if (ele.status === 'Granted'){
                                             return (
                                                 <Container key={ele._id}>
                                                     <Row style={{marginBottom: '2%'}}>
@@ -346,6 +346,94 @@ class ListGrant extends Component {
                                                                                         </div>
                                                                                     }
                                                                                 })()}</Card.Text></Col>
+                                                                            <Col>
+                                                                                <Card.Text> {this.state.amountLabel}:{ele.amount}<br/>Grant Group:
+                                                                                    {ele.grant_group}</Card.Text></Col>
+                                                                        </Row>
+                                                                    </Card.Title>
+                                                                    <Card.Subtitle>
+                                                                        <Row>
+                                                                            <Col><Card.Text>{this.state.dateLabel}: {new Date(ele.date).toDateString()} </Card.Text></Col>
+                                                                            <Col>
+                                                                                <Card.Text> {this.state.statusLabel}:{ele.status}</Card.Text></Col>
+                                                                        </Row>
+
+                                                                    </Card.Subtitle>
+                                                                    {/* {ele.status === 'Pending' && <Button variant="primary"
+                                                                                                         onClick={() => {
+                                                                                                             axios.post('/grants/approvegrant',
+                                                                                                                 {applicationId: ele.applicationId}).then(res => {
+                                                                                                                 console.log('gg', res.data)
+                                                                                                                 if (res.data.status === 200){
+                                                                                                                     this.onClickHandler()
+                                                                                                                 }
+                                                                                                             })
+                                                                                                         }}>Approve Grant</Button>}
+                                                                    {ele.status !== 'Pending' && <Button variant="primary">Granted</Button>} */}
+                                                                    {(() => {
+                                                                        // console.log(this.state.expanded)
+                                                                        return this.state.expanded[this.state.data.indexOf(ele)]
+                                                                    })() && <Card.Text>
+
+                                                                        <Row style={{marginTop: "10px"}}>
+                                                                            <Col><Card.Text> {this.state.applicationIdLabel}:{ele.applicationId}</Card.Text></Col>
+                                                                            <Col><Card.Text>{this.state.sanctionedByIdLabel}:{ele.sanctionedById}</Card.Text></Col>
+                                                                        </Row>
+                                                                        <Row style={{marginTop: "10px"}}>
+                                                                            <Col><Card.Text> {this.state.amountLabel}:{ele.amount}</Card.Text></Col>
+                                                                            <Col><Card.Text>{this.state.dateLabel}:{new Date(ele.date).toDateString()}</Card.Text></Col>
+                                                                        </Row>
+                                                                    </Card.Text>}
+                                                                </Card.Body>
+                                                            </Card>
+                                                        </Col>
+                                                        <Col sm={1}>
+                                                            <svg onClick={() => {
+                                                                let newArr = [...this.state.expanded]
+                                                                let index = this.state.data.indexOf(ele)
+                                                                newArr[index] = !newArr[index]
+                                                                this.setState({expanded: newArr}, () => {
+                                                                    console.log('s', index, this.state)
+                                                                })
+                                                            }} width="1em" height="1em" viewBox="0 0 16 16"
+                                                                 className="bi bi-caret-down-fill" fill="currentColor"
+                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                                            </svg>
+                                                        </Col>
+                                                    </Row>
+                                                </Container>
+                                            )
+                                        }
+                                    })}</Container>
+                                    <Container style={{color: 'red'}}>Denied</Container>
+                                    <Container fluid>{this.state.data.map((ele) => {
+                                        let grant_details = this.state.grants.filter(grant => {
+                                            return grant.id === ele.grantId
+                                        });
+                                        console.log("[filter]", grant_details, this.state.grants, ele.grantId, ele.applicationId);
+                                        if (ele.status === 'Denied'){
+                                            return (
+                                                <Container key={ele._id}>
+                                                    <Row style={{marginBottom: '2%'}}>
+                                                        <Col sm={11}>
+                                                            <Card key={ele._id}>
+                                                                <Card.Body>
+                                                                    <Card.Title>
+                                                                        <Row>
+
+                                                                            <Col> <Card.Text>{this.state.grantNameLabel}: {grant_details[0].grantName} {(()=>{
+                                                                                if (ele.intact){
+                                                                                    return <div style={{color: 'green'}}>
+                                                                                        Signature Verified
+                                                                                    </div>
+                                                                                }else {
+                                                                                    return <div style={{color: 'red'}}>
+                                                                                        Signature Error
+                                                                                    </div>
+                                                                                }
+                                                                            })()}</Card.Text></Col>
                                                                             <Col>
                                                                                 <Card.Text> {this.state.amountLabel}:{ele.amount}<br/>Grant Group:
                                                                                     {ele.grant_group}</Card.Text></Col>
