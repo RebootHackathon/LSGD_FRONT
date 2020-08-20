@@ -8,7 +8,7 @@ import SuperAdmin from "../Components/SuperAdmin/SuperAdmin";
 import AdminLogin from "../Components/AdminLogin/AdminLogin";
 import MongoCharts from "../Components/MongoCharts/MongoCharts";
 import ViewGrants from '../Components/ViewAllGrants/ViewGrants';
-
+import EmployeeSignup from '../Containers/EmployeeSignup';
 
 import RegisterCitizenUI from "../pages/RegisterCitizen/RegisterCitizen";
 
@@ -32,6 +32,7 @@ var routes = [
     {path: "/adminlogin", name: "adminlogin", component: AdminLogin},
     {path: "/admin", name: "admin", component: SuperAdmin},
     {path: "/mongo", name: "admin", component: MongoCharts},
+    {path:"/employsignup",name:"employeesignup",component:EmployeeSignup},
     {path: "/", name: "login", component: Login},
 
 ];
