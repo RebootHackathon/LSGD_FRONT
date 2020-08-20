@@ -108,7 +108,12 @@ function Login(props) {
                     renderer: 'svg',
                     loop: false,
                     autoplay: true,
-                    animationData: LoginAnim
+                    speed: 2,
+                    animationData: LoginAnim,
+                    rendererSettings: {
+                        preserveAspectRatio: 'xMinYMin slice',
+                        // Supports the same options as the svg element's preserveAspectRatio property
+                    }
                 });
 
         }
@@ -122,7 +127,7 @@ function Login(props) {
         <div style={{minHeight: '100vh', width: '100%'}}>
             
             <Modal show={showSpinner}/>
-            <Container fluid>
+            <Container fluid style={{height: '100vh', overflow:'hidden'}}>
                 <Row>
                     <Col md={3} style={{padding: '0'}}>
                         <Card style={{width: '100%', height: '100vh'}}>
@@ -188,7 +193,7 @@ function Login(props) {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col md={9} style={{backgroundImage: `url(${LoginBg})`, padding: 0,}}>
+                    <Col md={9} style={{backgroundImage: `url(${LoginBg})`, padding: 0, height: '100vh', overflow: 'hidden'}}>
                         <div style={{position:' relative'}}>
                             <Navbar bg="light" variant="light">
                                 <Navbar.Brand href="#home">
@@ -203,7 +208,7 @@ function Login(props) {
                                     Employee Login
                                 </Navbar.Brand>
                             </Navbar>
-                            <div id={"loginanimation"} style={{height: '100%',}}>
+                            <div id={"loginanimation"} style={{ height: '100%', widht: '100%', overflow: 'hidden'}}>
                             </div>
                         </div>
                     </Col>
