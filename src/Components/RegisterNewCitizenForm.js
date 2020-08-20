@@ -4,6 +4,8 @@ import Col from "react-bootstrap/Col";
 
 import Card from 'react-bootstrap/Card';
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 const RegisterNewCitizenForm = (props) => {
     return <div style={{width: '100%'}}>
@@ -16,13 +18,33 @@ const RegisterNewCitizenForm = (props) => {
                     <Card.Title style={{display: 'flex', justifyContent: 'center', paddingBottom: '20px'}}><strong>Enter
                         Details</strong></Card.Title>
                     <Form>
+                        <Container>
+                            <Row>
+                                <Col>
+                                    <Form.Control type="text" placeholder="Aadhar Number" id="aadhar"
+                                                  onChange={props.onInputChange}/>
+                                </Col>
+                                <Col>
+                                    <Button block>Get OTP</Button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Form.Control type="text" placeholder="Enter OTP"
+                                                  />
+                                </Col>
+                                <Col>
+                                    <Button block>Submit OTP</Button>
+                                </Col>
+                            </Row>
+                        </Container>
                         <Form.Row>
                             <Form.Group as={Col} controlId="formGridEmail">
                                 <Form.Label>Aadhar Number</Form.Label>
                                 <Form.Control type="text" placeholder="Aadhar Number" id="aadhar"
-                                              onChange={props.onInputChange}/>
-                            </Form.Group>
+                                              onChange={props.onInputChange} value={props.state.aadhar}/>
 
+                            </Form.Group>
                             <Form.Group as={Col} controlId="formGridEmail">
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control type="text" placeholder="Name" id="name" onChange={props.onInputChange}/>
