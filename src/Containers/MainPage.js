@@ -47,6 +47,21 @@ class MainPage extends Component {
                             </Card>
                         </Col>
 
+                        <Col>
+                            <Card style={{width: '18rem'}}>
+                                <Card.Img variant="top" src={AadharCard}/>
+                                <Card.Body>
+                                    <Card.Title>Get Available Schemes</Card.Title>
+                                    <Card.Text>
+                                        Retrieve Schemes that are provided by Government of Kerala
+                                    </Card.Text>
+                                    <Link to="/LSGD_FRONT/viewallgrants">
+                                        <Button block variant="primary">Go</Button>
+                                    </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+
 
                     </Row>
                     <Row>
