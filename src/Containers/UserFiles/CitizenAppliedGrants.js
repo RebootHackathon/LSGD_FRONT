@@ -120,7 +120,6 @@ class ListGrant extends Component {
                         const grantName = response.data.data[index].grant_name;
                         grantArray.push({"id": id, "grantName": grantName});
 
-
                     }
                     this.setState({grants: [...grantArray]})
                     console.log(this.state);
@@ -234,7 +233,8 @@ class ListGrant extends Component {
                                                                 <Card.Body>
                                                                     <Card.Title>
                                                                         <Row>
-                                                                            <Col> <Card.Text>{this.state.grantNameLabel} : {grant_details[0].grantName}
+                                                                            <Col>
+                                                                                <Card.Text>{this.state.grantNameLabel} : {grant_details[0].grantName}
                                                                                 {(()=>{
                                                                                     if (ele.intact){
                                                                                         return <div style={{color: 'green'}}>
@@ -248,7 +248,11 @@ class ListGrant extends Component {
                                                                                 })()}
                                                                             </Card.Text></Col>
                                                                             <Col>
-                                                                                <Card.Text> {this.state.amountLabel}:{ele.amount}</Card.Text></Col>
+                                                                                <Card.Text> {this.state.amountLabel}:{ele.amount}
+                                                                                <br/>Grant Group:
+                                                                                    {ele.grant_group}
+                                                                                </Card.Text>
+                                                                            </Col>
                                                                         </Row>
                                                                     </Card.Title>
                                                                     <Card.Subtitle>
@@ -335,7 +339,8 @@ class ListGrant extends Component {
                                                                                     }
                                                                                 })()}</Card.Text></Col>
                                                                             <Col>
-                                                                                <Card.Text> {this.state.amountLabel}:{ele.amount}</Card.Text></Col>
+                                                                                <Card.Text> {this.state.amountLabel}:{ele.amount}<br/>Grant Group:
+                                                                                    {ele.grant_group}</Card.Text></Col>
                                                                         </Row>
                                                                     </Card.Title>
                                                                     <Card.Subtitle>
