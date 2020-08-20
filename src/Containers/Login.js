@@ -5,6 +5,7 @@ import classes from './Login.css';
 import Logo from '../assets/keralalogo.png'
 import Covid1 from '../assets/lottie/covid1.json'
 import LoginAnim from '../assets/lottie/loginanimation.json'
+import Ele from '../assets/lottie/aana.json'
 import LoginBg from '../assets/loginbg.png'
 import {Button, Card, FormControl, InputGroup} from 'react-bootstrap';
 import Container from "react-bootstrap/Container";
@@ -108,9 +109,19 @@ function Login(props) {
                     renderer: 'svg',
                     loop: false,
                     autoplay: true,
-                    animationData: LoginAnim
-                });
-
+                    animationData: LoginAnim,
+                    rendererSettings: {
+                        preserveAspectRatio: 'xMinYMin slice',
+                        // Supports the same options as the svg element's preserveAspectRatio property
+                    }
+                }).setSpeed(1.5);
+                lottie.loadAnimation({
+                container: document.getElementById('elephantanim'), // the dom element that will contain the animation
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                animationData: Ele,
+            });
         }
     });
     let loginLabel = "Login";
@@ -121,13 +132,14 @@ function Login(props) {
     return (
         <div style={{minHeight: '100vh', width: '100%'}}>
             
-            <Modal show={showSpinner}/>
-            <Container fluid>
+            <Modal show={showSpinner && false}/>
+            <Container fluid style={{height: '100vh', overflow:'hidden'}}>
                 <Row>
                     <Col md={3} style={{padding: '0'}}>
                         <Card style={{width: '100%', height: '100vh'}}>
                             <Card.Img variant="top" src={Logo} style={{maxHeight: '50vh', padding: '7%'}}/>
-                            <Card.Body>
+                            {showSpinner && <div id={'elephantanim'} style={{padding: '30%', width: '100%'}}></div>}
+                            {!showSpinner && <Card.Body>
                                 <Error show={show}/>
                                 <InputGroup style={{marginTop: '30%'}} className="mb-3">
                                     <InputGroup.Prepend>
@@ -185,10 +197,10 @@ function Login(props) {
                                 {/*    //     });*/}
                                 {/*}}>Bs</Button>*/}
 
-                            </Card.Body>
+                            </Card.Body>}
                         </Card>
                     </Col>
-                    <Col md={9} style={{backgroundImage: `url(${LoginBg})`, padding: 0,}}>
+                    <Col md={9} style={{backgroundImage: `url(${LoginBg})`, padding: 0, height: '100vh', overflow: 'hidden'}}>
                         <div style={{position:' relative'}}>
                             <Navbar bg="light" variant="light">
                                 <Navbar.Brand href="#home">
@@ -203,7 +215,7 @@ function Login(props) {
                                     Employee Login
                                 </Navbar.Brand>
                             </Navbar>
-                            <div id={"loginanimation"} style={{height: '100%',}}>
+                            <div id={"loginanimation"} style={{ height: '100%', widht: '100%', overflow: 'hidden'}}>
                             </div>
                         </div>
                     </Col>

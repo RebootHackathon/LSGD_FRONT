@@ -8,6 +8,7 @@ import LoginBg from "../../assets/loginbg.png";
 import axios from "../../axios";
 import { connect } from 'react-redux';
 import {Link} from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
 
 class AdminLogin extends React.Component{
     state = {
@@ -92,14 +93,20 @@ class AdminLogin extends React.Component{
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col md={9} style={{backgroundImage: `url(${LoginBg})`}}>
-                            <div style={{paddingLeft: '35%'}}>
-                                <div
-                                    style={{marginLeft: '14%', marginTop: '8%', fontSize: '20px', color: 'white'}}>Admin Login
-                                </div>
-                                <div id={"loginanimation"} style={{width: '40%', marginTop: '25%'}}>
-                                </div>
-                            </div>
+                        <Col md={9} style={{backgroundImage: `url(${LoginBg})`, padding: 0}}>
+                            <Navbar bg="light" variant="light">
+                                <Navbar.Brand href="#home">
+                                    <img
+                                        alt=""
+                                        src={require('../../assets/icons/register.png')}
+                                        width="30"
+                                        height="30"
+                                        style={{marginRight: '10px'}}
+                                        className="d-inline-block align-top"
+                                    />{' '}
+                                    Admin Login
+                                </Navbar.Brand>
+                            </Navbar>
                             {
                                 this.state.passIncorrect &&
                                 <Alert variant={'primary'}>
