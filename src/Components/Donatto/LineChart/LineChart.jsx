@@ -141,7 +141,7 @@ class Demo extends React.PureComponent {
           />
           {/* <Legend position="bottom" rootComponent={Root} itemComponent={Item} labelComponent={Label} /> */}
           <Title
-            text="Energy Consumption in 2004\n(Millions of Tons, Oil Equivalent)"
+            text="XYZ ABC (Demo graph)"
             textComponent={Text}
           />
           <Animation />
