@@ -22,17 +22,6 @@ axios.defaults.withCredentials = true;
 
 ReactDOM.render(
     <div style={{height: "100vh", display: "flex"}}>
-<<<<<<< HEAD
-        <ThemeProvider theme={theme}>
-            <Router history={history}>
-                <Switch>
-                    {routes.map((prop, key) => {
-                        return <Route path={prop.path} key={key} component={prop.component}/>;
-                    })}
-                </Switch>
-            </Router>
-        </ThemeProvider>
-=======
         <Provider store={store}>
             <ThemeProvider theme={theme}>
                 <BrowserRouter history={history}>
@@ -44,7 +33,7 @@ ReactDOM.render(
                 </BrowserRouter>
             </ThemeProvider>
         </Provider>
->>>>>>> f1519e51b48b50b7a58a49fa4388b9fefe967b09
+
     </div>,
     document.getElementById("root")
 );

@@ -22,12 +22,12 @@ var routes = [
     {path: "/LSGD_FRONT/home", name: "home", component: HomePageVM},
 
     {path: "/LSGD_FRONT/registercitizen", name: "registercitizen", component: RegisterNewCitizen},
-<<<<<<< HEAD
+
     {path: "/LSGD_FRONT/p/registercitizen", name: "registercitizen_page", component: RegisterCitizenUI},
 
-=======
+
     {path:"/LSGD_FRONT/viewallgrants",name:"viewallgrants", component:ViewGrants},
->>>>>>> f1519e51b48b50b7a58a49fa4388b9fefe967b09
+
     {path: "/LSGD_FRONT/", name: "login", component: Login},
     {path: "/adminlogin", name: "adminlogin", component: AdminLogin},
     {path: "/admin", name: "admin", component: SuperAdmin},
