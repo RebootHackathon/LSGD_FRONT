@@ -24,13 +24,13 @@ ReactDOM.render(
     <div style={{height: "100vh", display: "flex"}}>
         <Provider store={store}>
             <ThemeProvider theme={theme}>
-                <BrowserRouter history={history}>
+                <Router history={history}>
                     <Switch>
                         {routes.map((prop, key) => {
                             return <Route path={prop.path} key={key} component={prop.component}/>;
                         })}
                     </Switch>
-                </BrowserRouter>
+                </Router>
             </ThemeProvider>
         </Provider>
 

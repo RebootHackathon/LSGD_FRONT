@@ -27,9 +27,9 @@ const MenuBar = (props) => {
   
     return (
         <Box bgcolor="white" width={70}>
-            <Menu index={1} activeTab={activeTab} Icon={DashboardOutlined} label="Dashboard" to="/LSGD_FRONT/home" />
-            <Menu index={2} activeTab={activeTab} Icon={SearchOutlined} label="Search" to="/LSGD_FRONT/search"/>
-            <Menu index={3} activeTab={activeTab} Icon={Settings} label="Profile" to="/LSGD_FRONT/profile"/>
+            <Menu index={1} activeTab={activeTab} Icon={DashboardOutlined} label="Dashboard" to="/LSGD_FRONT/mainpage" />
+            <Menu index={2} activeTab={activeTab} Icon={SearchOutlined} label="Apply" to="/LSGD_FRONT/p/listgrants"/>
+            <Menu index={3} activeTab={activeTab} Icon={Settings} label="Register" to="/LSGD_FRONT/p/registercitizen"/>
             <Menu index={4} activeTab={activeTab} Icon={PowerSettingsNew} label="Logout" to="/"/>
         </Box>
     );

@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
-import AppBar from "../../Components/AppBar/AppBar";
+import AppBar from "../../Components/CitizenAppBar/AppBar";
 import Spinner from 'react-bootstrap/Spinner';
 
 class ListGrant extends Component {
@@ -40,6 +40,10 @@ class ListGrant extends Component {
         malayalamLanguage:true
     };
 
+    constructor(props) {
+        super(props);
+        this.onClickHandler();
+    }
     // onCardClickHandler=(id)=>{
     //     const expand_element=this.state.data.filter(ele=>(
     //         ele._id===id
@@ -55,7 +59,7 @@ class ListGrant extends Component {
     onClickHandler = (event) => {
         this.setState({spinning: true});
         const body = {"citizenId": +this.state.aadhar}
-        axios.post('/grants/getGrantsOfSpecificCitizen', body)
+        axios.post('/grants/getmygrants', body)
             .then(response => {
                 console.log('specific', response);
                 this.setState({spinning: false});
@@ -183,12 +187,20 @@ class ListGrant extends Component {
                     </Row>
                     <Row>
                         <Col md={3}>
-                            <SearchForm searchLabel={this.state.searchLabel}
-                            aadharHeaderLabel={this.state.aadharHeaderLabel}
-                            descriptionLabel={this.state.descriptionLabel}
-                            aadharLabel={this.state.aadharLabel}
-                            onInputChange={this.onChangeHandler}
-                                        value={this.state.aadhar} clicked={this.onClickHandler}/>
+                            <Card style={{ width: '18rem' }}>
+                                <Card.Img variant="top" src={require('../../assets/cardbg1.png')} />
+                                <Card.Body>
+                                    <Card.Title>Applied Grants</Card.Title>
+                                    <Card.Text>
+                                        This page shows all your applied grants
+                                    </Card.Text>
+                                </Card.Body>
+                                <Card.Footer>
+                                    <Card.Text>
+                                        Kerala Government Initiative
+                                    </Card.Text>
+                                </Card.Footer>
+                            </Card>
                         </Col>
                         <Col md={9}>
                             {this.state.length > 0 && <div>
