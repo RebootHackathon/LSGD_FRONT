@@ -140,7 +140,19 @@ class ListGrant extends Component {
                                                                     <Card.Title>
                                                                         <Row>
                                                                             <Col> <Card.Text>Grant
-                                                                                Name: {grant_details[0].grantName} </Card.Text></Col>
+                                                                                Name: {grant_details[0].grantName}
+                                                                                {(()=>{
+                                                                                    if (ele.intact){
+                                                                                        return <div style={{color: 'green'}}>
+                                                                                            Signature Verified
+                                                                                        </div>
+                                                                                    }else {
+                                                                                        return <div style={{color: 'red'}}>
+                                                                                            Signature Error
+                                                                                        </div>
+                                                                                    }
+                                                                                })()}
+                                                                            </Card.Text></Col>
                                                                             <Col>
                                                                                 <Card.Text> Amount:{ele.amount}</Card.Text></Col>
                                                                         </Row>
@@ -217,8 +229,19 @@ class ListGrant extends Component {
                                                                 <Card.Body>
                                                                     <Card.Title>
                                                                         <Row>
+
                                                                             <Col> <Card.Text>Grant
-                                                                                Name: {grant_details[0].grantName} </Card.Text></Col>
+                                                                                Name: {grant_details[0].grantName} {(()=>{
+                                                                                    if (ele.intact){
+                                                                                        return <div style={{color: 'green'}}>
+                                                                                            Signature Verified
+                                                                                        </div>
+                                                                                    }else {
+                                                                                        return <div style={{color: 'red'}}>
+                                                                                            Signature Error
+                                                                                        </div>
+                                                                                    }
+                                                                                })()}</Card.Text></Col>
                                                                             <Col>
                                                                                 <Card.Text> Amount:{ele.amount}</Card.Text></Col>
                                                                         </Row>
