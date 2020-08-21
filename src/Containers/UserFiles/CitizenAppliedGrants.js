@@ -118,7 +118,7 @@ class ListGrant extends Component {
     }
 
     onClickApplyHandler(props) {
-        props.history.push({pathname: '/LSGD_FRONT/applygrant', state: this.state})
+        props.history.push({pathname: '/citizenapplygrant', state: this.state})
     }
 
     changeEnglishHandler(this_local){

@@ -3,6 +3,7 @@ import styles from './CitizenViewGrant.css';
 import axios from "../../axios";
 import {Button, Card, Col, Container, Form, FormControl, InputGroup, Row} from "react-bootstrap";
 import AppBar from '../../Components/AppBar/AppBar';
+import { connect } from 'react-redux';
 
 class Grants extends React.Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class Grants extends React.Component {
             statusLabel:'അവസ്ഥ',
             grantNameLabel:'ഗ്രാന്റിന്റെ പേര്',
             amountLabel:'രൂപ',
-            malayamLanguage:true
+            malayalamLanguage:true
 
         }
         this.newgrantData = {
@@ -34,9 +35,37 @@ class Grants extends React.Component {
         this.getgrant = this.getgrant.bind(this)
         this.getgrant()
     }
+   componentWillMount(){
+    if(this.props.malayalamLanguage){
+        console.log("malayalam vannu");
+        this.changeMalayalamHandler(this);
+    }else{
+        console.log("english vannu");
+        this.changeEnglishHandler(this);
+    }
+    console.log("[malayalamcheck]",this.state);
+   }
+    getgrant() {
+        // this.setState({malayalamLanguage:this.props.malayalamLanguage});
+        
+        axios.get('/grants/getgrants')
+            .then(response => {
+                console.log(response);
+               
+                if (response.data.status === 200) {
+                    this.setState({grants_list: response.data.data})
+                } else {
+                    this.setState({grants_list: []})
+                }
+            }).catch(err => {
+            console.log(err);
+        })
+    }
     changeEnglishHandler(this_local){
-        this_local.setState({
-            malayamLanguage:false,
+        console.log("hello from english");
+        this.props.onEnglish();
+        this.setState({
+            malayalamLanguage:false,
             allgrantsLabel:'All Grants',
             religionLabel:'Religion',
             castLabel:'Cast',
@@ -48,8 +77,9 @@ class Grants extends React.Component {
             amountLabel:'Amount'})
     }
     changeMalayalamHandler(this_local){
-        this_local.setState({
-            malayamLanguage:false,
+        this.props.onMalayalam();
+        this.setState({
+            malayalamLanguage:true,
             allgrantsLabel:'എല്ലാ ഗ്രാന്റും',
             religionLabel:'മതം',
             castLabel:'ജാതി',
@@ -60,20 +90,6 @@ class Grants extends React.Component {
             grantNameLabel:'ഗ്രാന്റിന്റെ പേര്',
             amountLabel:'രൂപ'})
     }
-    getgrant() {
-        axios.get('/grants/getgrants')
-            .then(response => {
-                console.log(response);
-                if (response.data.status === 200) {
-                    this.setState({grants_list: response.data.data})
-                } else {
-                    this.setState({grants_list: []})
-                }
-            }).catch(err => {
-            console.log(err);
-        })
-    }
-
     // creategrant(e) {
     //     console.log(this.newgrantData)
     //     axios.post('/grants/addgrant', this.newgrantData)
@@ -168,4 +184,20 @@ Grants.propTypes = {};
 
 Grants.defaultProps = {};
 
-export default Grants;
+//Redux
+
+const mapStateToProps = state => {
+    return {
+        malayalamLanguage:state.malayalamLanguage
+    };
+};
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onMalayalam:()=>dispatch({type:'MALAYALAM'}),
+        onEnglish:()=>dispatch({type:'ENGLISH'})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Grants);
