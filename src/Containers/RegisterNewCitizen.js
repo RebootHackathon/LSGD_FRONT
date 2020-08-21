@@ -8,7 +8,7 @@ import axios from '../axios';
 
 class RegisterNewCitizen extends Component {
     state = {
-        aadhar: null,
+        aadhar: '',
         name: null,
         dob: null,
         address: null,
@@ -71,7 +71,7 @@ class RegisterNewCitizen extends Component {
                     <Row>
                         <AppBar/>
                     </Row>
-                    <RegisterNewCitizenForm registerLabel={registerLabel} onInputChange={this.onInputChangeHandler}
+                    <RegisterNewCitizenForm state={this.state} registerLabel={registerLabel} onInputChange={this.onInputChangeHandler}
                                             onClickHandler={this.onClickHandler}/>
                 </Container>
             </div>

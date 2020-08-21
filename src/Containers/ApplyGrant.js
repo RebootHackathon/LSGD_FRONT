@@ -12,11 +12,12 @@ class ApplyGrant extends Component {
         details: null,
         grants: [],
         spinning: false,
-        grant: undefined
+        grant: undefined,
+        grantDataRecieved:false
     }
 
     componentWillMount() {
-        console.log(this.props.location.state);
+        // console.log(this.props.location.state);
         let name = '';
         const body = {"aadhar": +this.props.location.state.aadhar}
         axios.post('/users/getcitizeninfo', body)
@@ -45,7 +46,8 @@ class ApplyGrant extends Component {
                     }
                     // this.state.grant = grantArray[0].id
                     this.setState({grant:grantArray[0].id,grants: [...grantArray]})
-                    console.log(this.state);
+                    console.log('[getgrantsget]',this.state);
+                    this.setState({grantDataRecieved:true});
                 }
             })
             .catch(err => {
@@ -63,7 +65,7 @@ class ApplyGrant extends Component {
     onClickHandler = (event) => {
         event.preventDefault();
         this.setState({spinning: true});
-        console.log("hasidj");
+        // console.log("hasidj");
         const body = {
             "applicationId": Date.now(),
             "citizenId": +this.state.aadhar,
@@ -92,6 +94,12 @@ class ApplyGrant extends Component {
         if (this.state.spinning) {
             applyLabel = <Spinner animation="border"/>;
         }
+        let form=null;
+        if (this.state.grantDataRecieved) {
+            console.log("[grant vanne]",this.state.grants);
+         form=   <ApplyGrantForm state={this.state} grantlist={this.state.grants} applyLabel={applyLabel} onInputChange={this.onInputChangeHandler}
+            onClickHandler={this.onClickHandler}/>
+       }
         return (
             <div style={{width: '100%'}}>
                 {console.log("[dfdf]", this.state)}
@@ -99,8 +107,8 @@ class ApplyGrant extends Component {
                     <Row>
                         <AppBar/>
                     </Row>
-                    <ApplyGrantForm state={this.state} applyLabel={applyLabel} onInputChange={this.onInputChangeHandler}
-                                    onClickHandler={this.onClickHandler}/>
+                   {form}
+                   
                 </Container>
             </div>
         )

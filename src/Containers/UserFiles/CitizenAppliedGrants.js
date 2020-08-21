@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import SearchForm from '../Components/SearchForm/SearchForm';
-import axios from '../axios';
+import SearchForm from './CitizenSearchForm/SearchForm';
+import axios from '../../axios';
 
 import {Link} from 'react-router-dom';
 import Card from "react-bootstrap/Card";
@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
-import AppBar from "../Components/AppBar/AppBar";
+import AppBar from "../../Components/AppBar/AppBar";
 import Spinner from 'react-bootstrap/Spinner';
 
 class ListGrant extends Component {
@@ -20,7 +20,24 @@ class ListGrant extends Component {
         expanded: [],
         userExist: true,
         spinning: false,
-        grants: []
+        grants: [],
+        aadharHeaderLabel:'ആധാർ നമ്പർ നൽകുക',
+        descriptionLabel:'നിങ്ങൾ അപേക്ഷിച്ച ഗ്രാന്റുകൾ കണ്ടുപിടിക്കാൻ',
+        aadharLabel:'ആധാർ',
+        searchLabel:'തിരയുക',
+        resultLabel:'ഫലം',
+        pendinggrantLabel:'അനുവദിക്കാൻ ബാക്കിയുള്ള ഗ്രാന്റ്‌സ്',
+        grantNameLabel:'ഗ്രാന്റിന്റെ പേര്',
+        amountLabel:'രൂപ',
+        dateLabel:'ദിവസം',
+        statusLabel:'അവസ്ഥ',
+        applicationIdLabel:'അപേക്ഷ നമ്പർ',
+        sanctionedByIdLabel:'അനുവദിച്ചത്',
+        receivedgrantLAbel:'ലഭിച്ച ഗ്രാന്റുകൾ',
+        applynewgrantLabel:'പുതിയ ഗ്രാന്റിനി അപേക്ഷിക്കാം',
+        noresultLable:'ഒരു ഫലവും ഇല്ല',
+        nouserLabel:'നിങ്ങൾ അടിച്ച നമ്പർ തെറ്റ്',
+        malayalamLanguage:true
     };
 
     // onCardClickHandler=(id)=>{
@@ -104,40 +121,80 @@ class ListGrant extends Component {
         props.history.push({pathname: '/LSGD_FRONT/applygrant', state: this.state})
     }
 
+    changeEnglishHandler(this_local){
+        this_local.setState({
+            malayamLanguage:false,
+            aadharHeaderLabel:'Enter Aadhar',
+            descriptionLabel:'View the applied grants using aadhar number',
+            aadharLabel:'Aadhar',
+            searchLabel:'Search',
+            resultLabel:'Result',
+            pendinggrantLabel:'Pending Grants',
+            grantNameLabel:'Grant Name',
+            amountLabel:'Amount',
+            dateLabel:'Date',
+            statusLabel:'Status',
+            applicationIdLabel:'Application Id',
+            sanctionedByIdLabel:'SanctoinedById',
+            receivedgrantLAbel:'Received Grants',
+            applynewgrantLabel:'Apply for new grants',
+            noresultLable:'No Result',
+            nouserLabel:'No User exist',})
+    }
+    changeMalayalamHandler(this_local){
+        this_local.setState({
+            malayamLanguage:false,
+            aadharHeaderLabel:'ആധാർ നമ്പർ നൽകുക',
+            descriptionLabel:'നിങ്ങൾ അപേക്ഷിച്ച ഗ്രാന്റുകൾ കണ്ടുപിടിക്കാൻ',
+            aadharLabel:'ആധാർ',
+            searchLabel:'തിരയുക',
+            resultLabel:'ഫലം',
+            pendinggrantLabel:'അനുവദിക്കാൻ ബാക്കിയുള്ള ഗ്രാന്റ്‌സ്',
+            grantNameLabel:'ഗ്രാന്റിന്റെ പേര്',
+            amountLabel:'രൂപ',
+            dateLabel:'ദിവസം',
+            statusLabel:'അവസ്ഥ',
+            applicationIdLabel:'അപേക്ഷ നമ്പർ',
+            sanctionedByIdLabel:'അനുവദിച്ചത്',
+            receivedgrantLAbel:'ലഭിച്ച ഗ്രാന്റുകൾ',
+            applynewgrantLabel:'പുതിയ ഗ്രാന്റിനി അപേക്ഷിക്കാം',
+            noresultLable:'ഒരു ഫലവും ഇല്ല',
+            nouserLabel:'നിങ്ങൾ അടിച്ച നമ്പർ തെറ്റ്'
+        })
+    }
+    
     render() {
-        let searchLabel = "Search";
+        // let searchLabel = "Search";
         if (this.state.spinning) {
-            searchLabel = <Spinner animation="border"/>;
+        //    this.setSpinner();
+            console.log("spinner");
         }
+        let malayalamLabel="മലയാളം";
+        let englishLabel="English";
         return (
             <div style={{width: '100%'}}>
                 <Container fluid>
                     <Row>
                         <AppBar/>
+                        <div style={{marginLeft:"75%", textAlign: 'left',cursor:"pointer"}} onClick={()=>this.changeEnglishHandler(this)}>
+                                        {englishLabel}</div>
+                                    <div style={{marginLeft:"15px", textAlign: 'left',cursor:"pointer"}} onClick={()=>this.changeMalayalamHandler(this)}>
+                                        {malayalamLabel}</div>
                     </Row>
                     <Row>
                         <Col md={3}>
-                            <SearchForm searchLabel={searchLabel} onInputChange={this.onChangeHandler}
+                            <SearchForm searchLabel={this.state.searchLabel}
+                            aadharHeaderLabel={this.state.aadharHeaderLabel}
+                            descriptionLabel={this.state.descriptionLabel}
+                            aadharLabel={this.state.aadharLabel}
+                            onInputChange={this.onChangeHandler}
                                         value={this.state.aadhar} clicked={this.onClickHandler}/>
                         </Col>
                         <Col md={9}>
-                            {
-                                (this.state.length != null) && (this.state.userExist) &&
-                                <div style={{marginTop: '70px'}}>
-                                    <Row className="justify-content-md-center">
-                                        <br/><br/>
-                                        <Col md={6}>
-                                            <Button variant="primary" block
-                                                    onClick={() => this.onClickApplyHandler(this.props)}>Apply New
-                                                Grant</Button>
-                                        </Col>
-                                    </Row>
-                                </div>
-                            }
                             {this.state.length > 0 && <div>
-                                {/*<Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>Result</Col></Row>*/}
+                                <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>{this.state.resultLabel}</Col></Row>
                                 <Row>
-                                    <Container style={{color: 'orange'}}>Pending Grants</Container>
+                                    <Container style={{color: 'orange'}}>{this.state.pendinggrantLabel}</Container>
                                     <Container fluid>{this.state.data.map((ele) => {
                                         let grant_details = this.state.grants.filter(grant => {
                                             return grant.id === ele.grantId
@@ -152,8 +209,7 @@ class ListGrant extends Component {
                                                                 <Card.Body>
                                                                     <Card.Title>
                                                                         <Row>
-                                                                            <Col> <Card.Text>Grant
-                                                                                Name: {grant_details[0].grantName}
+                                                                            <Col> <Card.Text>{this.state.grantNameLabel} : {grant_details[0].grantName}
                                                                                 {(()=>{
                                                                                     if (ele.intact){
                                                                                         return <div style={{color: 'green'}}>
@@ -167,18 +223,18 @@ class ListGrant extends Component {
                                                                                 })()}
                                                                             </Card.Text></Col>
                                                                             <Col>
-                                                                                <Card.Text> Amount:{ele.amount}</Card.Text></Col>
+                                                                                <Card.Text> {this.state.amountLabel}:{ele.amount}</Card.Text></Col>
                                                                         </Row>
                                                                     </Card.Title>
                                                                     <Card.Subtitle>
                                                                         <Row>
-                                                                            <Col><Card.Text>Date: {new Date(ele.date).toDateString()} </Card.Text></Col>
+                                                                            <Col><Card.Text>{this.state.dateLabel}: {new Date(ele.date).toDateString()} </Card.Text></Col>
                                                                             <Col>
-                                                                                <Card.Text> Status:{ele.status}</Card.Text></Col>
+                                                                                <Card.Text> {this.state.statusLabel}:{ele.status}</Card.Text></Col>
                                                                         </Row>
 
                                                                     </Card.Subtitle>
-                                                                    {ele.status === 'Pending' && <Button variant="primary"
+                                                                    {/* {ele.status === 'Pending' && <Button variant="primary"
                                                                                                          onClick={() => {
                                                                                                              axios.post('/grants/approvegrant',
                                                                                                                  {applicationId: ele.applicationId}).then(res => {
@@ -188,20 +244,19 @@ class ListGrant extends Component {
                                                                                                                  }
                                                                                                              })
                                                                                                          }}>Approve Grant</Button>}
-                                                                    {ele.status !== 'Pending' && <Button variant="primary">Granted</Button>}
+                                                                    {ele.status !== 'Pending' && <Button variant="primary">Granted</Button>} */}
                                                                     {(() => {
                                                                         // console.log(this.state.expanded)
                                                                         return this.state.expanded[this.state.data.indexOf(ele)]
                                                                     })() && <Card.Text>
 
                                                                         <Row style={{marginTop: "10px"}}>
-                                                                            <Col><Card.Text> Application
-                                                                                Id:{ele.applicationId}</Card.Text></Col>
-                                                                            <Col><Card.Text>SanctionBy:{ele.sanctionedById}</Card.Text></Col>
+                                                                            <Col><Card.Text> {this.state.applicationIdLabel}:{ele.applicationId}</Card.Text></Col>
+                                                                            <Col><Card.Text>{this.state.sanctionedByIdLabel}:{ele.sanctionedById}</Card.Text></Col>
                                                                         </Row>
                                                                         <Row style={{marginTop: "10px"}}>
-                                                                            <Col><Card.Text> Amount:{ele.amount}</Card.Text></Col>
-                                                                            <Col><Card.Text>Date:{new Date(ele.date).toDateString()}</Card.Text></Col>
+                                                                            <Col><Card.Text> {this.state.amountLabel}:{ele.amount}</Card.Text></Col>
+                                                                            <Col><Card.Text>{this.state.dateLabel}:{new Date(ele.date).toDateString()}</Card.Text></Col>
                                                                         </Row>
                                                                     </Card.Text>}
                                                                 </Card.Body>
@@ -227,7 +282,7 @@ class ListGrant extends Component {
                                             )
                                         }
                                     })}</Container>
-                                    <Container style={{color: 'green', marginTop: '50px'}}>Received Grants</Container>
+                                    <Container style={{color: 'green'}}>{this.state.receivedgrantLAbel}</Container>
                                     <Container fluid>{this.state.data.map((ele) => {
                                         let grant_details = this.state.grants.filter(grant => {
                                             return grant.id === ele.grantId
@@ -243,8 +298,7 @@ class ListGrant extends Component {
                                                                     <Card.Title>
                                                                         <Row>
 
-                                                                            <Col> <Card.Text>Grant
-                                                                                Name: {grant_details[0].grantName} {(()=>{
+                                                                            <Col> <Card.Text>{this.state.grantNameLabel}: {grant_details[0].grantName} {(()=>{
                                                                                     if (ele.intact){
                                                                                         return <div style={{color: 'green'}}>
                                                                                             Signature Verified
@@ -256,18 +310,18 @@ class ListGrant extends Component {
                                                                                     }
                                                                                 })()}</Card.Text></Col>
                                                                             <Col>
-                                                                                <Card.Text> Amount:{ele.amount}</Card.Text></Col>
+                                                                                <Card.Text> {this.state.amountLabel}:{ele.amount}</Card.Text></Col>
                                                                         </Row>
                                                                     </Card.Title>
                                                                     <Card.Subtitle>
                                                                         <Row>
-                                                                            <Col><Card.Text>Date: {new Date(ele.date).toDateString()} </Card.Text></Col>
+                                                                            <Col><Card.Text>{this.state.dateLabel}: {new Date(ele.date).toDateString()} </Card.Text></Col>
                                                                             <Col>
-                                                                                <Card.Text> Status:{ele.status}</Card.Text></Col>
+                                                                                <Card.Text> {this.state.statusLabel}:{ele.status}</Card.Text></Col>
                                                                         </Row>
 
                                                                     </Card.Subtitle>
-                                                                    {ele.status === 'Pending' && <Button variant="primary"
+                                                                    {/* {ele.status === 'Pending' && <Button variant="primary"
                                                                                                          onClick={() => {
                                                                                                              axios.post('/grants/approvegrant',
                                                                                                                  {applicationId: ele.applicationId}).then(res => {
@@ -277,20 +331,19 @@ class ListGrant extends Component {
                                                                                                                  }
                                                                                                              })
                                                                                                          }}>Approve Grant</Button>}
-                                                                    {ele.status !== 'Pending' && <Button variant="primary">Granted</Button>}
+                                                                    {ele.status !== 'Pending' && <Button variant="primary">Granted</Button>} */}
                                                                     {(() => {
                                                                         // console.log(this.state.expanded)
                                                                         return this.state.expanded[this.state.data.indexOf(ele)]
                                                                     })() && <Card.Text>
 
                                                                         <Row style={{marginTop: "10px"}}>
-                                                                            <Col><Card.Text> Application
-                                                                                Id:{ele.applicationId}</Card.Text></Col>
-                                                                            <Col><Card.Text>SanctionBy:{ele.sanctionedById}</Card.Text></Col>
+                                                                            <Col><Card.Text> {this.state.applicationIdLabel}:{ele.applicationId}</Card.Text></Col>
+                                                                            <Col><Card.Text>{this.state.sanctionedByIdLabel}:{ele.sanctionedById}</Card.Text></Col>
                                                                         </Row>
                                                                         <Row style={{marginTop: "10px"}}>
-                                                                            <Col><Card.Text> Amount:{ele.amount}</Card.Text></Col>
-                                                                            <Col><Card.Text>Date:{new Date(ele.date).toDateString()}</Card.Text></Col>
+                                                                            <Col><Card.Text> {this.state.amountLabel}:{ele.amount}</Card.Text></Col>
+                                                                            <Col><Card.Text>{this.state.dateLabel}:{new Date(ele.date).toDateString()}</Card.Text></Col>
                                                                         </Row>
                                                                     </Card.Text>}
                                                                 </Card.Body>
@@ -320,15 +373,15 @@ class ListGrant extends Component {
                             </div>}
                             {
                                 (this.state.length === 0) && (this.state.userExist) &&
-                                <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>No Result.....</Col></Row>
+                                <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>{this.state.noresultLable}</Col></Row>
                             }
 
                             {
                                 (!this.state.userExist) &&
                                 <div>
-                                    <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>No User Exist</Col>
+                                    <Row><Col style={{marginTop: '2%', marginBottom: '1%'}}>{this.state.nouserLabel}</Col>
                                     </Row>
-                                    <div style={{marginTop: '70px'}}>
+                                    {/* <div style={{marginTop: '70px'}}>
                                         <Row className="justify-content-md-center">
                                             <br/><br/>
                                             <Col md={6}>
@@ -337,11 +390,22 @@ class ListGrant extends Component {
                                                 </Link>
                                             </Col>
                                         </Row>
-                                    </div>
+                                    </div> */}
                                 </div>
                             }
 
-
+                            {
+                                (this.state.length != null) && (this.state.userExist) &&
+                                <div style={{marginTop: '70px'}}>
+                                    <Row className="justify-content-md-center">
+                                        <br/><br/>
+                                        <Col md={6}>
+                                            <Button variant="primary" block
+                                                    onClick={() => this.onClickApplyHandler(this.props)}>{this.state.applynewgrantLabel}</Button>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            }
                         </Col>
 
 

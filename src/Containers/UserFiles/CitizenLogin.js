@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import lottie from 'lottie-web'
-import axios from '../axios';
-import classes from './Login.css';
-import Logo from '../assets/keralalogo.png'
-import Covid1 from '../assets/lottie/covid1.json'
-import LoginAnim from '../assets/lottie/loginanimation.json'
-import Ele from '../assets/lottie/aana.json'
-import LoginBg from '../assets/loginbg.png'
-import {Button, Card, FormControl, InputGroup} from 'react-bootstrap';
+import axios from '../../axios';
+import classes from './CitizenLogin.css';
+import Logo from '../../assets/keralalogo.png'
+import Covid1 from '../../assets/lottie/covid1.json'
+import LoginAnim from '../../assets/lottie/loginanimation.json'
+import Ele from '../../assets/lottie/aana.json'
+import LoginBg from '../../assets/loginbg.png'
+import {Button, Card, Form, FormControl, InputGroup} from 'react-bootstrap';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -15,7 +15,7 @@ import $ from 'jquery';
 import Spinner from 'react-bootstrap/Spinner';
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
-import Modal from '../Components/Modal/Modal';
+import Modal from '../../Components/Modal/Modal';
 import Navbar from "react-bootstrap/Navbar";
 
 function Login(props) {
@@ -27,6 +27,12 @@ function Login(props) {
     const [play, setPlay] = useState(false);
     const [spinning, setSpinning] = useState(false);
     const [showSpinner,setShowSpinner]=useState(true);
+    const [malayamLanguage,setMalayalam]=useState(true);
+    const [loginLabel,setLoginLabel] = useState("മുമ്പിലേക്ക് പോകാം");
+    const [usernameLabel,setusernameLabel] = useState("യൂസർ നെയിം");
+    const [passwordLabel,setpasswordLabel] = useState("പാസ്സ്‌വേർഡ്‌");
+    const  [headingLabel,setheadingLabel] = useState("പൗരൻമ്മാർക്കുള്ള ലോഗിൻ");
+    const [signupLabel,setsignupLabel] = useState("സൈൻ അപ്പ്");
     // handle button click of login form
 
     const handleLogin = () => {
@@ -124,11 +130,37 @@ function Login(props) {
             });
         }
     });
-    let loginLabel = "Login";
+    // let loginLabel = "മുമ്പിലേക്ക് പോകാം";
+    // let usernameLabel = "യൂസർ നെയിം";
+    // let passwordLabel = "പാസ്സ്‌വേർഡ്‌";
+    // let headingLabel = "പൗരൻമ്മാർക്കുള്ള ലോഗിൻ";
+    // let signupLabel = "സൈൻ അപ്പ്";
+    let malayalamLabel="മലയാളം";
+    let englishLabel="English";
+
     if (spinning) {
-        loginLabel = <Spinner animation="border"/>;
+        setLoginLabel ( <Spinner animation="border"/>);
     }
+    const changeEnglishHandler=()=>{
+        setMalayalam(false);
+        console.log(malayamLanguage);
+        setLoginLabel("Login");
+        setusernameLabel("User Name");
+        setpasswordLabel("Password‌");
+        setheadingLabel("Citizen Login");
+        setsignupLabel("Sign Up");
     
+    }
+    const changeMalayalamHandler=()=>{
+        setMalayalam(false);
+        setLoginLabel("മുമ്പിലേക്ക് പോകാം");
+        setusernameLabel("യൂസർ നെയിം");
+        setpasswordLabel("പാസ്സ്‌വേർഡ്‌");
+        setheadingLabel("പൗരൻമ്മാർക്കുള്ള ലോഗിൻ");
+        setsignupLabel("സൈൻ അപ്പ്");
+
+    }
+
     return (
         <div style={{minHeight: '100vh', width: '100%'}}>
             
@@ -146,7 +178,7 @@ function Login(props) {
                                         <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <FormControl
-                                        placeholder="Username"
+                                        placeholder={usernameLabel}
                                         aria-label="Username"
                                         aria-describedby="basic-addon1"
                                         {...username}
@@ -158,7 +190,7 @@ function Login(props) {
                                     </InputGroup.Prepend>
                                     <FormControl
                                         type="password"
-                                        placeholder="Password"
+                                        placeholder={passwordLabel}
                                         aria-label="Password"
                                         aria-describedby="basic-addon1"
                                         {...password}
@@ -166,20 +198,13 @@ function Login(props) {
                                 </InputGroup>
 
                                 <Button variant="primary" block onClick={handleLogin}>{loginLabel}</Button>
-                                <Container>
-                                    <div style={{marginLeft:'50%', textAlign: 'right'}}>
-                                        <Link to={'/employsignup'}>Employee Sign Up</Link>
+                              
+                                <div style={{marginTop: '20px'}}>
+                                    <div style={{textAlign: 'right'}}>
+                                        <Link to={'/LSGD_FRONT/registercitizen'} >{signupLabel}</Link>
                                     </div>
-                                </Container>
-                               <Container style={{marginTop: '60px'}}>
-                                   <div style={{textAlign: 'right'}}>
-                                       <Link to={'/citizenlogin'} style={{textAlign: 'right'}}>Citizen Login</Link>
-                                   </div>
-                                   <div style={{textAlign: 'right'}}>
-                                       <Link to={'/adminlogin'} style={{textAlign: 'right'}}>Admin Login</Link>
-
-                                   </div>
-                               </Container>
+                                
+                                </div>
                                 {/*<Button onClick = {() => {*/}
                                 {/*    // let url = 'http://localhost:8000/t'*/}
                                 {/*    let url = 'https://reboothack12345.herokuapp.com/t'*/}
@@ -216,14 +241,23 @@ function Login(props) {
                                 <Navbar.Brand href="#home">
                                     <img
                                         alt=""
-                                        src={require('../assets/icons/register.png')}
+                                        src={require('../../assets/icons/register.png')}
                                         width="30"
                                         height="30"
                                         style={{marginRight: '10px'}}
                                         className="d-inline-block align-top"
                                     />{' '}
-                                    Employee Login
+                                    {headingLabel}
+
+                                 
+
                                 </Navbar.Brand>
+                                <Navbar.Collapse className="justify-content-end">
+                                    <div style={{marginLeft:"60%", textAlign: 'left',cursor:"pointer"}} onClick={changeEnglishHandler}>
+                                        {englishLabel}</div>
+                                    <div style={{marginLeft:"15px", textAlign: 'left',cursor:"pointer"}} onClick={changeMalayalamHandler}>
+                                        {malayalamLabel}</div>
+                                </Navbar.Collapse>
                             </Navbar>
                             <div id={"loginanimation"} style={{ height: '100%', widht: '100%', overflow: 'hidden'}}>
                             </div>
