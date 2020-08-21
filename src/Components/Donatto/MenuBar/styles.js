@@ -8,6 +8,9 @@ const useStyles = makeStyles(theme => ({
       borderRightStyle: "solid",
       borderRightColor: props => {
         return props.activeTab === props.index ? theme.palette.primary.main : "transparent"
+      },
+      '&:hover': {
+        cursor: "pointer"
       }
   },
   icon: {

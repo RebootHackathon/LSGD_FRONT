@@ -34,6 +34,11 @@ export const legendItemStyles = {
 const useStyles = makeStyles(theme => ({
   root: {
   },
+  link: {
+    '&:hover': {
+      cursor: "pointer"
+    }
+  },
   card: {
       backgroundImage: props => {
           console.log(props)

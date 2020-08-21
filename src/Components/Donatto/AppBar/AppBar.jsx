@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Box, Typography} from '@material-ui/core';
-import { PowerSettingsNew } from "@material-ui/icons";
+import { PowerSettingsNew, PermIdentity } from "@material-ui/icons";
 
 import theme from "../../../themes/theme";
 
@@ -19,10 +19,10 @@ export default function ButtonAppBar() {
         <Box paddingLeft={1} color={theme.palette.primary.main}>
           <Typography variant="h6" color="inherit">REIED</Typography>          
         </Box>
-        <Box display="flex" color="gray" width={80} justifyContent="space-between" 
+        <Box display="flex" color="gray" justifyContent="space-between" 
             marginRight={1} alignItems="center">
-          <Typography variant="subtitle2" color="inherit">Logout</Typography>
-          <PowerSettingsNew color="inherit" />
+            <PermIdentity color="inherit" />
+          <Typography variant="subtitle2" color="inherit">&nbsp;&nbsp;xyz@gmail.com</Typography>
         </Box>
 
     </Box>

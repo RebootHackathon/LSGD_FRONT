@@ -2,6 +2,7 @@ import React from "react";
 
 import {Box, Container, Grid, Typography, Tabs, Tab, Paper, withStyles, Button, Divider} from '@material-ui/core';
 import { FiberManualRecord } from "@material-ui/icons";
+import Link from '@material-ui/core/Link';
 import {Chart, PieSeries, Legend} from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
@@ -12,6 +13,7 @@ import theme from "../../themes/theme";
 import Scaffold from "../../Components/Donatto/Scaffold/Scaffold";
 import LineChart from "../../Components/Donatto/LineChart/LineChart";
 import lion from "../../assets/lion.png";
+import {history} from "../../helpers/history";
 import useStyles, {chartRootStyles, legendStyles, legendLabelStyles, legendItemStyles} from "./styles";
 
 
@@ -37,8 +39,8 @@ const Header = (props) => {
                 classes={{root: classes.tabs, indicator: classes.indicator, scroller: classes.scroller}}
             >
                 <Tab label="Account List" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
-                <Tab label="Account History" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
-                <Tab label="Bank Statement" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
+                <Tab label="List Schemes" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
+                <Tab label="Blank Space Undone **" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
             </Tabs>
 
         </Box>
@@ -196,29 +198,25 @@ const CardSection = (props) => {
 
     function Card(props) {
         const classes = useStyles(props);
-        const {title, subheading, caption, pic, url, fromColor, toColor} = props;
+        const {title, subheading, caption, pic, url, fromColor, toColor, to} = props;
 
         return (
                 <Box bgcolor="blue" height="100%" borderRadius={5} padding={2} paddingBottom={1} color="white"
-                    className={classes.card} position="relative" overflow="hidden">
+                    className={`${classes.card} ${classes.link}`} position="relative" overflow="hidden" 
+                    onClick={()=>history.push(to)}>
                     <Box zIndex={1} display="flex" flexDirection="column" height="100%">
-                        <Typography variant="subtitle2" color="inherit">New Bank</Typography>
-                        <Typography variant="subtitle2" color="inherit">Account</Typography>
+                        <Typography variant="subtitle2" color="inherit">{title}</Typography>
+                        {/* <Typography variant="subtitle2" color="inherit">{subheading}</Typography> */}
                         <Typography variant="caption" color="textSecondary">
                             Here goes the text secondary grey color
                         </Typography>
                         <Box flexGrow={1}></Box>
-
-
-                        {/* <Typography variant="caption" display="inline">make a day to visit</Typography>
-                        <Typography variant="caption" display="inline">&#183;</Typography> */}
-                        <Typography variant="caption" display="inline">CHECK OFFER</Typography>
+                        <Typography variant="caption" display="inline">Click Here</Typography>
 
                     </Box>
                     <Box className={classes.imgContainer} height="100%" display="flex" alignItems="center">
                         <img src={lion} className={classes.img} />
                     </Box>
-
                 </Box>
         )
 
@@ -228,16 +226,17 @@ const CardSection = (props) => {
         <Box height={140} display="flex" paddingBottom={2}>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
-                    <Card title="New Bank" subheading="Account" caption="caption goes here to demonstrate"
-                         pic="" url="" fromColor="#4a148c" toColor="#6a1b9a" />
+                        <Card title="Apply to Scheme" subheading="User" caption="caption goes here to demonstrate"
+                            pic="" url="" fromColor="#4a148c" toColor="#6a1b9a" className={classes.link} 
+                            to="/LSGD_FRONT/p/applygrant" />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card title="New Savings" subheading="Account" caption="second caption goes here"
-                        pic="" url="" fromColor="#00695c" toColor="#00796b" />
+                    <Card title="Register Citizen " subheading="Account" caption="second caption goes here"
+                        pic="" url="" fromColor="#00695c" toColor="#00796b" to="/LSGD_FRONT/p/registercitizen" />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card title="New Currency" subheading="Account" caption="here is the third caption goes here"
-                         pic="" url="" fromColor="#f9a825" toColor="#fbc02d" />
+                    <Card title="Add New Scheme" subheading="Account" caption="here is the third caption goes here"
+                         pic="" url="" fromColor="#f9a825" toColor="#fbc02d"  to="/not_done"/>
                 </Grid>
             </Grid>
 
