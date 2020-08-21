@@ -81,6 +81,7 @@ class Employee extends React.Component {
                 console.log(response);
                 if (response.data.status === 200) {
                     this.getemployee();
+                    alert('Success')
                 } else {
                 }
             }).catch(err => {
