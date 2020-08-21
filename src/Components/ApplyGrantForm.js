@@ -14,20 +14,25 @@ import FormElement from './FormElement';
 class ApplyGrantForm extends React.Component{
     state = {
         filename: 'Choose File',
-        fileid: null
+        fileid: null,
+        grants:null
     }
-    grants = [];
-    constructor(props) {
-        super(props);
-        this.props = props
-        this.grants = this.props.state.grants;
-        console.log('gg',this.grants)
-        // this.optionItems =
-    } 
+    // grants = [];
+    // constructor(props) {
+    //     super(props);
+    //     this.props = props
+    //     this.grants = {...this.props.state.grants};
+    //     console.log('gg',this.grants)
+    //     // this.optionItems =
+    // } 
     // console.log("[grant apform]", grants);
 
-
+componentWillMount(){
+    console.log("[componendt asddsafd]",this.props);
+    this.setState({grants:this.props.grantlist})
+}
     render(){
+        console.log("[error state]",this.state);
         return (
             <div style={{width: '100%'}}>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -53,7 +58,7 @@ class ApplyGrantForm extends React.Component{
                                     {/* <option  value="ele.id">ele.grantName</option>
                                     <option  value="ele.id3">ele.grantName3</option>
                                     <option  value="ele.id2">ele.grantName2</option> */}
-                                    {this.grants.map(ele => {
+                                    {this.state.grants.map(ele => {
                                         console.log("[from ele]", ele);
                                         return (<option key={ele.id} value={ele.id}>{ele.grantName}</option>)
                                     })}
