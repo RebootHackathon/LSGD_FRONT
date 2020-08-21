@@ -89,11 +89,10 @@ componentWillMount(){
                                         </InputGroup.Prepend>
                                         <FormControl as="select" id="grant" onChange={(e) => {
 
-                                            /**
-                                             * Your code here rahul
-                                             *
-                                             */
 
+
+
+                                            this.props.setstate(e)
 
 
                                             this.props.onInputChange(e)

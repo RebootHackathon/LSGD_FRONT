@@ -118,6 +118,19 @@ class ApplyGrant extends Component {
 
     }
 
+    setMyState = (data) => {
+
+
+        console.log('working')
+        /** Your code here
+         *
+         *
+         *
+         *
+         * **/
+
+    }
+
     onClickHandler = (event) => {
         event.preventDefault();
         this.setState({spinning: true});
@@ -195,7 +208,7 @@ class ApplyGrant extends Component {
         let form=null;
         if (this.state.grantDataRecieved) {
             console.log("[grant vanne]",this.state.grants);
-         form=   <ApplyGrantForm state={this.state} grantlist={this.state.grants} applyLabel={applyLabel} onInputChange={this.onInputChangeHandler}
+         form=   <ApplyGrantForm setstate={this.setMyState} state={this.state} grantlist={this.state.grants} applyLabel={applyLabel} onInputChange={this.onInputChangeHandler}
             onClickHandler={this.onClickHandler}/>
        }
 
