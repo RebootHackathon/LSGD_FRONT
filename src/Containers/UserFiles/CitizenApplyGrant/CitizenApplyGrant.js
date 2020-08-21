@@ -106,15 +106,18 @@ class ApplyGrant extends Component {
 
         
     }
+
     componentDidMount(){
 
     }
+
     onInputChangeHandler = (event) => {
         const event_name = event.target.id;
         this.setState({[event_name]: event.target.value})
         console.log("[applygrant]", this.state);
 
     }
+
     onClickHandler = (event) => {
         event.preventDefault();
         this.setState({spinning: true});
@@ -141,6 +144,7 @@ class ApplyGrant extends Component {
             })
 
     }
+
     changeEnglishHandler(this_local){
         this.props.onEnglish();
         this_local.setState({
@@ -161,6 +165,7 @@ class ApplyGrant extends Component {
             keralaLabel:'Kerala Government Initiative'
     })
     }
+
     changeMalayalamHandler(this_local){
         this.props.onMalayalam();
         this_local.setState({
@@ -193,6 +198,7 @@ class ApplyGrant extends Component {
          form=   <ApplyGrantForm state={this.state} grantlist={this.state.grants} applyLabel={applyLabel} onInputChange={this.onInputChangeHandler}
             onClickHandler={this.onClickHandler}/>
        }
+
        if(this.state.first){
           
                 this.state.data.map((ele) => {
@@ -206,9 +212,10 @@ class ApplyGrant extends Component {
                 });
                 
         }
+
         //Check grant group constrints
-       
-            if(this.state.grant){
+
+        if(this.state.grant){
                 let alreadyAppliedGrantDetais=this.state.appliedGrantDetails.filter(grant=>{
                     // console.log("[Big Problem]",grant[0].id);
                     if(grant[0]){
@@ -225,15 +232,15 @@ class ApplyGrant extends Component {
                     console.log("No problem");
                     this.state.grantErrorShow=false;
                 }else{
-                    
+
                     let errorGrantList=this.state.appliedGrantDetails.filter(grant=>{
                         // console.log(grant);
                         if(grant[0]){
                             let gr=grant[0].grandGroup;
-                            return gr==grantGroupName
+                            return gr===grantGroupName
                         }
                         return []
-                        
+
                     })
                     if(errorGrantList.length>0 || alreadyAppliedGrantDetais.length>0){
                         this.state.grantErrorShow=true;
