@@ -50,7 +50,7 @@ class RegisterNewCitizen extends Component {
                 } else {
                     alert("Registration Failed")
                 }
-
+   
 
             })
             .catch(err => {

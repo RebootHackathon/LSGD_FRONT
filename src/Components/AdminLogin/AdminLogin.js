@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './AdminLogin.module.css';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {Alert, Button, Card, FormControl, InputGroup} from "react-bootstrap";
 import Logo from "../../assets/keralalogo.png";
-import LoginBg from "../../assets/loginbg.jpg";
+import LoginBg from "../../assets/loginbg.png";
 import axios from "../../axios";
-import {useHistory} from "react-router";
+import { connect } from 'react-redux';
+import {Link} from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
 
 class AdminLogin extends React.Component{
     state = {
@@ -65,6 +65,16 @@ class AdminLogin extends React.Component{
                                                 if (response.data.status === 200) {
                                                     this.setState({passIncorrect: false})
                                                     // let history = useHistory();
+
+
+                                                    //if user name needed uncomment below and change code
+                                                    // this.props.onLoggedIn(response.data.profile.employee_name);
+                                                    // console.log("Already logged in");
+                                                    // // name=response.data.
+                                                    // setTimeout(() => {
+                                                    //     this.props.history.push('/admin');
+                                                    // }, 1200);
+
                                                     this.props.history.push('/admin');
 
                                                 } else {
@@ -76,17 +86,27 @@ class AdminLogin extends React.Component{
                                             console.log(err);
                                         })
                                     }}>{this.state.btnEnabled && 'Login'}{!this.state.btnEnabled && 'Please Wait...'}</Button>
+                                    <div style={{marginTop: '20px', textAlign: 'right'}}>
+                                        <Link to={'/'}>Employee Login</Link>
+                                    </div>
+
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col md={9} style={{backgroundImage: `url(${LoginBg})`}}>
-                            <div style={{paddingLeft: '35%'}}>
-                                <div
-                                    style={{marginLeft: '14%', marginTop: '8%', fontSize: '20px', color: 'white'}}>Admin Login
-                                </div>
-                                <div id={"loginanimation"} style={{width: '40%', marginTop: '25%'}}>
-                                </div>
-                            </div>
+                        <Col md={9} style={{backgroundImage: `url(${LoginBg})`, padding: 0}}>
+                            <Navbar bg="light" variant="light">
+                                <Navbar.Brand href="#home">
+                                    <img
+                                        alt=""
+                                        src={require('../../assets/icons/register.png')}
+                                        width="30"
+                                        height="30"
+                                        style={{marginRight: '10px'}}
+                                        className="d-inline-block align-top"
+                                    />{' '}
+                                    Admin Login
+                                </Navbar.Brand>
+                            </Navbar>
                             {
                                 this.state.passIncorrect &&
                                 <Alert variant={'primary'}>
@@ -105,4 +125,16 @@ AdminLogin.propTypes = {};
 
 AdminLogin.defaultProps = {};
 
-export default AdminLogin;
+
+
+//Redux
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onLoggedIn: (name) => dispatch({type: 'LOGIN',name:name})
+    };
+};
+
+
+export default connect(null, mapDispatchToProps)(AdminLogin);

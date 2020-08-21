@@ -72,28 +72,28 @@ const PanelBody = (props) => {
             return (
                     <Grid container>
                         <Grid item xs={12} md={4}>
-                            <Typography variant="caption" color="textSecondary">Saving account number</Typography>
+                            <Typography variant="caption" color="textSecondary">Fact no1</Typography>
                             <Typography variant="subtitle1" color="textPrimary">7899 6895 6986 4785</Typography>
                         </Grid>
                         <Grid item xs={12} md={2}>
-                            <Typography variant="caption" color="textSecondary">Saving account number</Typography>
+                            <Typography variant="caption" color="textSecondary">Fact no-2</Typography>
                             <Box display="flex" alignItems="center">
                                 <Typography variant="h5" color="primary">&#8226;&nbsp;</Typography><Typography variant="subtitle1" color="textPrimary">7899 6895 6986 4785</Typography>
                             </Box>
                         </Grid>
                         <Grid item xs={12} md={2}>
-                            <Typography variant="caption" color="textSecondary">Saving account number</Typography>
+                            <Typography variant="caption" color="textSecondary">Fact no3</Typography>
                             <Box display="flex" alignItems="center">
                                 <Typography variant="h5" color="primary">&#8226;&nbsp;</Typography><Typography variant="subtitle1" color="textPrimary">7899 6895 6986 4785</Typography>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} md={4}>
+                        {/* <Grid item xs={12} md={4}>
                             <Box display="flex" height="100%" justifyContent="flex-end" alignItems="flex-end">
                                 <ButtonCustom bgColor="none" color="black">statement</ButtonCustom>
                                 <ButtonCustom bgColor="none" color="black">history</ButtonCustom>
                                 <ButtonCustom bgColor={theme.palette.primary.main} color="white">details</ButtonCustom>
                             </Box>
-                        </Grid>
+                        </Grid> */}
                     </Grid>
             )
         }
