@@ -47,6 +47,7 @@ class Grants extends React.Component {
                     this.getgrant();
                     alert('Success')
                 } else {
+                    alert('Failed')
                 }
             }).catch(err => {
             console.log(err);

@@ -44,6 +44,7 @@ class Office extends React.Component {
                     this.getOffice();
                     alert('Success')
                 } else {
+                    alert('Failed')
                 }
             }).catch(err => {
             console.log(err);

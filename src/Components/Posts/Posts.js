@@ -42,6 +42,7 @@ class Posts extends React.Component {
                     this.getPosts()
                     alert('Success')
                 } else {
+                    alert('Failed')
                 }
             }).catch(err => {
             console.log(err);

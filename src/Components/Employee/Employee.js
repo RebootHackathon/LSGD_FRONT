@@ -83,6 +83,7 @@ class Employee extends React.Component {
                     this.getemployee();
                     alert('Success')
                 } else {
+                    alert('Failed')
                 }
             }).catch(err => {
             console.log(err);
