@@ -10,7 +10,7 @@ import MongoCharts from "../Components/MongoCharts/MongoCharts";
 import ViewGrants from '../Components/ViewAllGrants/ViewGrants';
 import EmployeeSignup from '../Containers/EmployeeSignup';
 import CitizenLogin from '../Containers/UserFiles/CitizenLogin';
-
+import CitizenViewAllGrants from '../Containers/UserFiles/CitizenViewGrant';
 import RegisterCitizenUI from "../pages/RegisterCitizen/RegisterCitizen";
 
 var routes = [
@@ -35,6 +35,7 @@ var routes = [
     {path: "/mongo", name: "admin", component: MongoCharts},
     {path:"/employsignup",name:"employeesignup",component:EmployeeSignup},
     {path: "/citizenlogin", name: "citizenlogin", component: CitizenLogin},
+    {path: "/citizenviewallgrants", name: "citizenviewallgrants", component: CitizenViewAllGrants},
     {path: "/", name: "login", component: Login},
 
 ];
