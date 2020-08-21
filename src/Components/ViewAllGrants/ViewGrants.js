@@ -57,7 +57,7 @@ class Grants extends React.Component {
             <div className={styles.Grants}>
                 <Container fluid>
                 <Row>
-                        <AppBar/>
+                        {/* <AppBar/> */}
                     </Row>
                     
                     <Row>

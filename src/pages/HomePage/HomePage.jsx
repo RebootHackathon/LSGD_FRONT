@@ -6,6 +6,7 @@ import Link from '@material-ui/core/Link';
 import {Chart, PieSeries, Legend} from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import SwipeableViews from 'react-swipeable-views';
 
 
 
@@ -15,6 +16,7 @@ import LineChart from "../../Components/Donatto/LineChart/LineChart";
 import lion from "../../assets/lion.png";
 import {history} from "../../helpers/history";
 import useStyles, {chartRootStyles, legendStyles, legendLabelStyles, legendItemStyles} from "./styles";
+import Grants from "../../Components/ViewAllGrants/ViewGrants";
 
 
 const Header = (props) => {
@@ -50,10 +52,14 @@ const Header = (props) => {
 const PanelBody = (props) => {
     const classes = useStyles(props);
     const {piData, lineData} = props;
+    const {tabValue, handleChangeTab, handleChangeIndex} = props;
 
     const Tab2Body = (props) => {
         return (
             <React.Fragment>
+                <Box overflow="auto">
+                    <Grants />
+                </Box>
 
             </React.Fragment>
         )
@@ -161,14 +167,14 @@ const PanelBody = (props) => {
                 )
             }
             return (
-                <Box marginTop={3}>
+                <Box marginTop={3} marginBottom={3}>
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
-                            <Box>
+                            <Box overflow="hidden">
                                 <Paper elevation={3}>
-                                    <Box width={400} paddingY={2}>
+                                    <Box width={400} paddingY={2} overflow="hidden">
                                         {/* <ChartComponent data={piData} /> */}
-<iframe style={{background: "#FFFFFF", border: "none", borderRadius: "2px"}} 
+<iframe style={{border: "none", borderRadius: "2px", overflow: "hidden"}} 
     width="100%" height="100%" 
     src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=579d473f-cb9a-476a-8d8c-f43dd939365f&theme=light"></iframe>
                                     </Box>
@@ -194,13 +200,46 @@ const PanelBody = (props) => {
             <React.Fragment>
                 <Section1 />
                 <Section2 />
+                <CardSection />
             </React.Fragment>
         )
     }
-
+    function TabPanel(props) {
+        const { children, value, index, ...other } = props;
+      
+        return (
+          <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`full-width-tabpanel-${index}`}
+            aria-labelledby={`full-width-tab-${index}`}
+            {...other}
+          >
+            {value === index && (
+              <Box p={3}>
+                <Typography>{children}</Typography>
+              </Box>
+            )}
+          </div>
+        );
+    }
     return (
-        <Box flexGrow={1} bgcolor="none" marginY={2}>
-            <Tab1Body />
+        <Box flexGrow={1} bgcolor="none" marginY={2} overflow="auto">
+            <SwipeableViews
+                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                index={tabValue}
+                onChangeIndex={handleChangeIndex}
+            >
+                <TabPanel value={tabValue} index={0} dir={theme.direction}>
+                    <Tab1Body />
+                </TabPanel>
+                <TabPanel value={tabValue} index={1} dir={theme.direction}>
+                    <Tab2Body />
+                </TabPanel>
+                <TabPanel value={tabValue} index={2} dir={theme.direction}>
+                    Item Three
+                </TabPanel>
+            </SwipeableViews>
         </Box>
     )
 }
@@ -258,17 +297,16 @@ const CardSection = (props) => {
 
 const HomePage = (props) => {
     const classes = useStyles(props);
-    const {tabValue, handleChangeTab, a11yProps, piData, lineData} = props;
+    const {tabValue, handleChangeTab, a11yProps, piData, lineData, handleChangeIndex} = props;
     console.log("-------------", props)
   
     return (
         <React.Fragment>
             <Container maxWidth="xl">
-                <Box height="100%" display="flex" flexDirection="column">
+                <Box height="100%" display="flex" flexDirection="column" overflow="auto">
                     <Header tabValue={tabValue} handleChangeTab={handleChangeTab} />
                     <PanelBody tabValue={tabValue} handleChangeTab={handleChangeTab} piData={piData} 
-                                    lineData={lineData} />
-                    <CardSection />
+                                    lineData={lineData} handleChangeIndex={handleChangeIndex} />
                 </Box>
             </Container>
         </React.Fragment>
