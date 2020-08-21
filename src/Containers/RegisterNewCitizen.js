@@ -19,13 +19,20 @@ class RegisterNewCitizen extends Component {
         father_name: null,
         mother_name: null,
         password: null,
-        spinning: false
+        spinning: false,
+        verifiedText: 'Get OTP First',
+        verified: false,
     }
     onInputChangeHandler = (event) => {
         const event_name = event.target.id;
         this.setState({[event_name]: event.target.value})
         console.log(event_name,event.target.value)
 
+    }
+
+    setstate = (data) =>{
+        console.log('set sttate')
+        this.setState(data)
     }
     onClickHandler = (event) => {
         event.preventDefault();
@@ -74,7 +81,9 @@ class RegisterNewCitizen extends Component {
                     <Row>
                         <AppBar/>
                     </Row>
-                    <RegisterNewCitizenForm state={this.state} registerLabel={registerLabel} onInputChange={this.onInputChangeHandler}
+                    <RegisterNewCitizenForm
+                        setstate = {this.setstate}
+                        state={this.state} registerLabel={registerLabel} onInputChange={this.onInputChangeHandler}
                                             onClickHandler={this.onClickHandler}/>
                 </Container>
             </div>
