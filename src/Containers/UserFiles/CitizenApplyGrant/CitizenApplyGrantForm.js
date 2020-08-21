@@ -87,7 +87,17 @@ componentWillMount(){
                                         <InputGroup.Prepend>
                                             <InputGroup.Text id="basic-addon1">{this.props.state.grantNameLabel}</InputGroup.Text>
                                         </InputGroup.Prepend>
-                                        <FormControl as="select" id="grant" onChange={this.props.onInputChange}>
+                                        <FormControl as="select" id="grant" onChange={(e) => {
+
+                                            /**
+                                             * Your code here rahul
+                                             *
+                                             */
+
+
+
+                                            this.props.onInputChange(e)
+                                        }}>
                                             {/* <option  value="ele.id">ele.grantName</option>
                                     <option  value="ele.id3">ele.grantName3</option>
                                     <option  value="ele.id2">ele.grantName2</option> */}
