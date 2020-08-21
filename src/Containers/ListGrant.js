@@ -150,7 +150,16 @@ class ListGrant extends Component {
                                                                 </Row>
 
                                                             </Card.Subtitle>
-                                                            {ele.status === 'Pending' && <Button variant="primary">Commit Grant</Button>}
+                                                            {ele.status === 'Pending' && <Button variant="primary"
+                                                            onClick={() => {
+                                                                axios.post('/grants/approvegrant',
+                                                                    {applicationId: ele.applicationId}).then(res => {
+                                                                        console.log('gg', res.data)
+                                                                        if (res.data.status === 200){
+                                                                            this.onClickHandler()
+                                                                        }
+                                                                })
+                                                            }}>Approve Grant</Button>}
                                                             {ele.status !== 'Pending' && <Button variant="primary">Granted</Button>}
                                                             {(() => {
                                                                 // console.log(this.state.expanded)

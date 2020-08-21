@@ -209,17 +209,6 @@ class Employee extends React.Component {
                                                                 return 'Not Working'
                                                             }
                                                         })()}
-
-                                                        </Card.Text>
-                                                        <Card.Text>
-                                                            Status: {(() => {
-                                                            if (!ele.verified) {
-                                                                return 'Verified Account'
-                                                            } else {
-                                                                return 'Not Verified'
-                                                            }
-                                                        })()}
-
                                                         </Card.Text>
                                                         <Button onClick={()=>{
                                                             axios.post('/employees/verify',{id : ele._id}).then((res) => {
@@ -262,16 +251,6 @@ class Employee extends React.Component {
                                                                 return 'Working'
                                                             } else {
                                                                 return 'Not Working'
-                                                            }
-                                                        })()}
-
-                                                        </Card.Text>
-                                                        <Card.Text>
-                                                            Status: {(() => {
-                                                            if (!ele.verified) {
-                                                                return 'Verified Account'
-                                                            } else {
-                                                                return 'Not Verified'
                                                             }
                                                         })()}
 
