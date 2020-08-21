@@ -17,6 +17,7 @@ import EmployeeSignup from '../Containers/EmployeeSignup';
 import CitizenLogin from '../Containers/UserFiles/CitizenLogin';
 import CitizenViewAllGrants from '../Containers/UserFiles/CitizenViewGrant';
 import Citizenappliedgrants from '../Containers/UserFiles/CitizenAppliedGrants';
+import Citizenmainpage from '../Containers/UserFiles/CitizenMainPage';
 import RegisterCitizenUI from "../pages/RegisterCitizen/RegisterCitizen";
 
 var routes = [
@@ -45,6 +46,7 @@ var routes = [
     {path: "/citizenlogin", name: "citizenlogin", component: CitizenLogin},
     {path: "/citizenviewallgrants", name: "citizenviewallgrants", component: CitizenViewAllGrants},
     {path:'/citizenappliedgrants',name:'citizenappliedgrants',component:Citizenappliedgrants},
+    {path:'/citizenmainpage',name:'citizenmainpage',component:Citizenmainpage},
     {path: "/", name: "login", component: Login},
 
 ];

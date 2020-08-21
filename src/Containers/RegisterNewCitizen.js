@@ -18,11 +18,13 @@ class RegisterNewCitizen extends Component {
         job: null,
         father_name: null,
         mother_name: null,
+        password: null,
         spinning: false
     }
     onInputChangeHandler = (event) => {
         const event_name = event.target.id;
         this.setState({[event_name]: event.target.value})
+        console.log(event_name,event.target.value)
 
     }
     onClickHandler = (event) => {
@@ -38,7 +40,8 @@ class RegisterNewCitizen extends Component {
             "religion": this.state.religion,
             "job": this.state.job,
             "fathername": this.state.father_name,
-            "mothername": this.state.mother_name
+            "mothername": this.state.mother_name,
+            password: this.state.password
         }
         axios.post('/users/newcitizen', body)
             .then(response => {
