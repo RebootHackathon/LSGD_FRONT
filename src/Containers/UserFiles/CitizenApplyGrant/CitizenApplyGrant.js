@@ -212,7 +212,7 @@ class ApplyGrant extends Component {
                 let alreadyAppliedGrantDetais=this.state.appliedGrantDetails.filter(grant=>{
                     // console.log("[Big Problem]",grant[0].id);
                     if(grant[0]){
-                        return grant[0].id==this.state.grant
+                        return grant[0].id===this.state.grant
                     }
                 })
                 console.log("[BigBig Problem]",alreadyAppliedGrantDetais);
