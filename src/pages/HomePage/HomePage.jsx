@@ -159,18 +159,22 @@ const PanelBody = (props) => {
                             <Box>
                                 <Paper elevation={3}>
                                     <Box width={400} paddingY={2}>
-                                        <ChartComponent data={piData} />
+                                        {/* <ChartComponent data={piData} /> */}
+<iframe style={{background: "#FFFFFF", border: "none", borderRadius: "2px"}} 
+    width="100%" height="100%" 
+    src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=579d473f-cb9a-476a-8d8c-f43dd939365f&theme=light"></iframe>
                                     </Box>
                                 </Paper>
                             </Box>
                         </Grid>
                         <Grid itme xs={8}>
-                            <Paper elevation={3}>
-                                <Box overflow="hidden">
-                                    <LineChart data={lineData}/>
-                                </Box>
-                            </Paper>
-
+                            <Box bgcolor="green">
+                                <Paper elevation={3}>
+                                    <Box overflow="hidden" height="100%" bgcolor="red" height={200}>
+                                        <iframe style={{background: "#FFFFFF", border: "none"}} width="100%" height="100%" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=f79c8d9d-3229-45cc-8d10-807caebaf3b4&theme=light"></iframe>
+                                    </Box>
+                                </Paper>
+                            </Box>
                         </Grid>
                     </Grid>
 
@@ -228,14 +232,14 @@ const CardSection = (props) => {
                 <Grid item xs={12} md={4}>
                         <Card title="Apply to Scheme" subheading="User" caption="caption goes here to demonstrate"
                             pic="" url="" fromColor="#4a148c" toColor="#6a1b9a" className={classes.link} 
-                            to="/LSGD_FRONT/p/applygrant" />
+                            to="/LSGD_FRONT/p/listgrants" />
                 </Grid>
                 <Grid item xs={12} md={4}>
                     <Card title="Register Citizen " subheading="Account" caption="second caption goes here"
                         pic="" url="" fromColor="#00695c" toColor="#00796b" to="/LSGD_FRONT/p/registercitizen" />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card title="Add New Scheme" subheading="Account" caption="here is the third caption goes here"
+                    <Card title="Empyt space Not done" subheading="Account" caption="here is the third caption goes here"
                          pic="" url="" fromColor="#f9a825" toColor="#fbc02d"  to="/not_done"/>
                 </Grid>
             </Grid>
@@ -263,4 +267,4 @@ const HomePage = (props) => {
     );
 }
 
-export default Scaffold(HomePage, 2);
+export default Scaffold(HomePage, 1);
