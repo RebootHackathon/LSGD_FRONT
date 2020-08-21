@@ -8,7 +8,7 @@ class CitizenMainPage extends Component {
             <Link to="/citizenviewallgrants">
             <Button block variant="primary">View All grants</Button>
         </Link>
-        <Link to="/citizenappliedgrant">
+        <Link to="/citizenappliedgrants">
             <Button block variant="primary">View applied Grants</Button>
         </Link>
         </div>
