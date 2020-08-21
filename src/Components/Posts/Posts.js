@@ -39,7 +39,7 @@ class Posts extends React.Component {
             .then(response => {
                 console.log(response);
                 if (response.data.status === 200) {
-
+                    this.getPosts()
                 } else {
                 }
             }).catch(err => {
@@ -91,7 +91,7 @@ class Posts extends React.Component {
                         <Col md={9}>
                             <Row style={{marginBottom: '10px', marginTop: '20px'}}>
                                 <Container style={{fontSize: 'large'}}>ALL POSTS...</Container>
-                                <Container>Refresh</Container>
+                                <Container onClick={this.getPosts}>Refresh</Container>
                             </Row>
                             <Row>
                                 <Container>

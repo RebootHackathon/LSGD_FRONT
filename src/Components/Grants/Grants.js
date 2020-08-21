@@ -43,7 +43,7 @@ class Grants extends React.Component {
             .then(response => {
                 console.log(response);
                 if (response.data.status === 200) {
-
+                    this.getgrant();
                 } else {
                 }
             }).catch(err => {
@@ -154,7 +154,7 @@ class Grants extends React.Component {
                         <Col md={9}>
                             <Row style={{marginBottom: '10px', marginTop: '20px'}}>
                                 <Container style={{fontSize: 'large'}}>ALL GRANTS...</Container>
-                                <Container>Refresh</Container>
+                                <Container onClick={this.getgrant}>Refresh</Container>
                             </Row>
                             <Row>
                                 <Container>
