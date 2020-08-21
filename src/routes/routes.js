@@ -9,6 +9,7 @@ import AdminLogin from "../Components/AdminLogin/AdminLogin";
 import MongoCharts from "../Components/MongoCharts/MongoCharts";
 import ViewGrants from '../Components/ViewAllGrants/ViewGrants';
 import EmployeeSignup from '../Containers/EmployeeSignup';
+import CitizenLogin from '../Containers/UserFiles/CitizenLogin';
 
 import RegisterCitizenUI from "../pages/RegisterCitizen/RegisterCitizen";
 
@@ -33,6 +34,7 @@ var routes = [
     {path: "/admin", name: "admin", component: SuperAdmin},
     {path: "/mongo", name: "admin", component: MongoCharts},
     {path:"/employsignup",name:"employeesignup",component:EmployeeSignup},
+    {path: "/citizenlogin", name: "citizenlogin", component: CitizenLogin},
     {path: "/", name: "login", component: Login},
 
 ];
