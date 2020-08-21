@@ -17,7 +17,8 @@ class Grants extends React.Component {
             sanctionLabel:'അനുവദിച്ചത്',
             statusLabel:'അവസ്ഥ',
             grantNameLabel:'ഗ്രാന്റിന്റെ പേര്',
-            amountLabel:'രൂപ'
+            amountLabel:'രൂപ',
+            malayamLanguage:true
 
         }
         this.newgrantData = {
@@ -33,7 +34,32 @@ class Grants extends React.Component {
         this.getgrant = this.getgrant.bind(this)
         this.getgrant()
     }
-
+    changeEnglishHandler(this_local){
+        this_local.setState({
+            malayamLanguage:false,
+            allgrantsLabel:'All Grants',
+            religionLabel:'Religion',
+            castLabel:'Cast',
+            descriptionLabel:'Description',
+            createdLable:'Created At',
+            sanctionLabel:'Sanctioned By',
+            statusLabel:'Status',
+            grantNameLabel:'Grant Name',
+            amountLabel:'Amount'})
+    }
+    changeMalayalamHandler(this_local){
+        this_local.setState({
+            malayamLanguage:false,
+            allgrantsLabel:'എല്ലാ ഗ്രാന്റും',
+            religionLabel:'മതം',
+            castLabel:'ജാതി',
+            descriptionLabel:'വിവരണം',
+            createdLable:'ഉണ്ടാക്കിയത്',
+            sanctionLabel:'അനുവദിച്ചത്',
+            statusLabel:'അവസ്ഥ',
+            grantNameLabel:'ഗ്രാന്റിന്റെ പേര്',
+            amountLabel:'രൂപ'})
+    }
     getgrant() {
         axios.get('/grants/getgrants')
             .then(response => {
@@ -63,11 +89,17 @@ class Grants extends React.Component {
     // }
 
     render() {
+        let malayalamLabel="മലയാളം";
+        let englishLabel="English";
         return (
             <div className={styles.Grants}>
                 <Container fluid>
                 <Row>
                         <AppBar/>
+                        <div style={{marginLeft:"60%", textAlign: 'left',cursor:"pointer"}} onClick={()=>this.changeEnglishHandler(this)}>
+                                        {englishLabel}</div>
+                                    <div style={{marginLeft:"15px", textAlign: 'left',cursor:"pointer"}} onClick={()=>this.changeMalayalamHandler(this)}>
+                                        {malayalamLabel}</div>
                     </Row>
                     
                     <Row>
@@ -92,7 +124,7 @@ class Grants extends React.Component {
                                                      {this.state.amountLabel+' : '+ele.grant_amount}
                                                     </Card.Subtitle>
                                                     <Card.Text>
-                                                        {this.state.religionLabel +' : '+ ele.grant_religion + this.state.castLabel +' : '+ele.grant_cast}
+                                                        {this.state.religionLabel +' : '+ ele.grant_religion }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.castLabel +' : '+ele.grant_cast}
                                                     </Card.Text>
                                                     <Card.Text>
                                                        {this.state.createdLable +' : ' +new Date(ele.created_at).toDateString()}
