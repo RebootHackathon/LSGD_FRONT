@@ -212,7 +212,7 @@ function Login(props) {
                               
                                 <div style={{marginTop: '20px'}}>
                                     <div style={{textAlign: 'right'}}>
-                                        <Link to={'/LSGD_FRONT/registercitizen'} >{signupLabel}</Link>
+                                        <Link to={'/citizensignup'} >{signupLabel}</Link>
                                     </div>
                                 
                                 </div>
