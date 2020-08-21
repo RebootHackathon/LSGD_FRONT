@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './CitizenViewGrant.css';
 import axios from "../../axios";
 import {Button, Card, Col, Container, Form, FormControl, InputGroup, Row} from "react-bootstrap";
-import AppBar from '../../Components/AppBar/AppBar';
+import AppBar from '../../Components/CitizenAppBar/AppBar';
 
 class Grants extends React.Component {
     constructor(props) {
@@ -103,10 +103,25 @@ class Grants extends React.Component {
                     </Row>
                     
                     <Row>
-                    <div className={styles.Center}>
+                        <Col  md={3}>
+                            <Card style={{ width: '18rem' }}>
+                                <Card.Img variant="top" src={require('../../assets/cardbg1.png')} />
+                                <Card.Body>
+                                    <Card.Title>All Grants</Card.Title>
+                                    <Card.Text>
+                                        This page shows all the grants given by the government of Kerala
+                                    </Card.Text>
+                                </Card.Body>
+                                <Card.Footer>
+                                    <Card.Text>
+                                        Kerala Government Initiative
+                                    </Card.Text>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
                         <Col md={9}>
                             <Row style={{marginBottom: '10px', marginTop: '20px'}}>
-                                <Container style={{fontSize: 'large'}}>{this.state.allgrantsLabel}</Container>
+                                <Container style={{fontSize: 'large', color: 'green'}}>{this.state.allgrantsLabel}</Container>
                                 <Container>Refresh</Container>
                             </Row>
                             <Row>
@@ -152,7 +167,6 @@ class Grants extends React.Component {
                                 </Container>
                             </Row>
                         </Col>
-                        </div>
                     </Row>
                     
                     <Row>

@@ -91,7 +91,7 @@ function Login(props) {
                         // name=response.data.
                         setTimeout(() => {
                             setShowSpinner(false);
-                            props.history.push('/citizenmainpage');
+                            props.history.push('/citizenappliedgrants');
                           }, 1200);
                         // props.history.push('LSGD_FRONT/mainpage');
                     } else {
