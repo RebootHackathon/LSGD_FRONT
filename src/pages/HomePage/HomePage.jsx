@@ -42,7 +42,7 @@ const Header = (props) => {
             >
                 <Tab label="Account List" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
                 <Tab label="List Schemes" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
-                <Tab label="Blank Space Undone **" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
+                <Tab label="Data Analysis" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
             </Tabs>
 
         </Box>
@@ -204,6 +204,23 @@ const PanelBody = (props) => {
             </React.Fragment>
         )
     }
+    function Tab3Body(props) {
+        return (
+            <Box>
+                <iframe style={{background: "#FFFFFF", border: "none", borderRadius: "2px", boxShadow: "0 2px 10px 0 rgba(70, 76, 79, .2)"}} width="100%" height="380" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=30599b9b-19ae-4a4e-b889-891d0aea85fa&theme=light"></iframe>
+                <Grid container spacing={2}>
+                    <Grid item xs={6}>
+                        <iframe style={{background: "#FFFFFF", border: "none", borderRadius: "2px", boxShadow: "0 2px 10px 0 rgba(70, 76, 79, .2)"}} width="100%" height="480" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=f79c8d9d-3229-45cc-8d10-807caebaf3b4&theme=light"></iframe>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <iframe style={{background: "#FFFFFF", border: "none", borderRadius: "2px", boxShadow: "0 2px 10px 0 rgba(70, 76, 79, .2)"}} width="100%" height="480" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=3e9628ff-dbc4-4149-828b-240d36da1228&theme=light"></iframe>
+                    </Grid>
+                </Grid>
+                
+            </Box>
+        )
+
+    }
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
       
@@ -237,7 +254,7 @@ const PanelBody = (props) => {
                     <Tab2Body />
                 </TabPanel>
                 <TabPanel value={tabValue} index={2} dir={theme.direction}>
-                    Item Three
+                    <Tab3Body />
                 </TabPanel>
             </SwipeableViews>
         </Box>
