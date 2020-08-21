@@ -67,7 +67,7 @@ const AppBar = (props) => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link><span onClick={() => {
-                        history.push({pathname: '/citizenappliedgrants'})
+                        history.push({pathname: '/citizenmainpage'})
                     }}>Home/My Grants</span></Nav.Link>
                     <Nav.Link><span onClick={()=>{
                         console.log('app')
@@ -80,7 +80,7 @@ const AppBar = (props) => {
                             spinning: false,
                             grants: [],
                         };
-                        history.push({pathname: '/LSGD_FRONT/applygrant', state})
+                        history.push({pathname: '/citizenapplygrant', state})
                     }}>Apply New Grant</span></Nav.Link>
                     <Nav.Link><span onClick={()=>{
                         console.log('app')

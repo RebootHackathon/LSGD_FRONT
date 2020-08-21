@@ -16,7 +16,9 @@ class ApplyGrantForm extends React.Component{
         filename: 'Choose File',
         fileid: null,
         grants:null
-    }
+        
+
+        }
     // grants = [];
     // constructor(props) {
     //     super(props);
@@ -29,12 +31,14 @@ class ApplyGrantForm extends React.Component{
 
 componentWillMount(){
     console.log("[componendt asddsafd]",this.props);
-    this.setState({grants:this.props.grantlist})
+    this.setState({grants:this.props.grantlist,filename:this.props.state.notChoosefileLabel})
 }
     render(){
         console.log("[error state]",this.state);
+        // this.setState({filename:this.props.state.notChoosefileLabel});
         return (
             <div style={{width: '100%'}}>
+                {/* {this.setState({filename:this.props.state.notChoosefileLabel})} */}
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                     <Card style={{width: '70%', alignItems: 'center', marginTop: '4%'}}>
                         <Card.Img variant="top" src={require('../../../assets/tick.png')}
@@ -43,16 +47,15 @@ componentWillMount(){
                         {/* <Card.Img variant="top" src={require('../assets/aadharlogo.png')} /> */}
                         <Card.Body>
 
-                            <Card.Title style={{display: 'flex', justifyContent: 'center', paddingBottom: '20px'}}><strong>Enter
-                                Details</strong></Card.Title>
-                            <FormElement label='Aadhar Number' id='aadhar' value={this.props.state.aadhar}
+                            <Card.Title style={{display: 'flex', justifyContent: 'center', paddingBottom: '20px'}}><strong>{this.props.state.enterDetailsLabel}</strong></Card.Title>
+                            <FormElement label={this.props.state.aadharLabel} id='aadhar' value={this.props.state.aadhar}
                                          onChange={this.props.onInputChange} disabled/>
-                            <FormElement label='Name' id='name' value={this.props.state.name} onChange={this.props.onInputChange}
+                            <FormElement label={this.props.state.nameLabel} id='name' value={this.props.state.name} onChange={this.props.onInputChange}
                                          disabled/>
 
                             <InputGroup className="mb-3">
                                 <InputGroup.Prepend>
-                                    <InputGroup.Text id="basic-addon1">Grant Name</InputGroup.Text>
+                                    <InputGroup.Text id="basic-addon1">{this.props.state.grantNameLabel}</InputGroup.Text>
                                 </InputGroup.Prepend>
                                 <FormControl as="select" id="grant" onChange={this.props.onInputChange}>
                                     {/* <option  value="ele.id">ele.grantName</option>
@@ -67,7 +70,7 @@ componentWillMount(){
                             </InputGroup>
 
 
-                            <FormElement label='Amount' id='amount' value={this.props.state.amount}
+                            <FormElement label={this.props.state.amountLabel} id='amount' value={this.props.state.amount}
                                          onChange={this.props.onInputChange}/>
 
                             {/*<input type="file" name="file" onChange={event => {*/}
@@ -92,13 +95,13 @@ componentWillMount(){
                                           const data = new FormData()
                                           data.append('file', event.target.files[0])
                                           console.log('uploading')
-                                          this.setState({filename: 'Uploading....'})
+                                          this.setState({filename:this.props.state.uploadingLabel})
                                           axios.post("/upload", data, { // receive two parameter endpoint url ,form data
                                           })
                                               .then(res => { // then print response status
                                                   console.log(res);
                                                   this.setState({fileid: res.data.fileid})
-                                                  this.setState({filename: 'Uploading Completed'})
+                                                  this.setState({filename: this.props.state.uploadLabel})
                                               })
                                       }}
                             />
@@ -121,7 +124,7 @@ componentWillMount(){
                             }
                             {this.state.fileid === null &&
                             <Button variant="primary" block type="submit" disabled={true}>
-                                File Not Choosed
+                                {this.props.state.notChoosefileLabel}
                             </Button>
                             }
                         </Card.Body>
