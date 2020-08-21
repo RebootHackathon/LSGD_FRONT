@@ -90,7 +90,7 @@ class Employee extends React.Component {
                                 <Card.Img variant="top" src={require('../assets/cardbg1.png')}
                                           style={{ height: '10%', width: '100%'}}/>
                                 <Card.Body>
-                                    <Card.Title style={{fontFamily: 'Mukta'}}>Add New Employee</Card.Title>
+                                    <Card.Title style={{fontFamily: 'Mukta'}}>Register As Employee</Card.Title>
                                     <InputGroup className="mb-3">
                                         <InputGroup.Prepend>
                                             <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
@@ -164,7 +164,7 @@ class Employee extends React.Component {
 
                                         </Container>
                                     </Row>
-                                    <Button variant="primary" onClick={this.createemployee}>Create employee</Button>
+                                    <Button variant="primary" onClick={this.createemployee}>Register employee</Button>
                                 </Card.Body>
                             </Card>
                            
