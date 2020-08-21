@@ -91,7 +91,7 @@ function Login(props) {
                         // name=response.data.
                         setTimeout(() => {
                             setShowSpinner(false);
-                            props.history.push('LSGD_FRONT/mainpage');
+                            props.history.push('/citizenmainpage');
                           }, 1200);
                         // props.history.push('LSGD_FRONT/mainpage');
                     } else {
