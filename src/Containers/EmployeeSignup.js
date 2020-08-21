@@ -7,6 +7,9 @@ class Employee extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            verified: false,
+            verifiedText: 'Enter OTP First',
+            emp_name: '',
             posts_list: [],
             office_list: [],
             employees_list: []
@@ -117,7 +120,18 @@ class Employee extends React.Component {
                                                 aria-label="name"
                                                 aria-describedby="basic-addon1"
                                             />
-                                            <Button>GO</Button>
+                                            <Button onClick={() => {
+                                                console.log('emp', this.newemployeeData.employee_aadhar)
+                                                axios.post('/aadhar/employee', {adhaar: this.newemployeeData.employee_aadhar})
+                                                    .then((response) => {
+                                                        console.log('emp', response)
+                                                        if (response.data.status === 200){
+                                                            this.setState({emp_name: response.data.data.name, verified: true})
+                                                        }else {
+                                                            this.setState({emp_name: '', verified: false, verifiedText: 'Failed To Verify'})
+                                                        }
+                                                    })
+                                            }}>GO</Button>
                                         </InputGroup>
                                         <InputGroup className="mb-3">
                                             <InputGroup.Prepend>
@@ -127,6 +141,7 @@ class Employee extends React.Component {
                                                 onChange={(e) => {
                                                     this.newemployeeData.employee_name = e.target.value;
                                                 }}
+                                                value = {this.state.emp_name}
                                                 placeholder="employee Name"
                                                 aria-label="name"
                                                 aria-describedby="basic-addon1"
@@ -179,7 +194,8 @@ class Employee extends React.Component {
 
                                             </Container>
                                         </Row>
-                                        <Button block variant="primary" onClick={this.createemployee}>Register employee</Button>
+                                        {this.state.verified && <Button block variant="primary" onClick={this.createemployee}>Register employee</Button>}
+                                        {!this.state.verified && <Button disabled={!this.state.verified} block variant="primary">{this.state.verifiedText}</Button>}
                                     </Card.Body>
                                 </Card>
                             </div>

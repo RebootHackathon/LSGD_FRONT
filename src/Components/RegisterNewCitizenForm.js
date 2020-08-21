@@ -6,6 +6,8 @@ import Card from 'react-bootstrap/Card';
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import axios from "../axios";
+import {InputGroup} from "react-bootstrap";
 
 const RegisterNewCitizenForm = (props) => {
     return <div style={{width: '100%'}}>
@@ -34,7 +36,21 @@ const RegisterNewCitizenForm = (props) => {
                                                   />
                                 </Col>
                                 <Col>
-                                    <Button block>Submit OTP</Button>
+                                    <Button block onClick={() => {
+                                        console.log('emp', props.state.aadhar)
+                                        axios.post('/aadhar/citizen', {adhaar: props.state.aadhar})
+                                            .then((response) => {
+                                                console.log('emp', response, props.state, props.setstate)
+                                                if (response.data.status === 200){
+                                                    props.setstate({name: response.data.data.name,
+                                                        fathername:response.data.data.father_name,
+                                                        mothername:response.data.data.mother_name,
+                                                        verified: true})
+                                                }else {
+                                                    props.setstate({name: '', verified: false, verifiedText: 'Failed To Verify'})
+                                                }
+                                            })
+                                    }}>GO</Button>
                                 </Col>
                             </Row>
                         </Container>
@@ -47,7 +63,9 @@ const RegisterNewCitizenForm = (props) => {
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGridEmail">
                                 <Form.Label>Name</Form.Label>
-                                <Form.Control type="text" placeholder="Name" id="name" onChange={props.onInputChange}/>
+                                <Form.Control type="text" placeholder="Name" id="name"
+                                              value={props.state.name}
+                                              onChange={props.onInputChange}/>
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
@@ -87,12 +105,14 @@ const RegisterNewCitizenForm = (props) => {
                             <Form.Group as={Col} controlId="formGridAddress1">
                                 <Form.Label>Mother Name</Form.Label>
                                 <Form.Control placeholder="Mother Name" id="mother_name"
+                                              value={props.state.mothername}
                                               onChange={props.onInputChange}/>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridAddress2">
                                 <Form.Label>Father Name</Form.Label>
                                 <Form.Control placeholder="Father Name" id="father_name"
+                                              value={props.state.fathername}
                                               onChange={props.onInputChange}/>
                             </Form.Group>
                         </Form.Row>
@@ -106,10 +126,13 @@ const RegisterNewCitizenForm = (props) => {
                             </Form.Group>
                         </Form.Row>
 
-                        <Button variant="primary" block type="submit" onClick={props.onClickHandler}>
+                        {/*<Button variant="primary" block type="submit" onClick={props.onClickHandler}>*/}
+                        {/*    {props.registerLabel}*/}
+                        {/*</Button>*/}
+                        {props.state.verified && <Button variant="primary" block type="submit" onClick={props.onClickHandler}>
                             {props.registerLabel}
-                        </Button>
-
+                        </Button>}
+                        {!props.state.verified && <Button block disabled={!props.state.verified} variant="primary">{props.state.verifiedText}</Button>}
                     </Form>
                 </Card.Body>
             </Card>
