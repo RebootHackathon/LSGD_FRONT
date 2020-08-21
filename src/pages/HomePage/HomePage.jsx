@@ -51,6 +51,14 @@ const PanelBody = (props) => {
     const classes = useStyles(props);
     const {piData, lineData} = props;
 
+    const Tab2Body = (props) => {
+        return (
+            <React.Fragment>
+
+            </React.Fragment>
+        )
+    }
+
     const Tab1Body = (props) => {
         function MainContent(props) {
             console.log("Theme = ", theme);
@@ -191,8 +199,8 @@ const PanelBody = (props) => {
     }
 
     return (
-        <Box flexGrow={1} bgcolor="none" marginY={2}>
-            <Tab1Body />
+        <Box flexGrow={1} bgcolor="red" marginY={2}>
+            <Tab2Body />
         </Box>
     )
 }

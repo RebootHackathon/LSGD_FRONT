@@ -20,15 +20,15 @@ import Citizenappliedgrants from '../Containers/UserFiles/CitizenAppliedGrants';
 import RegisterCitizenUI from "../pages/RegisterCitizen/RegisterCitizen";
 
 var routes = [
-    {path: "/LSGD_FRONT/mainpage", name: "mainpage", component: MainPage},
+    // {path: "/LSGD_FRONT/mainpage", name: "mainpage", component: MainPage},
     
     {path: "/LSGD_FRONT/listgrants", name: "listgrants", component: ListGrant},
     {path: "/LSGD_FRONT/p/listgrants", name: "listgrantsvm", component: ListGrantVM},
 
     {path: "/LSGD_FRONT/applygrant", name: "applygrant", component: ApplyGrant},
-    {path: "/LSGD_FRONT/p/applygrant", name: "applygrant_page", component: ApplyGrantsVM},
+    // {path: "/LSGD_FRONT/applygrant", name: "applygrant_page", component: ApplyGrantsVM},
 
-    {path: "/LSGD_FRONT/home", name: "home", component: HomePageVM},
+    {path: "/LSGD_FRONT/mainpage", name: "home", component: HomePageVM},
 
     {path: "/LSGD_FRONT/registercitizen", name: "registercitizen", component: RegisterNewCitizen},
 
