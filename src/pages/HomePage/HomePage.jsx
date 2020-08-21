@@ -199,8 +199,8 @@ const PanelBody = (props) => {
     }
 
     return (
-        <Box flexGrow={1} bgcolor="red" marginY={2}>
-            <Tab2Body />
+        <Box flexGrow={1} bgcolor="none" marginY={2}>
+            <Tab1Body />
         </Box>
     )
 }
