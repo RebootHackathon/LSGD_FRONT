@@ -155,9 +155,14 @@ class Grants extends React.Component {
                                                     this.newgrantData.grant_group = e.target.value;
                                                 }}>
                                                     <option>ALL</option>
+                                                    <option>Housing Scheme</option>
+                                                    <option>Flood Relief Scheme</option>
+                                                    <option>Old Age Scheme</option>
                                                     <option>Group 1</option>
                                                     <option>Group 2</option>
                                                     <option>Group 3</option>
+                                                    <option>Group 4</option>
+                                                    <option>Group 5</option>
                                                 </Form.Control>
                                             </Form.Group>
                                         </Container>
