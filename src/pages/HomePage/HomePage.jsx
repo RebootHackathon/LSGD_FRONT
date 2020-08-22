@@ -137,9 +137,9 @@ const PanelBody = (props) => {
                         <Box paddingBottom={1}><Typography variant="subtitle2" color="textSecondary">Pending Requests</Typography></Box>
                         <Paper elevation={3}>
                             <Box paddingY={1} paddingX={2}>
-                                <MainContent />
-                                <MainContent />
-                                <MainContent />
+                                {pendingList.slice(0, 3).map((value, index)=> (
+                                    <MainContent data={value} />
+                                ))}
                                 <MorePendingText />
                             </Box>
                         </Paper>

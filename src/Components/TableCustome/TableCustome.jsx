@@ -18,6 +18,8 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import { withStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
+import ButtonCustom from "../Donatto/CustomeButton/CustomeButton";
+import theme from "../../themes/theme";
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -160,10 +162,10 @@ export default function CustomPaginationActionsTable() {
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
-          ).map((row) => (
+          ).map((row, index) => (
             <TableRow key={row.name}>
                 <TableCell style={{ width: 10 }} align="left">
-                12
+                    {index+1}
                 </TableCell>
               <TableCell component="th" scope="row">
                   <Typography>{row.name}</Typography>
@@ -176,7 +178,7 @@ export default function CustomPaginationActionsTable() {
                 {row.calories}
               </TableCell>
               <TableCell style={{ width: 80 }} align="right">
-                {row.fat}
+                        <ButtonCustom bgColor={theme.palette.primary.main} color="white">details</ButtonCustom>
               </TableCell>
             </TableRow>
           ))}

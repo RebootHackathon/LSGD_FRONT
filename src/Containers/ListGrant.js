@@ -23,6 +23,18 @@ class ListGrant extends Component {
         grants: []
     };
 
+    componentDidMount() {
+        console.log("++++============>>>>>>>", this.props.location.state) 
+        if(this.props.location.state !== undefined) {
+            this.setState({
+                ...this.state,
+                aadhar: this.props.location.state.aadhar_no,
+                userExist: true
+            }, ()=> this.onClickHandler(null))
+            ;
+        }
+    }
+
     // onCardClickHandler=(id)=>{
     //     const expand_element=this.state.data.filter(ele=>(
     //         ele._id===id
@@ -118,7 +130,7 @@ class ListGrant extends Component {
                     <Row>
                         <Col md={3}>
                             <SearchForm searchLabel={searchLabel} onInputChange={this.onChangeHandler}
-                                        value={this.state.aadhar} clicked={this.onClickHandler}/>
+                                        value={this.state.aadhar} clicked={this.onClickHandler} />
                         </Col>
                         <Col md={9}>
                             {
