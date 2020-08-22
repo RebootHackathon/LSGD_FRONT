@@ -113,7 +113,14 @@ class ApplyGrant extends Component {
 
     onInputChangeHandler = (event) => {
         const event_name = event.target.id;
-        this.setState({[event_name]: event.target.value})
+        // console.log("[Amt Val]",event.targetamountval);
+        // if(event_name==='grant'){
+        //     let val=event.target.value.split(' ');
+        // this.setState({[event_name]: val[0],amount:+val[1]})
+        // }
+        // else{
+            this.setState({[event_name]: event.target.value})
+        // }
         console.log("[applygrant]", this.state);
 
     }
@@ -122,12 +129,17 @@ class ApplyGrant extends Component {
         event.preventDefault();
         this.setState({spinning: true});
         // console.log("hasidj");
+        let amtData=null;
+        amtData=this.state.grants.filter(ele=>{
+            console.log("[from ele1]", ele.id,this.state.grant)
+            return ele.id==this.state.grant;
+        })
+        console.log("[axiox log]",amtData[0].grantAmount);
         const body = {
             "applicationId": Date.now(),
             "citizenId": +this.state.aadhar,
             "grantId": this.state.grant,
-            "amount": +this.state.amount,
-            "status": "Pending",
+            "amount": +amtData[0].grantAmount
             // "sanctionedById": +this.state.applied_by
         }
         axios.post('/grants/sanction', body)
@@ -212,7 +224,7 @@ class ApplyGrant extends Component {
                 });
                 
         }
-
+        
         //Check grant group constrints
 
         if(this.state.grant){

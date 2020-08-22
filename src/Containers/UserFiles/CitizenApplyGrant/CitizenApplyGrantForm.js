@@ -87,22 +87,22 @@ componentWillMount(){
                                         <InputGroup.Prepend>
                                             <InputGroup.Text id="basic-addon1">{this.props.state.grantNameLabel}</InputGroup.Text>
                                         </InputGroup.Prepend>
-                                        <FormControl as="select" id="grant" onChange={this.props.onInputChange}>
+                                        <FormControl as="select" id="grant"  onChange={this.props.onInputChange}>
                                             {/* <option  value="ele.id">ele.grantName</option>
                                     <option  value="ele.id3">ele.grantName3</option>
                                     <option  value="ele.id2">ele.grantName2</option> */}
                                             {this.state.grants.map(ele => {
                                                 
-                                                return (<option key={ele.id} value={ele.id}>{ele.grantName}</option>)
+                                                return (<option key={ele.id}  value={ele.id}>{ele.grantName}</option>)
                                             })}
 
                                         </FormControl>
                                     </InputGroup>
                                             {/* Amount if needed uncomment*/}
                                     
-                                    {console.log("[from ele]", amtData)}
+                                    {/* {console.log("[from ele]", amtData)} */}
                                     <FormElement label={this.props.state.amountLabel} id='amount' value={amtData[0].grantAmount}
-                                            onChange={this.props.onInputChange} disabled/>
+                                            onInputChange={this.props.onInputChange} disabled/>
 
                                     {/*<input type="file" name="file" onChange={event => {*/}
                                     {/*    const data = new FormData()*/}
