@@ -16,6 +16,7 @@ class Grants extends React.Component {
             granting_body: null,
             grant_religion: 'ALL',
             grant_cast: 'ALL',
+            grant_group: 'ALL',
         }
 
         this.creategrant = this.creategrant.bind(this)
@@ -146,8 +147,22 @@ class Grants extends React.Component {
                                                 </Form.Control>
                                             </Form.Group>
                                         </Container>
+
+                                        <Container>
+                                            <Form.Group controlId="exampleForm.ControlSelect2">
+                                                <Form.Label>Select Group</Form.Label>
+                                                <Form.Control as="select" onChange={(e) => {
+                                                    this.newgrantData.grant_group = e.target.value;
+                                                }}>
+                                                    <option>ALL</option>
+                                                    <option>Group 1</option>
+                                                    <option>Group 2</option>
+                                                    <option>Group 3</option>
+                                                </Form.Control>
+                                            </Form.Group>
+                                        </Container>
                                     </Row>
-                                    <Button variant="primary" onClick={this.creategrant}>Create grant</Button>
+                                    <Button block variant="primary" onClick={this.creategrant}>Create grant</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -181,6 +196,9 @@ class Grants extends React.Component {
                                                     </Card.Text>
                                                     <Card.Text>
                                                         {'Sanctioned By: ' + ele.granting_body}
+                                                    </Card.Text>
+                                                    <Card.Text>
+                                                        {'Grant Group: ' + ele.grant_group}
                                                     </Card.Text>
                                                     <Card.Text>
                                                         Status: {(() => {
