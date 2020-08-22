@@ -42,6 +42,7 @@ class ListGrant extends Component {
         descriptionGrantLabel:'ബാധകമായ എല്ലാ ഗ്രാന്റുകളും ഈ പേജ് കാണിക്കുന്നു',
         keralaLabel:'കേരള സർക്കാർ സംരംഭം',
         grantGroupLabel:'ഗ്രാന്റ് ഗണം',
+        deniedLabel:'നിഷേധിച്ചത്',
         malayalamLanguage:true,
         appliedGrantDetails:[],
         
@@ -165,7 +166,8 @@ class ListGrant extends Component {
             applyGrantLabel:'Applied Grants',
             descriptionGrantLabel:' This page you can view your applied grants given by the government of Kerala',
             keralaLabel:'Kerala Government Initiative',
-            grantGroupLabel:'Grant Group'})
+            grantGroupLabel:'Grant Group',
+            deniedLabel:'Denied'})
     }
     changeMalayalamHandler(this_local){
         this.props.onMalayalam();
@@ -190,7 +192,8 @@ class ListGrant extends Component {
             applyGrantLabel:'ബാധകമായ ഗ്രാന്റുകൾ',
             descriptionGrantLabel:'ബാധകമായ എല്ലാ ഗ്രാന്റുകളും ഈ പേജ് കാണിക്കുന്നു',
             keralaLabel:'കേരള സർക്കാർ സംരംഭം',
-            grantGroupLabel:'ഗ്രാന്റ് ഗണം'
+            grantGroupLabel:'ഗ്രാന്റ് ഗണം',
+            deniedLabel:'നിഷേധിച്ചത്'
         })
     }
     
@@ -420,7 +423,7 @@ class ListGrant extends Component {
                                             )
                                         }
                                     })}</Container>
-                                    <Container style={{color: 'red'}}>Denied</Container>
+                                    <Container style={{color: 'red'}}>{this.state.deniedLabel}</Container>
                                     <Container fluid>{this.state.data.map((ele) => {
                                         let grant_details = this.state.grants.filter(grant => {
                                             return grant.id === ele.grantId
@@ -448,8 +451,8 @@ class ListGrant extends Component {
                                                                                 }
                                                                             })()}</Card.Text></Col>
                                                                             <Col>
-                                                                                <Card.Text> {this.state.amountLabel}:{ele.amount}<br/>Grant Group:
-                                                                                    {ele.grant_group}</Card.Text></Col>
+                                                                                <Card.Text> {this.state.amountLabel}:{ele.amount}<br/>{this.state.grantGroupLabel}:
+                                                                                    {grant_details[0].grantGroup}</Card.Text></Col>
                                                                         </Row>
                                                                     </Card.Title>
                                                                     <Card.Subtitle>
