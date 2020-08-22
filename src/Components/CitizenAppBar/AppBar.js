@@ -67,7 +67,7 @@ const AppBar = (props) => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link><span onClick={() => {
-                        history.push({pathname: '/citizenmainpage'})
+                        history.push({pathname: '/citizenappliedgrants'})
                     }}>Home/My Grants</span></Nav.Link>
                     <Nav.Link><span onClick={()=>{
                         console.log('app')

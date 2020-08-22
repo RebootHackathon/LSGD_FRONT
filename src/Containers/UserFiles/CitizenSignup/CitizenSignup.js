@@ -163,33 +163,32 @@ class RegisterNewCitizen extends Component {
 
                 <Container fluid>
                     <Row>
-                        {/* <AppBar/> */}
-                        <div style={{position:' relative'}}>
-                            <Navbar bg="light" variant="light">
-                                <Navbar.Brand href="/citizenlogin">
-                                    <img
-                                        alt=""
-                                        src={require('../../../assets/icons/register.png')}
-                                        width="30"
-                                        height="30"
-                                        style={{marginRight: '10px'}}
-                                        className="d-inline-block align-top"
-                                    />{' '}
-                                    {this.state.headingLabel}
-
-                                 
-
-                                </Navbar.Brand>
-                                </Navbar></div>
-                        <div style={{marginLeft:"60%", textAlign: 'left',cursor:"pointer"}} onClick={()=>this.changeEnglishHandler(this)}>
-                                        {englishLabel}</div>
-                                    <div style={{marginLeft:"15px", textAlign: 'left',cursor:"pointer"}} onClick={()=>this.changeMalayalamHandler(this)}>
-                                        {malayalamLabel}</div>
+                        <Navbar style={{width: '100%'}} bg="light" variant="light">
+                            <Navbar.Brand href="/citizenlogin">
+                                <img
+                                    alt=""
+                                    src={require('../../../assets/icons/register.png')}
+                                    width="30"
+                                    height="30"
+                                    style={{marginRight: '10px'}}
+                                    className="d-inline-block align-top"
+                                />{' '}
+                                {this.state.headingLabel}
+                            </Navbar.Brand>
+                                <Navbar.Collapse className="justify-content-end">
+                                <div style={{marginLeft:"60%", textAlign: 'left',cursor:"pointer"}} onClick={()=>this.changeEnglishHandler(this)}>
+                                    {englishLabel}</div>
+                                <div style={{marginLeft:"15px", textAlign: 'left',cursor:"pointer"}} onClick={()=>this.changeMalayalamHandler(this)}>
+                                    {malayalamLabel}</div>
+                            </Navbar.Collapse>
+                            </Navbar>
                     </Row>
-                    <RegisterNewCitizenForm
-                        setstate = {this.setstate}
-                        state={this.state} registerLabel={registerLabel} onInputChange={this.onInputChangeHandler}
-                                            onClickHandler={this.onClickHandler}/>
+                    <Row>
+                        <RegisterNewCitizenForm
+                            setstate = {this.setstate}
+                            state={this.state} registerLabel={registerLabel} onInputChange={this.onInputChangeHandler}
+                            onClickHandler={this.onClickHandler}/>
+                    </Row>
                 </Container>
             </div>
         )
