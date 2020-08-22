@@ -20,6 +20,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import ButtonCustom from "../Donatto/CustomeButton/CustomeButton";
 import theme from "../../themes/theme";
+import { history } from "../../helpers/history";
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -104,25 +105,25 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(name, calories, fat) {
-  return { name, calories, fat };
+function createData(grand_name, aadhar_no, expriy) {
+  return { grand_name, aadhar_no, expriy };
 }
 
-const rows = [
-  createData('Cupcake', 305, 3.7),
-  createData('Donut', 452, 25.0),
-  createData('Eclair', 262, 16.0),
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Gingerbread', 356, 16.0),
-  createData('Honeycomb', 408, 3.2),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Jelly Bean', 375, 0.0),
-  createData('KitKat', 518, 26.0),
-  createData('Lollipop', 392, 0.2),
-  createData('Marshmallow', 318, 0),
-  createData('Nougat', 360, 19.0),
-  createData('Oreo', 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
+// const rows = [
+//   createData('Cupcake', 305, 3.7),
+//   createData('Donut', 452, 25.0),
+//   createData('Eclair', 262, 16.0),
+//   createData('Frozen yoghurt', 159, 6.0),
+//   createData('Gingerbread', 356, 16.0),
+//   createData('Honeycomb', 408, 3.2),
+//   createData('Ice cream sandwich', 237, 9.0),
+//   createData('Jelly Bean', 375, 0.0),
+//   createData('KitKat', 518, 26.0),
+//   createData('Lollipop', 392, 0.2),
+//   createData('Marshmallow', 318, 0),
+//   createData('Nougat', 360, 19.0),
+//   createData('Oreo', 437, 18.0),
+// ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
 const useStyles2 = makeStyles({
   table: {
@@ -130,10 +131,14 @@ const useStyles2 = makeStyles({
   },
 });
 
-export default function CustomPaginationActionsTable() {
+export default function CustomPaginationActionsTable(props) {
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const {data} = props;
+  console.log("DATA===========  ", data)
+  const rows = data.map((value, index) => createData(value.grantname.grant_name, value.userName.aadhar, value.date))
+
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
@@ -153,8 +158,7 @@ export default function CustomPaginationActionsTable() {
           <TableRow>
             <StyledTableCell align="left">slno</StyledTableCell>
             <StyledTableCell>Grand</StyledTableCell>
-            <StyledTableCell>Applier</StyledTableCell>
-            <StyledTableCell align="right">&nbsp;</StyledTableCell>
+            <StyledTableCell>Aadhar Card No</StyledTableCell>
             <StyledTableCell align="right">&nbsp;</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -168,17 +172,16 @@ export default function CustomPaginationActionsTable() {
                     {index+1}
                 </TableCell>
               <TableCell component="th" scope="row">
-                  <Typography>{row.name}</Typography>
-                  <Typography variant="caption" color="textSecondary">16/02/2020</Typography>
+                  <Typography>{row.grand_name}</Typography>
+          <Typography variant="caption" color="textSecondary">{row.expriy}</Typography>
               </TableCell>
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.aadhar_no}
               </TableCell>
               <TableCell style={{ width: 80 }} align="right">
-                {row.calories}
-              </TableCell>
-              <TableCell style={{ width: 80 }} align="right">
-                        <ButtonCustom bgColor={theme.palette.primary.main} color="white">details</ButtonCustom>
+                        <ButtonCustom bgColor={theme.palette.primary.main} color="white" 
+                            onClick={()=>history.push({pathname: "/LSGD_FRONT/p/listgrants", 
+                                state: { aadhar_no: row.aadhar_no }})}>details</ButtonCustom>
               </TableCell>
             </TableRow>
           ))}

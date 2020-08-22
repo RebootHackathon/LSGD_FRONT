@@ -184,7 +184,7 @@ const PanelBody = (props) => {
                     <Box marginBottom={2}>
                         {/* <Box paddingBottom={1}><Typography variant="subtitle2" color="textSecondary">Pending Requests</Typography></Box> */}
                             <Box paddingY={1} paddingX={2}>
-                                <TableCustome />
+                                <TableCustome data={pendingList} />
                                 {/* {pendingList.map((value, index)=> (
                                     <MainContent index={index} />
                                 ))} */}
