@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePage from "./HomePage";
+
+import { userServices } from "../../services/user.services";
 
 
 function HomePageVM(props) {
   const [tabValue, setTabValue] = React.useState(0);
+  const [pendingList, setPendingList] = React.useState([]);
+  
+  useEffect(() => {
+    userServices.getPending().then((data)=>{
+      if(data!==null)
+        setPendingList(data);
+    })
+  }, [])
   
   function a11yProps(index) {
     return {
@@ -21,7 +31,8 @@ function HomePageVM(props) {
   };
 
   return (
-    <HomePage tabValue={tabValue} handleChangeTab={handleChangeTab} a11yProps={a11yProps} handleChangeIndex={handleChangeIndex} />
+    <HomePage tabValue={tabValue} handleChangeTab={handleChangeTab} a11yProps={a11yProps} 
+      handleChangeIndex={handleChangeIndex} pendingList={pendingList} />
   )
 }
 
