@@ -123,7 +123,7 @@ const PanelBody = (props) => {
             return (
                 <React.Fragment>
                     {pendingList.length > 3 ? 
-                        <Box display="flex" justifyContent="flex-end" paddingTop={2}>
+                        <Box display="flex" justifyContent="flex-end" paddingTop={2} onClick={()=>handleChangeTab(null, 3)}>
                             <Typography variant="caption" className={classes.moreText}>+{pendingList.length-3} more</Typography>
                         </Box>
                     : ""}
