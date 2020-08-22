@@ -11,6 +11,7 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import AppBar from "../../Components/CitizenAppBar/AppBar";
 import Spinner from 'react-bootstrap/Spinner';
+import { connect } from 'react-redux';
 
 class ListGrant extends Component {
     state = {
@@ -44,6 +45,16 @@ class ListGrant extends Component {
         super(props);
         this.onClickHandler();
     }
+    componentWillMount(){
+        if(this.props.malayalamLanguage){
+            console.log("malayalam vannu");
+            this.changeMalayalamHandler(this);
+        }else{
+            console.log("english vannu");
+            this.changeEnglishHandler(this);
+        }
+        console.log("[malayalamcheck]",this.state);
+       }
     // onCardClickHandler=(id)=>{
     //     const expand_element=this.state.data.filter(ele=>(
     //         ele._id===id
@@ -122,12 +133,13 @@ class ListGrant extends Component {
     }
 
     onClickApplyHandler(props) {
-        props.history.push({pathname: '/LSGD_FRONT/applygrant', state: this.state})
+        props.history.push({pathname: '/citizenapplygrant', state: this.state})
     }
 
     changeEnglishHandler(this_local){
+        this.props.onEnglish();
         this_local.setState({
-            malayamLanguage:false,
+            malayalamLanguage:false,
             aadharHeaderLabel:'Enter Aadhar',
             descriptionLabel:'View the applied grants using aadhar number',
             aadharLabel:'Aadhar',
@@ -146,8 +158,9 @@ class ListGrant extends Component {
             nouserLabel:'No User exist',})
     }
     changeMalayalamHandler(this_local){
+        this.props.onMalayalam();
         this_local.setState({
-            malayamLanguage:false,
+            malayalamLanguage:true,
             aadharHeaderLabel:'ആധാർ നമ്പർ നൽകുക',
             descriptionLabel:'നിങ്ങൾ അപേക്ഷിച്ച ഗ്രാന്റുകൾ കണ്ടുപിടിക്കാൻ',
             aadharLabel:'ആധാർ',
@@ -429,4 +442,20 @@ class ListGrant extends Component {
 
 }
 
-export default ListGrant;
+//Redux
+
+const mapStateToProps = state => {
+    return {
+        malayalamLanguage:state.malayalamLanguage
+    };
+};
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onMalayalam:()=>dispatch({type:'MALAYALAM'}),
+        onEnglish:()=>dispatch({type:'ENGLISH'})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListGrant);

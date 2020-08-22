@@ -27,7 +27,7 @@ function Login(props) {
     const [play, setPlay] = useState(false);
     const [spinning, setSpinning] = useState(false);
     const [showSpinner,setShowSpinner]=useState(true);
-    const [malayamLanguage,setMalayalam]=useState(true);
+    const [malayalamLanguage,setMalayalam]=useState(true);
     const [loginLabel,setLoginLabel] = useState("മുമ്പിലേക്ക് പോകാം");
     const [usernameLabel,setusernameLabel] = useState("യൂസർ നെയിം");
     const [passwordLabel,setpasswordLabel] = useState("പാസ്സ്‌വേർഡ്‌");
@@ -48,6 +48,7 @@ function Login(props) {
                     setShowSpinner(true);
                     setShow(false);
                     props.onLoggedIn(response.data.profile.employee_name);
+                    
                     console.log("Already logged in");
                     // name=response.data.
                     setTimeout(() => {
@@ -82,6 +83,14 @@ function Login(props) {
     }
     $(document).ready(function () {
         if (!play) {
+            setMalayalam(props.malayalamLanguage);
+                    if(props.malayalamLanguage){
+                        console.log("malayalathine vilich");
+                            changeMalayalamHandler();
+                    }else{
+                        console.log("english ne vilich");
+                        changeEnglishHandler();
+                    }
             axios.get('/auth/isloggedin')
                 .then(response => {
                     console.log(response);
@@ -142,8 +151,9 @@ function Login(props) {
         setLoginLabel ( <Spinner animation="border"/>);
     }
     const changeEnglishHandler=()=>{
+        props.onEnglish();
         setMalayalam(false);
-        console.log(malayamLanguage);
+        console.log(malayalamLanguage);
         setLoginLabel("Login");
         setusernameLabel("User Name");
         setpasswordLabel("Password‌");
@@ -152,6 +162,7 @@ function Login(props) {
     
     }
     const changeMalayalamHandler=()=>{
+        props.onMalayalam();
         setMalayalam(false);
         setLoginLabel("മുമ്പിലേക്ക് പോകാം");
         setusernameLabel("യൂസർ നെയിം");
@@ -201,7 +212,7 @@ function Login(props) {
                               
                                 <div style={{marginTop: '20px'}}>
                                     <div style={{textAlign: 'right'}}>
-                                        <Link to={'/LSGD_FRONT/registercitizen'} >{signupLabel}</Link>
+                                        <Link to={'/citizensignup'} >{signupLabel}</Link>
                                     </div>
                                 
                                 </div>
@@ -283,12 +294,27 @@ const useFormInput = initialValue => {
 
 //Redux
 
-
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
     return {
-        onLoggedIn: (name) => dispatch({type: 'LOGIN',name:name})
+        name: state.name,
+        isLoggedIn:state.isLoggedIn,
+        malayalamLanguage:state.malayalamLanguage
     };
 };
 
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapDispatchToProps = dispatch => {
+    return {
+        onLoggedIn: (name) => dispatch({type: 'LOGIN',name:name}),
+        onMalayalam:()=>dispatch({type:'MALAYALAM'}),
+        onEnglish:()=>dispatch({type:'ENGLISH'})
+    };
+};
+
+
+
+
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

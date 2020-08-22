@@ -18,6 +18,8 @@ import CitizenLogin from '../Containers/UserFiles/CitizenLogin';
 import CitizenViewAllGrants from '../Containers/UserFiles/CitizenViewGrant';
 import Citizenappliedgrants from '../Containers/UserFiles/CitizenAppliedGrants';
 import Citizenmainpage from '../Containers/UserFiles/CitizenMainPage';
+import Citizenapplygrant from '../Containers/UserFiles/CitizenApplyGrant/CitizenApplyGrant';
+import Citizensignup from '../Containers/UserFiles/CitizenSignup/CitizenSignup';
 import RegisterCitizenUI from "../pages/RegisterCitizen/RegisterCitizen";
 
 var routes = [
@@ -47,6 +49,8 @@ var routes = [
     {path: "/citizenviewallgrants", name: "citizenviewallgrants", component: CitizenViewAllGrants},
     {path:'/citizenappliedgrants',name:'citizenappliedgrants',component:Citizenappliedgrants},
     {path:'/citizenmainpage',name:'citizenmainpage',component:Citizenmainpage},
+    {path:'/citizenapplygrant',name:'citizenapplygrant',component:Citizenapplygrant},
+    {path:'/citizensignup',name:'citizensignup',component:Citizensignup},
     {path: "/", name: "login", component: Login},
 
 ];
