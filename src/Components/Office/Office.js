@@ -42,6 +42,7 @@ class Office extends React.Component {
                 console.log(response);
                 if (response.data.status === 200) {
                     this.getOffice();
+                    alert('Success')
                 } else {
                 }
             }).catch(err => {
