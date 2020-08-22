@@ -112,7 +112,7 @@ const PanelBody = (props) => {
         function NumericalSection(props) {
             return (
                 <React.Fragment>
-                    <Box  height={90}></Box>
+                    <Box  height={40}></Box>
                 </React.Fragment>
             )
 
@@ -170,6 +170,21 @@ const PanelBody = (props) => {
                     </Grid>
                     <Grid item xs={6}>
                         <iframe style={{background: "#FFFFFF", border: "none", borderRadius: "2px", boxShadow: "0 2px 10px 0 rgba(70, 76, 79, .2)"}} width="100%" height="480" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=3e9628ff-dbc4-4149-828b-240d36da1228&theme=light"></iframe>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <iframe style={{background: "#FFFFFF", border: "none", borderRadius: "2px", boxShadow: "0 2px 10px 0 rgba(70, 76, 79, .2)"}} width="100%" height="480" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=5a414ef9-5d20-4b7d-a8a2-365329d2a9f2&theme=light"></iframe>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <iframe style={{background: "#FFFFFF", border: "none", borderRadius: "2px", boxShadow: "0 2px 10px 0 rgba(70, 76, 79, .2)"}} width="100%" height="480" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=9ed21e0d-49ed-499a-8cae-3329a1f66473&theme=light"></iframe>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <iframe style={{background: "#FFFFFF", border: "none", borderRadius: "2px", boxShadow: "0 2px 10px 0 rgba(70, 76, 79, .2)"}} width="100%" height="480" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=5232f246-8f24-4a61-908f-1e309206c65e&theme=light"></iframe>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <iframe style={{background: "#FFFFFF", border: "none", borderRadius: "2px", boxShadow: "0 2px 10px 0 rgba(70, 76, 79, .2)"}} width="100%" height="480" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=382c54de-a7ba-42f0-9351-5379adc2af03&theme=light"></iframe>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <iframe style={{background: "#FFFFFF", border: "none", borderRadius: "2px", boxShadow: "0 2px 10px 0 rgba(70, 76, 79, .2)"}} width="100%" height="480" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=5fe10905-435b-48f5-85c4-33503d0a0620&theme=light"></iframe>
                     </Grid>
                 </Grid>
                 
@@ -265,9 +280,9 @@ const CardSection = (props) => {
                         <Typography variant="caption" display="inline">Click Here</Typography>
 
                     </Box>
-                    <Box className={classes.imgContainer} height="100%" display="flex" alignItems="center">
+                    {/* <Box className={classes.imgContainer} height="100%" display="flex" alignItems="center">
                         <img src={lion} className={classes.img} />
-                    </Box>
+                    </Box> */}
                 </Box>
         )
 
