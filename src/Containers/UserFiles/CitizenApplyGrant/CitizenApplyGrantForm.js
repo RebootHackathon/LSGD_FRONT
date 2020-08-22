@@ -36,7 +36,7 @@ componentWillMount(){
     this.setState({grants:this.props.grantlist,filename:this.props.state.notChoosefileLabel})
 }
     render(){
-        console.log("[error state]",this.state);
+        // console.log("[error state]",this.state);
         // this.setState({filename:this.props.state.notChoosefileLabel});
         let eligibilityError=null;
         if(this.props.state.grantErrorShow){
@@ -87,7 +87,7 @@ componentWillMount(){
                                     <option  value="ele.id3">ele.grantName3</option>
                                     <option  value="ele.id2">ele.grantName2</option> */}
                                             {this.state.grants.map(ele => {
-                                                console.log("[from ele]", ele);
+                                                // console.log("[from ele]", ele);
                                                 return (<option key={ele.id} value={ele.id}>{ele.grantName}</option>)
                                             })}
 
