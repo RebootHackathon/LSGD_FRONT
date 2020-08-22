@@ -42,6 +42,11 @@ componentWillMount(){
         if(this.props.state.grantErrorShow){
             eligibilityError=<p style={{color:'red',marginLeft:'20%'}}>{this.props.state.errorMsgLabel} </p>
         }
+        let amtData=null;
+        amtData=this.state.grants.filter(ele=>{
+            console.log("[from ele1]", ele.id,this.props.state.grant)
+            return ele.id==this.props.state.grant;
+        })
         return (
                 <Row>
                     <Col  md={3}>
@@ -87,16 +92,17 @@ componentWillMount(){
                                     <option  value="ele.id3">ele.grantName3</option>
                                     <option  value="ele.id2">ele.grantName2</option> */}
                                             {this.state.grants.map(ele => {
-                                                // console.log("[from ele]", ele);
+                                                
                                                 return (<option key={ele.id} value={ele.id}>{ele.grantName}</option>)
                                             })}
 
                                         </FormControl>
                                     </InputGroup>
-
-
-                                    <FormElement label={this.props.state.amountLabel} id='amount' value={this.props.state.amount}
-                                                 onChange={this.props.onInputChange}/>
+                                            {/* Amount if needed uncomment*/}
+                                    
+                                    {console.log("[from ele]", amtData)}
+                                    <FormElement label={this.props.state.amountLabel} id='amount' value={amtData[0].grantAmount}
+                                            onChange={this.props.onInputChange} disabled/>
 
                                     {/*<input type="file" name="file" onChange={event => {*/}
                                     {/*    const data = new FormData()*/}

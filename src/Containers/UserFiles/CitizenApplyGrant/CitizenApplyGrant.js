@@ -89,7 +89,7 @@ class ApplyGrant extends Component {
                         const id = response.data.data[index]._id;
                         const grantName = response.data.data[index].grant_name;
                         // console.log("[etheror]",response.data.data[index]);
-                        grantArray.push({"id": id, "grantName": grantName,"grandGroup":response.data.data[index].grant_group});
+                        grantArray.push({"id": id, "grantName": grantName,"grandGroup":response.data.data[index].grant_group,'grantAmount':+response.data.data[index].grant_amount});
                     }
                     // this.state.grant = grantArray[0].id
                     this.setState({grant:grantArray[0].id,grants: [...grantArray]})
