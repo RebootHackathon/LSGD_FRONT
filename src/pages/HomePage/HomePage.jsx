@@ -7,6 +7,7 @@ import {Chart, PieSeries, Legend} from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
+import {connect} from 'react-redux';
 
 
 
@@ -52,7 +53,7 @@ const Header = (props) => {
 const PanelBody = (props) => {
     const classes = useStyles(props);
     const {piData, lineData} = props;
-    const {tabValue, handleChangeTab, handleChangeIndex} = props;
+    const {tabValue, handleChangeTab, handleChangeIndex, name, isLoggedIn} = props;
 
     const Tab2Body = (props) => {
         return (
@@ -114,11 +115,14 @@ const PanelBody = (props) => {
         function Section1(props) {
 
             return (
-                <Paper elevation={3}>
-                    <Box padding={2}>
-                        <MainContent />
+                // <Paper elevation={3}>
+                    <Box>
+                        {/* <MainContent /> */}
+                        <Typography variant="h5">
+                            {isLoggedIn === true ? `Hi, ${name}` : "Anonymous user"}
+                        </Typography>
                     </Box>
-                </Paper>
+                // </Paper>
             )
         }
         function Section2(props) {
@@ -184,8 +188,8 @@ const PanelBody = (props) => {
                         <Grid itme xs={8}>
                             <Box bgcolor="green">
                                 <Paper elevation={3}>
-                                    <Box overflow="hidden" height="100%" bgcolor="red" height={200}>
-                                        <iframe style={{background: "#FFFFFF", border: "none"}} width="100%" height="100%" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=f79c8d9d-3229-45cc-8d10-807caebaf3b4&theme=light"></iframe>
+                                    <Box overflow="hidden" height="100%" height={200}>
+<iframe style={{background: "#FFFFFF", border: "none"}} width="100%" height="100%" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=f79c8d9d-3229-45cc-8d10-807caebaf3b4&theme=light"></iframe>
                                     </Box>
                                 </Paper>
                             </Box>
@@ -198,9 +202,12 @@ const PanelBody = (props) => {
 
         return (
             <React.Fragment>
-                <Section1 />
-                <Section2 />
-                <CardSection />
+                <Box display="flex" flexDirection="column">
+                    <Section1 />
+                    <Section2 />
+                    <Box flexGrow={1} bgcolor="pink" />
+                    <CardSection />
+                </Box>
             </React.Fragment>
         )
     }
@@ -291,7 +298,7 @@ const CardSection = (props) => {
     }
 
     return (
-        <Box height={140} display="flex" paddingBottom={2}>
+        <Box height={140} display="flex"> 
             <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
                         <Card title="Apply to Scheme" subheading="User" caption="caption goes here to demonstrate"
@@ -314,8 +321,8 @@ const CardSection = (props) => {
 
 const HomePage = (props) => {
     const classes = useStyles(props);
-    const {tabValue, handleChangeTab, a11yProps, piData, lineData, handleChangeIndex} = props;
-    console.log("-------------", props)
+    const {tabValue, handleChangeTab, a11yProps, piData, lineData, handleChangeIndex, name, isLoggedIn} = props;
+    console.log("-------------##", props)
   
     return (
         <React.Fragment>
@@ -323,11 +330,19 @@ const HomePage = (props) => {
                 <Box height="100%" display="flex" flexDirection="column" overflow="auto">
                     <Header tabValue={tabValue} handleChangeTab={handleChangeTab} />
                     <PanelBody tabValue={tabValue} handleChangeTab={handleChangeTab} piData={piData} 
-                                    lineData={lineData} handleChangeIndex={handleChangeIndex} />
+                                    lineData={lineData} handleChangeIndex={handleChangeIndex} 
+                                    name={name} isLoggedIn={isLoggedIn} />
                 </Box>
             </Container>
         </React.Fragment>
     );
 }
 
-export default Scaffold(HomePage, 1);
+
+function mapStateToProps(state) {
+    const {isLoggedIn, name} = state;
+    return {isLoggedIn, name};
+}
+
+const reduxConnect = connect(mapStateToProps, null)(Scaffold(HomePage, 1));
+export default reduxConnect;
