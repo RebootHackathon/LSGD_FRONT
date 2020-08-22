@@ -72,7 +72,7 @@ class Employee extends React.Component {
                 console.log(response);
                 if (response.data.status === 200) {
                    console.log("Successfully createted");
-                   alert("Registration Successful...Wait for validation");
+                   alert("Registration Successful");
                    this.props.history.goBack()
                 } else {
                 }
