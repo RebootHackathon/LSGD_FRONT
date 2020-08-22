@@ -48,14 +48,14 @@ componentWillMount(){
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src={require('../../../assets/cardbg1.png')} />
                             <Card.Body>
-                                <Card.Title>Apply Grants</Card.Title>
+                                <Card.Title>{this.props.state.applyGrantLabel}</Card.Title>
                                 <Card.Text>
-                                    This page you can apply for grants given by the government of Kerala
+                                   {this.props.state.descriptionLabel}
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
                                 <Card.Text>
-                                    Kerala Government Initiative
+                                    {this.props.state.keralaLabel}
                                 </Card.Text>
                             </Card.Footer>
                         </Card>

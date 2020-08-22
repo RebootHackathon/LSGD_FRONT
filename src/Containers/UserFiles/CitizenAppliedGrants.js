@@ -38,6 +38,10 @@ class ListGrant extends Component {
         applynewgrantLabel:'പുതിയ ഗ്രാന്റിനി അപേക്ഷിക്കാം',
         noresultLable:'ഒരു ഫലവും ഇല്ല',
         nouserLabel:'നിങ്ങൾ അടിച്ച നമ്പർ തെറ്റ്',
+        applyGrantLabel:'ബാധകമായ ഗ്രാന്റുകൾ',
+        descriptionGrantLabel:'ബാധകമായ എല്ലാ ഗ്രാന്റുകളും ഈ പേജ് കാണിക്കുന്നു',
+        keralaLabel:'കേരള സർക്കാർ സംരംഭം',
+        grantGroupLabel:'ഗ്രാന്റ് ഗണം',
         malayalamLanguage:true,
         appliedGrantDetails:[],
         
@@ -157,7 +161,11 @@ class ListGrant extends Component {
             receivedgrantLAbel:'Received Grants',
             applynewgrantLabel:'Apply for new grants',
             noresultLable:'No Result',
-            nouserLabel:'No User exist',})
+            nouserLabel:'No User exist',
+            applyGrantLabel:'Applied Grants',
+            descriptionGrantLabel:' This page you can view your applied grants given by the government of Kerala',
+            keralaLabel:'Kerala Government Initiative',
+            grantGroupLabel:'Grant Group'})
     }
     changeMalayalamHandler(this_local){
         this.props.onMalayalam();
@@ -178,7 +186,11 @@ class ListGrant extends Component {
             receivedgrantLAbel:'ലഭിച്ച ഗ്രാന്റുകൾ',
             applynewgrantLabel:'പുതിയ ഗ്രാന്റിനി അപേക്ഷിക്കാം',
             noresultLable:'ഒരു ഫലവും ഇല്ല',
-            nouserLabel:'നിങ്ങൾ അടിച്ച നമ്പർ തെറ്റ്'
+            nouserLabel:'നിങ്ങൾ അടിച്ച നമ്പർ തെറ്റ്',
+            applyGrantLabel:'ബാധകമായ ഗ്രാന്റുകൾ',
+            descriptionGrantLabel:'ബാധകമായ എല്ലാ ഗ്രാന്റുകളും ഈ പേജ് കാണിക്കുന്നു',
+            keralaLabel:'കേരള സർക്കാർ സംരംഭം',
+            grantGroupLabel:'ഗ്രാന്റ് ഗണം'
         })
     }
     
@@ -208,14 +220,14 @@ class ListGrant extends Component {
                             <Card style={{ width: '18rem' }}>
                                 <Card.Img variant="top" src={require('../../assets/cardbg1.png')} />
                                 <Card.Body>
-                                    <Card.Title>Applied Grants</Card.Title>
+                                    <Card.Title>{this.state.applyGrantLabel}</Card.Title>
                                     <Card.Text>
-                                        This page shows all your applied grants
+                                    {this.state.descriptionGrantLabel}
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Footer>
                                     <Card.Text>
-                                        Kerala Government Initiative
+                                    {this.state.keralaLabel}
                                     </Card.Text>
                                 </Card.Footer>
                             </Card>
@@ -257,8 +269,9 @@ class ListGrant extends Component {
                                                                             </Card.Text></Col>
                                                                             <Col>
                                                                                 <Card.Text> {this.state.amountLabel}:{ele.amount}
-                                                                                <br/>Grant Group:
-                                                                                    {ele.grant_group}
+                                                                                <br/>{this.state.grantGroupLabel}:
+                                                                                    {grant_details[0].grantGroup}
+                                                                                   {/* { console.log("[group find]",ele)} */}
                                                                                 </Card.Text>
                                                                             </Col>
                                                                         </Row>
@@ -347,8 +360,8 @@ class ListGrant extends Component {
                                                                                     }
                                                                                 })()}</Card.Text></Col>
                                                                             <Col>
-                                                                                <Card.Text> {this.state.amountLabel}:{ele.amount}<br/>Grant Group:
-                                                                                    {ele.grant_group}</Card.Text></Col>
+                                                                                <Card.Text> {this.state.amountLabel}:{ele.amount}<br/>{this.state.grantGroupLabel}:
+                                                                                    {grant_details[0].grantGroup}</Card.Text></Col>
                                                                         </Row>
                                                                     </Card.Title>
                                                                     <Card.Subtitle>

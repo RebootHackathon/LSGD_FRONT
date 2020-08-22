@@ -26,6 +26,9 @@ class ApplyGrant extends Component {
         uploadLabel:'അയച്ചു',
         applyLabel:'അപേക്ഷിക്കാം',
         errorMsgLabel:'നിങ്ങൾ ഈ ഗ്രാന്റിനി ആർഹനല്ല..!',
+        applyGrantLabel:'പുതിയ ഗ്രാന്റിനി അപേക്ഷിക്കാം',
+        descriptionLabel:'ഈ പേജിൽ കേരള സർക്കാർ നൽകുന്ന ഗ്രാന്റുകൾക്ക് അപേക്ഷിക്കാം',
+        keralaLabel:'കേരള സർക്കാർ സംരംഭം',
         malayalamLanguage:true,
         appliedGrantDetails:[],
         grantErrorShow:false,
@@ -152,7 +155,10 @@ class ApplyGrant extends Component {
             uploadingLabel:'Uploading...',
             uploadLabel:'Uploading Success',
             applyLabel:'Apply',
-            errorMsgLabel:'You are not Eligible for this grant..!'
+            errorMsgLabel:'You are not Eligible for this grant..!',
+            applyGrantLabel:'Apply Grants',
+            descriptionLabel:' This page you can apply for grants given by the government of Kerala',
+            keralaLabel:'Kerala Government Initiative'
     })
     }
     changeMalayalamHandler(this_local){
@@ -169,7 +175,10 @@ class ApplyGrant extends Component {
             uploadingLabel:'അയച്ചുകൊണ്ടിരിക്കുന്നു...',
             uploadLabel:'അയച്ചു',
             applyLabel:'അപേക്ഷിക്കാം',
-            errorMsgLabel:'നിങ്ങൾ ഈ ഗ്രാന്റിനി ആർഹനല്ല..!'
+            errorMsgLabel:'നിങ്ങൾ ഈ ഗ്രാന്റിനി ആർഹനല്ല..!',
+            applyGrantLabel:'പുതിയ ഗ്രാന്റിനി അപേക്ഷിക്കാം',
+            descriptionLabel:'ഈ പേജിൽ കേരള സർക്കാർ നൽകുന്ന ഗ്രാന്റുകൾക്ക് അപേക്ഷിക്കാം',
+            keralaLabel:'കേരള സർക്കാർ സംരംഭം'
         })
     }
 
