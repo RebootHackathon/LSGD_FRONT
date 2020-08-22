@@ -4,14 +4,16 @@ import {Box, Typography} from '@material-ui/core';
 import { PowerSettingsNew, PermIdentity } from "@material-ui/icons";
 
 import theme from "../../../themes/theme";
+import {connect} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
   },
 }));
 
-export default function ButtonAppBar() {
+function ButtonAppBar(props) {
     const classes = useStyles();
+    const {isLoggedIn, name}=props;
 
   return (
     <Box className={classes.root} height={50} bgcolor="white" borderBottom="1px solid #fafafa" display="flex"
@@ -22,9 +24,19 @@ export default function ButtonAppBar() {
         <Box display="flex" color="gray" justifyContent="space-between" 
             marginRight={1} alignItems="center">
             <PermIdentity color="inherit" />
-          <Typography variant="subtitle2" color="inherit">&nbsp;&nbsp;xyz@gmail.com</Typography>
+            <Typography variant="subtitle2" color="inherit">
+              &nbsp;&nbsp;{isLoggedIn ? name: "Anonymous User"}
+            </Typography>
         </Box>
 
     </Box>
   );
 }
+
+function mapStateToProps(state) {
+  const {isLoggedIn, name} = state;
+  return {isLoggedIn, name};
+}
+
+const reduxConnect = connect(mapStateToProps, null)(ButtonAppBar);
+export default reduxConnect;

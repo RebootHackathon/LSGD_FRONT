@@ -45,6 +45,7 @@ class Grants extends React.Component {
                 console.log(response);
                 if (response.data.status === 200) {
                     this.getgrant();
+                    alert('Success')
                 } else {
                 }
             }).catch(err => {
