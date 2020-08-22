@@ -154,7 +154,7 @@ const PanelBody = (props) => {
                     <Section1 />
                     <NumericalSection />
                     <PendingRequest />
-                    <CardSection />
+                    <CardSection handleChangeTab={handleChangeTab} />
                 </Box>
             </React.Fragment>
         )
@@ -261,6 +261,7 @@ const PanelBody = (props) => {
 
 const CardSection = (props) => {
     const classes = useStyles(props);
+    const {handleChangeTab} = props;
 
     function Card(props) {
         const classes = useStyles(props);
@@ -269,12 +270,12 @@ const CardSection = (props) => {
         return (
                 <Box height="100%" borderRadius={5} padding={2} paddingBottom={1} color="white"
                     className={`${classes.card} ${classes.link}`} position="relative" overflow="hidden" 
-                    onClick={()=>history.push(to)}>
+                    onClick={to}>
                     <Box zIndex={1} display="flex" flexDirection="column" height="100%">
-                        <Typography variant="subtitle2" color="inherit">{title}</Typography>
+                        <Typography variant="h6" color="inherit">{title}</Typography>
                         {/* <Typography variant="subtitle2" color="inherit">{subheading}</Typography> */}
-                        <Typography variant="caption" color="textSecondary">
-                            Here goes the text secondary grey color
+                        <Typography variant="caption" color="inherit">
+                            {caption}
                         </Typography>
                         <Box flexGrow={1}></Box>
                         <Typography variant="caption" display="inline">Click Here</Typography>
@@ -292,17 +293,17 @@ const CardSection = (props) => {
         <Box height={140} display="flex"> 
             <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
-                        <Card title="Apply to Scheme" subheading="User" caption="caption goes here to demonstrate"
+                        <Card title="Apply to Scheme" subheading="User" caption="Apply the citizen for grands"
                             pic="" url="" fromColor="#4a148c" toColor="#6a1b9a" className={classes.link} 
-                            to="/LSGD_FRONT/p/listgrants" />
+                            to={()=>history.push("/LSGD_FRONT/p/listgrants")} />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card title="Register Citizen " subheading="Account" caption="second caption goes here"
-                        pic="" url="" fromColor="#00695c" toColor="#00796b" to="/LSGD_FRONT/p/registercitizen" />
+                    <Card title="Register Citizen " subheading="Account" caption="Register citizen"
+                        pic="" url="" fromColor="#00695c" toColor="#00796b" to={()=>history.push("/LSGD_FRONT/p/registercitizen")} />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card title="Empyt space Not done" subheading="Account" caption="here is the third caption goes here"
-                         pic="" url="" fromColor="#f9a825" toColor="#fbc02d"  to="/not_done"/>
+                    <Card title="View Pending Request" subheading="Account" caption="Veiwing pending request from citizen"
+                         pic="" url="" fromColor="#f9a825" toColor="#fbc02d"  to={()=>handleChangeTab(null, 3)}/>
                 </Grid>
             </Grid>
 
