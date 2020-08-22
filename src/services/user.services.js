@@ -1,7 +1,9 @@
 import constants from "../Constants/network";
+import axios from "../axios";
 
 export const userServices = {
-    logout
+    logout,
+    getPending
 }
 
 function logout() {
@@ -14,6 +16,19 @@ function logout() {
         console.log("Donatto,  ", data)
         return data;
     });
+}
+
+function getPending() {
+    return axios.get('/grants/allpending').then(response => {
+                console.log('getpost', response);
+                if (response.data.status === 200) {
+                    return response.data.data;
+                } else {
+                    return null
+                }
+            }).catch(err => {
+                console.log(err);
+            })
 }
 
 

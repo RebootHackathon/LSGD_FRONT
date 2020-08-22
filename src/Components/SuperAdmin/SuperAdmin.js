@@ -16,6 +16,7 @@ import {Typography} from '@material-ui/core';
 import { connect } from 'react-redux';
 import SideNavBar from "../SideNavBar/SideNavBar";
 import ListGroup from "react-bootstrap/ListGroup";
+import UploadBulk from "../UploadBulk/UploadBulk";
 
 
 
@@ -76,6 +77,8 @@ class SuperAdmin extends React.Component {
                                     Employee</ListGroup.Item>
                                 <ListGroup.Item action variant="light"  onClick={() => this.setState({selected: 'grant'})}>
                                     Grant</ListGroup.Item>
+                                <ListGroup.Item action variant="light"  onClick={() => this.setState({selected: 'upload'})}>
+                                    Bulk Upload</ListGroup.Item>
                             </ListGroup>
                             {/*<Nav className="mr-auto">*/}
                             {/*    <Nav.Link onClick={() => this.setState({selected: 'office'})}>Office</Nav.Link>*/}
@@ -128,6 +131,11 @@ class SuperAdmin extends React.Component {
                             {this.state.selected === 'grant' && <Row>
                                 {
                                     <Grants style={{paddingTop: '20px'}}/>
+                                }
+                            </Row>}
+                            {this.state.selected === 'upload' && <Row>
+                                {
+                                    <UploadBulk style={{paddingTop: '20px'}}/>
                                 }
                             </Row>}
                         </Col>

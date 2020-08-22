@@ -12,6 +12,8 @@ import {connect} from 'react-redux';
 
 
 import theme from "../../themes/theme";
+import TableCustome from "../../Components/TableCustome/TableCustome";
+import MainContent from "../../Components/PendingContent/PendingContent";
 import Scaffold from "../../Components/Donatto/Scaffold/Scaffold";
 import LineChart from "../../Components/Donatto/LineChart/LineChart";
 import lion from "../../assets/lion.png";
@@ -44,6 +46,7 @@ const Header = (props) => {
                 <Tab label="Account List" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
                 <Tab label="List Schemes" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
                 <Tab label="Data Analysis" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
+                <Tab label="Pending Requests" disableRipple={true} classes={{root: classes.tab, wrapper: classes.wrapper, selected: classes.selected}} />
             </Tabs>
 
         </Box>
@@ -53,7 +56,7 @@ const Header = (props) => {
 const PanelBody = (props) => {
     const classes = useStyles(props);
     const {piData, lineData} = props;
-    const {tabValue, handleChangeTab, handleChangeIndex, name, isLoggedIn} = props;
+    const {tabValue, handleChangeTab, handleChangeIndex, name, isLoggedIn, pendingList} = props;
 
     const Tab2Body = (props) => {
         return (
@@ -67,55 +70,6 @@ const PanelBody = (props) => {
     }
 
     const Tab1Body = (props) => {
-        function MainContent(props) {
-            console.log("Theme = ", theme);
-            const ButtonCustom = withStyles({
-                root: {
-                    backgroundColor: props => props.bgColor,
-                    borderRadius: 50,
-                    padding: "2px 10px",
-                    marginLeft: 10,
-                    boxShadow: theme.shadows[3],
-                    color: props => props.color,
-                    fontSize: 10,
-                    '&:focus': {
-                        outline: "none"
-                    }
-                }
-
-            }) (Button)
-            return (
-                <Box>
-                    <Grid container>
-                        <Grid item xs={12} md={4}>
-                            <Typography variant="caption" color="textSecondary">Fact no1</Typography>
-                            <Typography variant="subtitle1" color="textPrimary">7899 6895 6986 4785</Typography>
-                        </Grid>
-                        <Grid item xs={12} md={2}>
-                            <Typography variant="caption" color="textSecondary">Fact no-2</Typography>
-                            <Box display="flex" alignItems="center">
-                                <Typography variant="h5" color="primary">&#8226;&nbsp;</Typography><Typography variant="subtitle1" color="textPrimary">7899 6895 6986 4785</Typography>
-                            </Box>
-                        </Grid>
-                        <Grid item xs={12} md={2}>
-                            <Typography variant="caption" color="textSecondary">Fact no3</Typography>
-                            <Box display="flex" alignItems="center">
-                                <Typography variant="h5" color="primary">&#8226;&nbsp;</Typography><Typography variant="subtitle1" color="textPrimary">7899 6895 6986 4785</Typography>
-                            </Box>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <Box display="flex" height="100%" justifyContent="flex-end" alignItems="center">
-                                <ButtonCustom  color="black">statement</ButtonCustom>
-                                <ButtonCustom  color="black">history</ButtonCustom>
-                                <ButtonCustom bgColor={theme.palette.primary.main} color="white">details</ButtonCustom>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                    <Divider />
-
-                </Box>
-            )
-        }
         function Section1(props) {
             return (
                     <Box>
@@ -167,16 +121,20 @@ const PanelBody = (props) => {
             const classes = useStyles(props)
 
             return (
-                <Box display="flex" justifyContent="flex-end" paddingTop={2}>
-                    <Typography variant="caption" className={classes.moreText}>+7 more</Typography>
-                </Box>
+                <React.Fragment>
+                    {pendingList.length > 3 ? 
+                        <Box display="flex" justifyContent="flex-end" paddingTop={2}>
+                            <Typography variant="caption" className={classes.moreText}>+{pendingList.length-3} more</Typography>
+                        </Box>
+                    : ""}
+                </React.Fragment>
             )
         }
         function PendingRequest(props) {
             return (
                 <React.Fragment>
                     <Box marginBottom={2}>
-                        <Box paddingBottom={1}><Typography variant="subtitle2">Pending Requests</Typography></Box>
+                        <Box paddingBottom={1}><Typography variant="subtitle2" color="textSecondary">Pending Requests</Typography></Box>
                         <Paper elevation={3}>
                             <Box paddingY={1} paddingX={2}>
                                 <MainContent />
@@ -202,6 +160,7 @@ const PanelBody = (props) => {
         )
     }
     function Tab3Body(props) {
+        
         return (
             <Box>
                 <iframe style={{background: "#FFFFFF", border: "none", borderRadius: "2px", boxShadow: "0 2px 10px 0 rgba(70, 76, 79, .2)"}} width="100%" height="380" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=30599b9b-19ae-4a4e-b889-891d0aea85fa&theme=light"></iframe>
@@ -216,7 +175,29 @@ const PanelBody = (props) => {
                 
             </Box>
         )
-
+    }
+    function Tab4Body(props) {
+        function PendingRequest(props) {
+            console.log("%$$$$$$$$ ", pendingList)
+            return (
+                <React.Fragment>
+                    <Box marginBottom={2}>
+                        {/* <Box paddingBottom={1}><Typography variant="subtitle2" color="textSecondary">Pending Requests</Typography></Box> */}
+                            <Box paddingY={1} paddingX={2}>
+                                <TableCustome />
+                                {/* {pendingList.map((value, index)=> (
+                                    <MainContent index={index} />
+                                ))} */}
+                            </Box>
+                    </Box>
+                </React.Fragment>
+            )
+        }
+        return (
+            <Box>
+                <PendingRequest />
+            </Box>
+        )
     }
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
@@ -254,6 +235,9 @@ const PanelBody = (props) => {
                 </TabPanel>
                 <TabPanel value={tabValue} index={2} dir={theme.direction}>
                     <Tab3Body />
+                </TabPanel>
+                <TabPanel value={tabValue} index={3} dir={theme.direction}>
+                    <Tab4Body />
                 </TabPanel>
             </SwipeableViews>
         </Box>
@@ -313,7 +297,8 @@ const CardSection = (props) => {
 
 const HomePage = (props) => {
     const classes = useStyles(props);
-    const {tabValue, handleChangeTab, a11yProps, piData, lineData, handleChangeIndex, name, isLoggedIn} = props;
+    const {tabValue, handleChangeTab, a11yProps, piData, lineData, handleChangeIndex, name, isLoggedIn, } = props;
+    const {pendingList} = props;
     console.log("-------------##", props)
   
     return (
@@ -323,7 +308,7 @@ const HomePage = (props) => {
                     <Header tabValue={tabValue} handleChangeTab={handleChangeTab} />
                     <PanelBody tabValue={tabValue} handleChangeTab={handleChangeTab} piData={piData} 
                                     lineData={lineData} handleChangeIndex={handleChangeIndex} 
-                                    name={name} isLoggedIn={isLoggedIn} />
+                                    name={name} isLoggedIn={isLoggedIn} pendingList={pendingList} />
                 </Box>
             </Container>
         </React.Fragment>
