@@ -89,7 +89,7 @@ class Employee extends React.Component {
                     <Row style={{height: '100%'}}>
                         <Col>
                             <div style={{textAlign: 'center', width: '100%', position: "relative"}}>
-                                <Card style={{width: '30%', left: '33%'}}>
+                                <Card style={{width: '25%', left: '33%'}}>
                                     <Card.Img variant="top" src={require('../assets/cardbg1.png')}
                                               style={{ height: '10%', width: '100%'}}/>
                                     <Card.Body>
