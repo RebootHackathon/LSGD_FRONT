@@ -27,7 +27,7 @@ const Header = (props) => {
     return (
         <Box display="flex" flexDirection="column">
             <Box paddingY={1}>
-                <Typography variant="h6">Accounts</Typography>
+                <Typography variant="h6">Employee Portal</Typography>
                 <Typography variant="subtitle2">You are in gov. employee portal</Typography>
             </Box>
 
