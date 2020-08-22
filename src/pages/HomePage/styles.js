@@ -34,6 +34,12 @@ export const legendItemStyles = {
 const useStyles = makeStyles(theme => ({
   root: {
   },
+  moreText: {
+    "&:hover": {
+      cursor: "pointer",
+      textDecoration: "underline"
+    }
+  },  
   link: {
     '&:hover': {
       cursor: "pointer"

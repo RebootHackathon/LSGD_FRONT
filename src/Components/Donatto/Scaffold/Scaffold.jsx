@@ -15,7 +15,7 @@ const Scaffold = (Body, activeTab) => {
             return (
                 <Box height="100vh" width="100vw" display="flex" flexDirection="column">
                     <AppBar />
-                    <Box display="flex" overflow="auto">
+                    <Box display="flex" overflow="auto" bgcolor="pink" flexGrow={1}>
                         <MenuBar activeTab={activeTab} />
                         <Box display="flex" bgcolor="#fafafa" flexGrow={1} overflow="auto">
                             <Body {...props}/>
