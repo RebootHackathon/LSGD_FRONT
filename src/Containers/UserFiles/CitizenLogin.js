@@ -249,7 +249,7 @@ function Login(props) {
                     <Col md={9} style={{backgroundImage: `url(${LoginBg})`, padding: 0, height: '100vh', overflow: 'hidden'}}>
                         <div style={{position:' relative'}}>
                             <Navbar bg="light" variant="light">
-                                <Navbar.Brand href="#home">
+                                <Navbar.Brand href="/">
                                     <img
                                         alt=""
                                         src={require('../../assets/icons/register.png')}

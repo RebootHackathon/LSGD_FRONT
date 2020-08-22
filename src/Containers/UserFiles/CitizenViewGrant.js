@@ -19,6 +19,9 @@ class Grants extends React.Component {
             statusLabel:'അവസ്ഥ',
             grantNameLabel:'ഗ്രാന്റിന്റെ പേര്',
             amountLabel:'രൂപ',
+            applyGrantLabel:'എല്ലാ ഗ്രാന്റുകളും',
+            descriptionGrantLabel:'കേരള സർക്കാർ നൽകുന്ന എല്ലാ ഗ്രാന്റുകളും ഈ പേജിൽ കാണിക്കുന്നു',
+            keralaLabel:'കേരള സർക്കാർ സംരംഭം',
             malayalamLanguage:true
 
         }
@@ -74,7 +77,10 @@ class Grants extends React.Component {
             sanctionLabel:'Sanctioned By',
             statusLabel:'Status',
             grantNameLabel:'Grant Name',
-            amountLabel:'Amount'})
+            amountLabel:'Amount',
+            applyGrantLabel:'All Grants',
+            descriptionGrantLabel:'This page shows all the grants given by the government of Kerala',
+            keralaLabel:'Kerala Government Initiative'})
     }
     changeMalayalamHandler(this_local){
         this.props.onMalayalam();
@@ -88,7 +94,10 @@ class Grants extends React.Component {
             sanctionLabel:'അനുവദിച്ചത്',
             statusLabel:'അവസ്ഥ',
             grantNameLabel:'ഗ്രാന്റിന്റെ പേര്',
-            amountLabel:'രൂപ'})
+            amountLabel:'രൂപ',
+            applyGrantLabel:'എല്ലാ ഗ്രാന്റുകളും',
+            descriptionGrantLabel:'കേരള സർക്കാർ നൽകുന്ന എല്ലാ ഗ്രാന്റുകളും ഈ പേജിൽ കാണിക്കുന്നു',
+            keralaLabel:'കേരള സർക്കാർ സംരംഭം',})
     }
     // creategrant(e) {
     //     console.log(this.newgrantData)
@@ -123,14 +132,14 @@ class Grants extends React.Component {
                             <Card style={{ width: '18rem' }}>
                                 <Card.Img variant="top" src={require('../../assets/cardbg1.png')} />
                                 <Card.Body>
-                                    <Card.Title>All Grants</Card.Title>
+                                    <Card.Title>{this.state.applyGrantLabel}</Card.Title>
                                     <Card.Text>
-                                        This page shows all the grants given by the government of Kerala
+                                    {this.state.descriptionGrantLabel}
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Footer>
                                     <Card.Text>
-                                        Kerala Government Initiative
+                                    {this.state.keralaLabel}
                                     </Card.Text>
                                 </Card.Footer>
                             </Card>
