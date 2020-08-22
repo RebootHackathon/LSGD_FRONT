@@ -207,40 +207,45 @@ class ApplyGrant extends Component {
                 
         }
         //Check grant group constrints
-        if(this.state.grant){
-            let alreadyAppliedGrantDetais=this.state.appliedGrantDetails.filter(grant=>{
-                // console.log("[Big Problem]",grant[0].id);
-                return grant[0].id==this.state.grant
-            })
-            console.log("[BigBig Problem]",alreadyAppliedGrantDetais);
-            let grantValue=this.state.grants.filter(grant=>{
-                return grant.id===this.state.grant
-            })
-            console.log("[grant group constrains]",grantValue[0].grandGroup);
-            const grantGroupName=grantValue[0].grandGroup;
-            if((grantGroupName==="ALL" || !grantGroupName) && !alreadyAppliedGrantDetais.length>0 ){
-                console.log("No problem");
-                this.state.grantErrorShow=false;
-            }else{
-                
-                let errorGrantList=this.state.appliedGrantDetails.filter(grant=>{
-                    // console.log(grant);
+       
+            if(this.state.grant){
+                let alreadyAppliedGrantDetais=this.state.appliedGrantDetails.filter(grant=>{
+                    // console.log("[Big Problem]",grant[0].id);
                     if(grant[0]){
-                        let gr=grant[0].grandGroup;
-                        return gr==grantGroupName
+                        return grant[0].id==this.state.grant
                     }
-                    return []
-                    
                 })
-                if(errorGrantList.length>0 || alreadyAppliedGrantDetais.length>0){
-                    this.state.grantErrorShow=true;
-                    console.log("problem",errorGrantList);
-                }else{
+                console.log("[BigBig Problem]",alreadyAppliedGrantDetais);
+                let grantValue=this.state.grants.filter(grant=>{
+                    return grant.id===this.state.grant
+                })
+                console.log("[grant group constrains]",grantValue[0].grandGroup);
+                const grantGroupName=grantValue[0].grandGroup;
+                if((grantGroupName==="ALL" || !grantGroupName) && !alreadyAppliedGrantDetais.length>0 ){
                     console.log("No problem");
                     this.state.grantErrorShow=false;
+                }else{
+                    
+                    let errorGrantList=this.state.appliedGrantDetails.filter(grant=>{
+                        // console.log(grant);
+                        if(grant[0]){
+                            let gr=grant[0].grandGroup;
+                            return gr==grantGroupName
+                        }
+                        return []
+                        
+                    })
+                    if(errorGrantList.length>0 || alreadyAppliedGrantDetais.length>0){
+                        this.state.grantErrorShow=true;
+                        console.log("problem",errorGrantList);
+                    }else{
+                        console.log("No problem");
+                        this.state.grantErrorShow=false;
+                    }
                 }
             }
-        }
+         
+        
        let malayalamLabel="മലയാളം";
        let englishLabel="English";
         return (
