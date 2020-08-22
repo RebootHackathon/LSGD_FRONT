@@ -11,6 +11,7 @@ class ApplyGrant extends Component {
     state = {
         details: null,
         grants: [],
+        data:[],
         spinning: false,
         grant: undefined,
         grantDataRecieved:false,
@@ -24,7 +25,11 @@ class ApplyGrant extends Component {
         uploadingLabel:'അയച്ചുകൊണ്ടിരിക്കുന്നു',
         uploadLabel:'അയച്ചു',
         applyLabel:'അപേക്ഷിക്കാം',
-        malayalamLanguage:true
+        errorMsgLabel:'നിങ്ങൾ ഈ ഗ്രാന്റിനി ആർഹനല്ല..!',
+        malayalamLanguage:true,
+        appliedGrantDetails:[],
+        grantErrorShow:false,
+        first:true
     }
 
     componentWillMount() {
@@ -36,7 +41,26 @@ class ApplyGrant extends Component {
             this.changeEnglishHandler(this);
         }
         console.log("[malayalamcheck]",this.state);
-        
+        const body1 = {"citizenId": +this.props.location.state.aadhar}
+        axios.post('/grants/getmygrants', body1)
+            .then(response => {
+                console.log('specific', response);
+                this.setState({spinning: false});
+                if (response.data.data.length > 0) {
+                    this.setState({expanded: new Array(response.data.data.length).fill(false)})
+                    this.setState({data: response.data.data, length: response.data.data.length});
+                } else {
+                    this.setState({
+                            length: 0,
+                            data: []
+                        }
+                    )
+                }
+            })
+            .catch(err => {
+                this.setState({spinning: false});
+                console.log(err);
+            })
         let name = '';
         const body = {"aadhar": +this.props.location.state.aadhar}
         axios.post('/users/getcitizeninfo', body)
@@ -61,20 +85,27 @@ class ApplyGrant extends Component {
                     for (let index = 0; index < len; index++) {
                         const id = response.data.data[index]._id;
                         const grantName = response.data.data[index].grant_name;
-                        grantArray.push({"id": id, "grantName": grantName});
+                        // console.log("[etheror]",response.data.data[index]);
+                        grantArray.push({"id": id, "grantName": grantName,"grandGroup":response.data.data[index].grant_group});
                     }
                     // this.state.grant = grantArray[0].id
                     this.setState({grant:grantArray[0].id,grants: [...grantArray]})
                     console.log('[getgrantsget]',this.state);
                     this.setState({grantDataRecieved:true});
                 }
+
+                
             })
             .catch(err => {
                 console.log(err);
             })
 
-    }
 
+        
+    }
+    componentDidMount(){
+
+    }
     onInputChangeHandler = (event) => {
         const event_name = event.target.id;
         this.setState({[event_name]: event.target.value})
@@ -120,7 +151,8 @@ class ApplyGrant extends Component {
             notChoosefileLabel:'File not choosen',
             uploadingLabel:'Uploading...',
             uploadLabel:'Uploading Success',
-            applyLabel:'Apply'
+            applyLabel:'Apply',
+            errorMsgLabel:'You are not Eligible for this grant..!'
     })
     }
     changeMalayalamHandler(this_local){
@@ -136,7 +168,8 @@ class ApplyGrant extends Component {
             notChoosefileLabel:'ഫയൽ തിരഞ്ഞെടുത്തില്ല',
             uploadingLabel:'അയച്ചുകൊണ്ടിരിക്കുന്നു...',
             uploadLabel:'അയച്ചു',
-            applyLabel:'അപേക്ഷിക്കാം'
+            applyLabel:'അപേക്ഷിക്കാം',
+            errorMsgLabel:'നിങ്ങൾ ഈ ഗ്രാന്റിനി ആർഹനല്ല..!'
         })
     }
 
@@ -151,11 +184,59 @@ class ApplyGrant extends Component {
          form=   <ApplyGrantForm state={this.state} grantlist={this.state.grants} applyLabel={applyLabel} onInputChange={this.onInputChangeHandler}
             onClickHandler={this.onClickHandler}/>
        }
+       if(this.state.first){
+          
+                this.state.data.map((ele) => {
+                    let grant_details = this.state.grants.filter(grant => {
+                        return grant.id === ele.grantId
+                    });
+                    // console.log("[filter]","[gd]", grant_details,"[gs]");
+                    // let grantDetail={grantName:grant_details[0].grantName,grantGroup:grant_details[0].grantGroup}
+                    this.state.appliedGrantDetails=[...this.state.appliedGrantDetails,grant_details];
+                    this.state.first=false;
+                });
+                
+        }
+        //Check grant group constrints
+        if(this.state.grant){
+            let alreadyAppliedGrantDetais=this.state.appliedGrantDetails.filter(grant=>{
+                // console.log("[Big Problem]",grant[0].id);
+                return grant[0].id==this.state.grant
+            })
+            console.log("[BigBig Problem]",alreadyAppliedGrantDetais);
+            let grantValue=this.state.grants.filter(grant=>{
+                return grant.id===this.state.grant
+            })
+            console.log("[grant group constrains]",grantValue[0].grandGroup);
+            const grantGroupName=grantValue[0].grandGroup;
+            if((grantGroupName==="ALL" || !grantGroupName) && !alreadyAppliedGrantDetais.length>0 ){
+                console.log("No problem");
+                this.state.grantErrorShow=false;
+            }else{
+                
+                let errorGrantList=this.state.appliedGrantDetails.filter(grant=>{
+                    // console.log(grant);
+                    if(grant[0]){
+                        let gr=grant[0].grandGroup;
+                        return gr==grantGroupName
+                    }
+                    return []
+                    
+                })
+                if(errorGrantList.length>0 || alreadyAppliedGrantDetais.length>0){
+                    this.state.grantErrorShow=true;
+                    console.log("problem",errorGrantList);
+                }else{
+                    console.log("No problem");
+                    this.state.grantErrorShow=false;
+                }
+            }
+        }
        let malayalamLabel="മലയാളം";
        let englishLabel="English";
         return (
             <div style={{width: '100%'}}>
-                {console.log("[dfdf]", this.state)}
+                {/* {console.log("[dfdf]", this.state)} */}
                 <Container fluid>
                     <Row>
                         <AppBar/>

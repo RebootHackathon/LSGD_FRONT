@@ -38,7 +38,9 @@ class ListGrant extends Component {
         applynewgrantLabel:'പുതിയ ഗ്രാന്റിനി അപേക്ഷിക്കാം',
         noresultLable:'ഒരു ഫലവും ഇല്ല',
         nouserLabel:'നിങ്ങൾ അടിച്ച നമ്പർ തെറ്റ്',
-        malayalamLanguage:true
+        malayalamLanguage:true,
+        appliedGrantDetails:[],
+        
     };
 
     constructor(props) {
@@ -118,11 +120,12 @@ class ListGrant extends Component {
                     for (let index = 0; index < len; index++) {
                         const id = response.data.data[index]._id;
                         const grantName = response.data.data[index].grant_name;
-                        grantArray.push({"id": id, "grantName": grantName});
+                        const grant_group=response.data.data[index].grant_group;
+                        grantArray.push({"id": id, "grantName": grantName,"grantGroup":grant_group});
 
                     }
                     this.setState({grants: [...grantArray]})
-                    console.log(this.state);
+                    console.log("[Check Group]",this.state);
                 }
             })
             .catch(err => {
@@ -185,6 +188,9 @@ class ListGrant extends Component {
         //    this.setSpinner();
             console.log("spinner");
         }
+       
+
+
         let malayalamLabel="മലയാളം";
         let englishLabel="English";
         return (
@@ -223,7 +229,9 @@ class ListGrant extends Component {
                                         let grant_details = this.state.grants.filter(grant => {
                                             return grant.id === ele.grantId
                                         });
-                                        console.log("[filter]", grant_details, this.state.grants, ele.grantId, ele.applicationId);
+                                        console.log("[filter]","[gd]", grant_details,"[gs]");
+                                        // let grantDetail={grantName:grant_details[0].grantName,grantGroup:grant_details[0].grantGroup}
+                                        this.state.appliedGrantDetails=[...this.state.appliedGrantDetails,grant_details];
                                         if (ele.status === 'Pending'){
                                             return (
                                                 <Container key={ele._id}>
