@@ -85,6 +85,7 @@ const PanelBody = (props) => {
 
             }) (Button)
             return (
+                <Box>
                     <Grid container>
                         <Grid item xs={12} md={4}>
                             <Typography variant="caption" color="textSecondary">Fact no1</Typography>
@@ -102,74 +103,29 @@ const PanelBody = (props) => {
                                 <Typography variant="h5" color="primary">&#8226;&nbsp;</Typography><Typography variant="subtitle1" color="textPrimary">7899 6895 6986 4785</Typography>
                             </Box>
                         </Grid>
-                        {/* <Grid item xs={12} md={4}>
-                            <Box display="flex" height="100%" justifyContent="flex-end" alignItems="flex-end">
-                                <ButtonCustom bgColor="none" color="black">statement</ButtonCustom>
-                                <ButtonCustom bgColor="none" color="black">history</ButtonCustom>
+                        <Grid item xs={12} md={4}>
+                            <Box display="flex" height="100%" justifyContent="flex-end" alignItems="center">
+                                <ButtonCustom  color="black">statement</ButtonCustom>
+                                <ButtonCustom  color="black">history</ButtonCustom>
                                 <ButtonCustom bgColor={theme.palette.primary.main} color="white">details</ButtonCustom>
                             </Box>
-                        </Grid> */}
+                        </Grid>
                     </Grid>
+                    <Divider />
+
+                </Box>
             )
         }
         function Section1(props) {
-
             return (
-                // <Paper elevation={3}>
                     <Box>
-                        {/* <MainContent /> */}
                         <Typography variant="h5">
                             {isLoggedIn === true ? `Hi, ${name}` : "Anonymous user"}
                         </Typography>
                     </Box>
-                // </Paper>
             )
         }
         function Section2(props) {
-            function LineChartComponent(props) {
-                return (
-                    <React.Fragment>
-
-                    </React.Fragment>
-                )
-            }
-            
-            function ChartComponent(props) {
-                const ChartRootBase = ({ classes, ...restProps }) => (
-                    <Chart.Root {...restProps} className={classes.chart} />
-                );
-                const LegendRootBase = ({ classes, ...restProps }) => (
-                    <Legend.Root {...restProps} className={classes.root} />
-                );
-                const LegendLabelBase = ({ classes, ...restProps }) => (
-                    <Legend.Label {...restProps} className={classes.label} />
-                );
-                const LegendItemBase = ({ classes, ...restProps }) => (
-                    <Legend.Item {...restProps} className={classes.item} />
-                );
-                const ChartRoot = withStyles(chartRootStyles, { name: 'ChartRoot' })(ChartRootBase);
-                const LegendRoot = withStyles(legendStyles, { name: 'LegendRoot' })(LegendRootBase);
-                const LegendLabel = withStyles(legendLabelStyles, { name: 'LegendLabel' })(LegendLabelBase);
-                const LegendItem = withStyles(legendItemStyles, { name: 'LegendItem' })(LegendItemBase);
-
-                return (
-                    <Chart data={piData} height={200} rootComponent={ChartRoot}>
-                        <PieSeries
-                            valueField="area"
-                            argumentField="name"
-                            innerRadius={0.6}
-                            
-                        />
-                        <Animation />
-                        <Legend
-                            position="right"
-                            rootComponent={LegendRoot}
-                            itemComponent={LegendItem}
-                            labelComponent={LegendLabel}
-                        />
-                    </Chart>
-                )
-            }
             return (
                 <Box marginTop={3} marginBottom={3}>
                     <Grid container spacing={2}>
@@ -186,7 +142,7 @@ const PanelBody = (props) => {
                             </Box>
                         </Grid>
                         <Grid itme xs={8}>
-                            <Box bgcolor="green">
+                            <Box >
                                 <Paper elevation={3}>
                                     <Box overflow="hidden" height="100%" height={200}>
 <iframe style={{background: "#FFFFFF", border: "none"}} width="100%" height="100%" src="https://charts.mongodb.com/charts-reboothack-svrqf/embed/charts?id=f79c8d9d-3229-45cc-8d10-807caebaf3b4&theme=light"></iframe>
@@ -199,13 +155,47 @@ const PanelBody = (props) => {
                 </Box>
             )
         }
+        function NumericalSection(props) {
+            return (
+                <React.Fragment>
+                    <Box  height={90}></Box>
+                </React.Fragment>
+            )
+
+        }
+        function MorePendingText(props) {
+            const classes = useStyles(props)
+
+            return (
+                <Box display="flex" justifyContent="flex-end" paddingTop={2}>
+                    <Typography variant="caption" className={classes.moreText}>+7 more</Typography>
+                </Box>
+            )
+        }
+        function PendingRequest(props) {
+            return (
+                <React.Fragment>
+                    <Box marginBottom={2}>
+                        <Box paddingBottom={1}><Typography variant="subtitle2">Pending Requests</Typography></Box>
+                        <Paper elevation={3}>
+                            <Box paddingY={1} paddingX={2}>
+                                <MainContent />
+                                <MainContent />
+                                <MainContent />
+                                <MorePendingText />
+                            </Box>
+                        </Paper>
+                    </Box>
+                </React.Fragment>
+            )
+        }
 
         return (
             <React.Fragment>
-                <Box display="flex" flexDirection="column">
+                <Box display="flex" flexDirection="column"  height="100%">
                     <Section1 />
-                    <Section2 />
-                    <Box flexGrow={1} bgcolor="pink" />
+                    <NumericalSection />
+                    <PendingRequest />
                     <CardSection />
                 </Box>
             </React.Fragment>
@@ -248,14 +238,16 @@ const PanelBody = (props) => {
         );
     }
     return (
-        <Box flexGrow={1} bgcolor="none" marginY={2} overflow="auto">
+        <Box flexGrow={1} overflow="auto"  display="flex" flexDirection="column">
             <SwipeableViews
                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                 index={tabValue}
                 onChangeIndex={handleChangeIndex}
             >
                 <TabPanel value={tabValue} index={0} dir={theme.direction}>
-                    <Tab1Body />
+                    <Box >
+                        <Tab1Body />
+                    </Box>
                 </TabPanel>
                 <TabPanel value={tabValue} index={1} dir={theme.direction}>
                     <Tab2Body />
@@ -276,7 +268,7 @@ const CardSection = (props) => {
         const {title, subheading, caption, pic, url, fromColor, toColor, to} = props;
 
         return (
-                <Box bgcolor="blue" height="100%" borderRadius={5} padding={2} paddingBottom={1} color="white"
+                <Box height="100%" borderRadius={5} padding={2} paddingBottom={1} color="white"
                     className={`${classes.card} ${classes.link}`} position="relative" overflow="hidden" 
                     onClick={()=>history.push(to)}>
                     <Box zIndex={1} display="flex" flexDirection="column" height="100%">
