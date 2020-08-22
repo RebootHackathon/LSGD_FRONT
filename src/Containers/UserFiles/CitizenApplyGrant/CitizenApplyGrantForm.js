@@ -38,6 +38,10 @@ componentWillMount(){
     render(){
         console.log("[error state]",this.state);
         // this.setState({filename:this.props.state.notChoosefileLabel});
+        let eligibilityError=null;
+        if(this.props.state.grantErrorShow){
+            eligibilityError=<p style={{color:'red',marginLeft:'20%'}}>{this.props.state.errorMsgLabel} </p>
+        }
         return (
                 <Row>
                     <Col  md={3}>
@@ -66,6 +70,9 @@ componentWillMount(){
                                 <Card.Body>
 
                                     <Card.Title style={{display: 'flex', justifyContent: 'center', paddingBottom: '20px'}}><strong>{this.props.state.enterDetailsLabel}</strong></Card.Title>
+                                    {eligibilityError}
+                                    
+
                                     <FormElement label={this.props.state.aadharLabel} id='aadhar' value={this.props.state.aadhar}
                                                  onChange={this.props.onInputChange} disabled/>
                                     <FormElement label={this.props.state.nameLabel} id='name' value={this.props.state.name} onChange={this.props.onInputChange}
@@ -136,7 +143,7 @@ componentWillMount(){
                                     {/*</form>*/}
 
                                     {this.state.fileid !== null &&
-                                    <Button variant="primary" block type="submit" onClick={this.props.onClickHandler}>
+                                    <Button variant="primary" block type="submit" disabled={this.props.state.grantErrorShow} onClick={this.props.onClickHandler}>
                                         {this.props.applyLabel}
                                     </Button>
                                     }
@@ -145,6 +152,7 @@ componentWillMount(){
                                         {this.props.state.notChoosefileLabel}
                                     </Button>
                                     }
+                                    
                                 </Card.Body>
                             </Card>
                         </div>
